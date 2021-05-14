@@ -1,1 +1,1 @@
-# Lazy Recipes 
+# Lazy Recipes 🧑‍🍳
