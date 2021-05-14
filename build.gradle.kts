@@ -23,6 +23,11 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	//mysql
+	implementation("mysql:mysql-connector-java")
+	//import compiler and jstl
+	compileOnly("org.apache.tomcat.embed:tomcat-embed-jasper")
+	implementation("javax.servlet:jstl")
 }
 
 tasks.withType<KotlinCompile> {
