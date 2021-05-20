@@ -14,7 +14,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+                <%--@elvariable id="recipe" type="at.fhj.ima.lazyrecipes"--%>
             <form:form modelAttribute="recipe" method="post" action="changeRecipe">
+
+                <form:hidden path="id" />
 
                 <input type="hidden" name="id" value="<c:out value="${recipe.id}"/>">
 
@@ -28,6 +31,7 @@
                         <c:set var="titleInvalid"><form:errors path="title" cssClass="invalid-feedback" /></c:set>
                         <form:input path="title" class="form-control ${not empty titleInvalid ? 'is-invalid' : ''}" id="inputTitle" type="text"/>
                             ${titleInvalid}
+
                     </div>
 
                     <! ---------------- Recipe Subtitle ---------------- -->
@@ -73,7 +77,7 @@
                             ${portionsInvalid}
                     </div>
 
-                    <! ---------------- Prep Time ---------------- -->
+                    <! ---------------- Steps ---------------- -->
                     <div class="mb-3">
                         <label for="inputsteps" class="form-label">steps</label>
                         <c:set var="lastNameInvalid"><form:errors path="steps" cssClass="invalid-feedback" /></c:set>
