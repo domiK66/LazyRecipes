@@ -45,4 +45,11 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         return "redirect:/editRecipe?id=" + recipe.id
     }
 
+    @RequestMapping("/searchRecipe", method = [RequestMethod.GET])
+    fun searchRecipes(model: Model, @RequestParam(required = false) search: String? = null): String {
+        model["recipe"] = recipeRepository.findBySearchText(search)
+        return "searchRecipe"
+    }
+
+
 }
