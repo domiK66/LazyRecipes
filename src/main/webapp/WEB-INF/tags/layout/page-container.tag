@@ -14,6 +14,8 @@
 </head>
 <body>
 
+<!-- TODO: make footer fixed size-->
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Lazy Recipes</a>
@@ -40,10 +42,24 @@
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
             </ul>
+
+            <!--
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input class="form-control me-2" type="search" placeholder="Search for Recipes" aria-label="Search"
+                value="${param.search}"/>
+                <a href="/searchRecipe" class="btn btn-info" role="button">Search</a>
             </form>
+            -->
+            <form id="searchId" action="/searchRecipe" class="d-flex">
+                <! ---------------- search recipes ------------------>
+                <div class="row">
+                    <div class="col">
+                        <label for="inputSearch" class="form-label"></label>
+                        <input id="inputSearch" name="search" type="search" aria-label="Search" placeholder="Search for Recipes" value="${param.search}"/>
+                    </div>
+                </div>
+            </form>
+
         </div>
     </div>
 </nav>
