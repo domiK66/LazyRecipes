@@ -51,5 +51,14 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         return "searchRecipe"
     }
 
+    @RequestMapping("/deleteRecipe", method = [RequestMethod.GET])
+    fun deleteEmployee(model: Model, @RequestParam id: Int): String {
+        val recipe = recipeRepository.findById(id).get()
+        recipeRepository.delete(recipe);
+        return "index"
+    }
+
 
 }
+
+
