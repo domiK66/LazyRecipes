@@ -1,0 +1,15 @@
+@media all and (min-width: 992px) {
+    .dropdown-large {
+        min-width: 500px;
+    }
+}
+.mega-area {
+    position:absolute ;
+    width: 100%;
+    left: 0;
+    right: 0;
+    padding: 15px;
+}
+.copyright {
+    background-color: rgba(0, 0, 0, 0.2);
+}

@@ -58,6 +58,13 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         return "index"
     }
 
+    // index -- domi k
+    @RequestMapping("/", method = [RequestMethod.GET])
+    fun listEmployees(model: Model): String {
+        model["recipe"] = recipeRepository.findAll()
+        model["category"] = recipeRepository.findAll()
+        return "index"
+    }
 
 }
 
