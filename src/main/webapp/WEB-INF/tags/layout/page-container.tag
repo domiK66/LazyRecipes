@@ -1,3 +1,5 @@
+<%@tag pageEncoding="UTF-8" %>
+
 <%@ attribute name="title" required="true" %>
 <%@ attribute name="activePage" required="true" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -6,6 +8,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <bootstrap:bootstrap-metadata/>
     <title>${title}</title>
@@ -14,53 +17,69 @@
 </head>
 <body>
 
-<!-- TODO: make footer fixed size-->
+<!-- Navbar -->
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" aria-label="Ninth navbar example" style="width: 100%">
+    <div class="container-xl">
         <a class="navbar-brand" href="/">Lazy Recipes</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07XL" aria-controls="navbarsExample07XL" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarsExample07XL">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Explore Categories
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    <a class="nav-link" href="/editRecipe">create new Recipe</a>
                 </li>
-            </ul>
 
-            <!--
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search for Recipes" aria-label="Search"
-                value="${param.search}"/>
-                <a href="/searchRecipe" class="btn btn-info" role="button">Search</a>
+                <!-- DROPDOWN MENU CATGORIES -->
+                <li class="nav-item dropdown dropdown-large">
+                    <a class="nav-link dropdown-toggle" id="dropdown07XL" data-bs-toggle="dropdown" aria-expanded="false">Explore Categories</a>
+                    <ul class="dropdown-menu mega-area" data-bs-popper="none" aria-labelledby="dropdown07XL">
+                        <div class="row g-3">
+                            <div class="col-sm-4 col-lg-3">
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Pasta/Penne</a></li>
+                                    <li><a href="#">Vegetarian</a></li>
+                                    <li><a href="#">Vegan</a></li>
+                                    <li><a href="#">Sandwiches</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-4 col-lg-3">
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Bowls</a></li>
+                                    <li><a href="#">Asian</a></li>
+                                    <li><a href="#">Dessert</a></li>
+                                    <li><a href="#">Salad</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-4 col-lg-3">
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Wraps</a></li>
+                                    <li><a href="#">Traditional</a></li>
+                                    <li><a href="#">Antipasti</a></li>
+                                    <li><a href="#">Fast Food</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </ul>
+                </li>
+
+
+            </ul>
+            <form id="searchId" action="/searchRecipe" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                <input name="search" id="inputSearch" type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search" value="${param.search}">
             </form>
-            -->
-            <form id="searchId" action="/searchRecipe" class="d-flex">
-                <! ---------------- search recipes ------------------>
-                <div class="row">
-                    <div class="col">
-                        <label for="inputSearch" class="form-label"></label>
-                        <input id="inputSearch" name="search" type="search" aria-label="Search" placeholder="Search for Recipes" value="${param.search}"/>
-                    </div>
-                </div>
-            </form>
+
+            <div class="text-end">
+                <button type="button" class="btn btn-outline-light me-2">Login</button>
+                <button type="button" class="btn btn-warning">Sign-up</button>
+            </div>
 
         </div>
+
     </div>
 </nav>
 
@@ -98,87 +117,7 @@
 <!-- Footer -->
 <footer class="bg-dark text-center text-white">
     <!-- Grid container -->
-    <div class="container p-4">
-        <!-- Section: Social media -->
-        <section class="mb-4">
-            <!-- Facebook -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-facebook-f"></i
-            ></a>
-
-            <!-- Twitter -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-twitter"></i
-            ></a>
-
-            <!-- Google -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-google"></i
-            ></a>
-
-            <!-- Instagram -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-instagram"></i
-            ></a>
-
-            <!-- Linkedin -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-linkedin-in"></i
-            ></a>
-
-            <!-- Github -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-github"></i
-            ></a>
-        </section>
-        <!-- Section: Social media -->
-
-        <!-- Section: Form -->
-        <section class="">
-            <form action="">
-                <!--Grid row-->
-                <div class="row d-flex justify-content-center">
-                    <!--Grid column-->
-                    <div class="col-auto">
-                        <p class="pt-2">
-                            <strong>Sign up for our newsletter</strong>
-                        </p>
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-md-5 col-12">
-                        <!-- Email input -->
-                        <div class="form-outline form-white mb-4">
-                            <input type="email" id="form5Example2" class="form-control" />
-                            <label class="form-label" for="form5Example2">Email address</label>
-                        </div>
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-auto">
-                        <!-- Submit button -->
-                        <button type="submit" class="btn btn-outline-light mb-4">
-                            Subscribe
-                        </button>
-                    </div>
-                    <!--Grid column-->
-                </div>
-                <!--Grid row-->
-            </form>
-        </section>
-        <!-- Section: Form -->
-
-        <!-- Section: Text -->
-        <section class="mb-4">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-                repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-                eum harum corrupti dicta, aliquam sequi voluptate quas.
-            </p>
-        </section>
-        <!-- Section: Text -->
+    <div class="container p-4 mt-4">
 
         <!-- Section: Links -->
         <section class="">
@@ -186,20 +125,23 @@
             <div class="row">
                 <!--Grid column-->
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Links</h5>
+                    <h5 class="text-uppercase">Logo</h5>
+
+                    <p>
+                        Skip FastFood, use <a href="/">LazyRecipes.at</a>
+                    </p>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
 
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <a href="#!" class="text-white">Link 1</a>
+                            <a href="#!" class="text-white">Contact</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">Link 2</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 4</a>
+                            <a href="#!" class="text-white">Customer Service</a>
                         </li>
                     </ul>
                 </div>
@@ -207,20 +149,16 @@
 
                 <!--Grid column-->
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Links</h5>
 
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <a href="#!" class="text-white">Link 1</a>
+                            <a href="#!" class="text-white">Privacy Policy</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">Link 2</a>
+                            <a href="#!" class="text-white">Terms of Use</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 4</a>
+                            <a href="#!" class="text-white">Imprint</a>
                         </li>
                     </ul>
                 </div>
@@ -228,41 +166,16 @@
 
                 <!--Grid column-->
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Links</h5>
 
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <a href="#!" class="text-white">Link 1</a>
+                            <a href="#!" class="text-white">Register</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">Link 2</a>
+                            <a href="#!" class="text-white">Account</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 4</a>
-                        </li>
-                    </ul>
-                </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Links</h5>
-
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <a href="#!" class="text-white">Link 1</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 2</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Link 4</a>
+                            <a href="#!" class="text-white">My Recipes</a>
                         </li>
                     </ul>
                 </div>
@@ -275,9 +188,8 @@
     <!-- Grid container -->
 
     <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2020 Copyright:
-        <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    <div class="text-center p-3 copyright">
+        ©Copyright 2021 by <a href="https://www.fh-joanneum.at">fh-joanneum.at</a>
     </div>
     <!-- Copyright -->
 </footer>
