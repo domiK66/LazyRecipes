@@ -3,7 +3,10 @@ package at.fhj.ima.lazyrecipes.entity
 import java.io.Serializable
 import java.time.LocalDate
 import javax.persistence.*
+import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.NotNull
+import javax.validation.constraints.Size
 
 @Entity
 class Recipe (
@@ -12,14 +15,22 @@ class Recipe (
     var id: Int? = null,
 
     @field:NotNull
+    @field:NotEmpty
+    @field:Size(min = 2, max = 240)
     var title: String? = null,
 
+    @field:NotNull
+    @field:NotEmpty
+    @field:Size(min = 2, max = 240)
     var subtitle: String? = null,
 
     @field:NotNull
+    @field:NotEmpty
+    @field:Size(min = 2, max = 240)
     var ingredients: String? = null,
 
     @ManyToOne
+    @field:NotNull
     var category: Category? = null,
 
     @field:NotNull
@@ -29,15 +40,13 @@ class Recipe (
     var portions: Int? = null,
 
     @field:NotNull
-    var steps: String? =null,
+    @field:NotEmpty
+    @field:Size(min = 2, max = 240)
+    var steps: String? = null,
 
     var date: LocalDate? = LocalDate.now(),
 
     //var user: String? = null,
-
-
-
-
 
 
     //var rating: Float? = null
