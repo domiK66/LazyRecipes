@@ -10,62 +10,65 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <layout:page-container title="LazyRecipes" activePage="editRecipe">
-
     <div class="container">
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                    <%--@elvariable id="recipe" type="at.fhj.ima.lazyrecipes"--%>
+                <%--@elvariable id="recipe" type="at.fhj.ima.lazyrecipes"--%>
                 <form:form modelAttribute="recipe" id="editForm" method="post" action="changeRecipe">
-
-                    <form:hidden path="id"/>
-
-                    <!--
                     <input type="hidden" name="id" value="<c:out value="${recipe.id}"/>">
-                    -->
 
                     <fieldset>
                         <!-- TODO: create/change -->
-
                         <legend>Change Recipe: ${recipe.title}</legend>
 
-                        <! ---------------- Recipe Title ---------------- -->
+                        <!-- ------------- Recipe Title ---------------- -->
                         <div class="mb-3">
                             <label for="inputTitle" class="form-label">Title</label>
-                            <c:set var="titleInvalid"><form:errors path="title" cssClass="invalid-feedback"/></c:set>
-                            <form:input path="title" class="form-control ${not empty titleInvalid ? 'is-invalid' : ''}"
-                                        id="inputTitle" type="text"/>
+                            <c:set var="titleInvalid">
+                                <form:errors path="title" cssClass="invalid-feedback"/>
+                            </c:set>
+                            <form:input path="title"
+                                        class="form-control ${not empty titleInvalid ? 'is-invalid' : ''}"
+                                        id="inputTitle"
+                                        type="text"/>
                                 ${titleInvalid}
                         </div>
 
-
-                        <! ---------------- Recipe Subtitle ---------------- -->
+                        <!-- ------------- Recipe Subtitle ---------------- -->
                         <div class="mb-3">
                             <label for="inputSubtitle" class="form-label">Subtitle</label>
-                            <c:set var="subtitleInvalid"><form:errors path="subtitle"
-                                                                      cssClass="invalid-feedback"/></c:set>
+                            <c:set var="subtitleInvalid">
+                                <form:errors path="subtitle" cssClass="invalid-feedback"/>
+                            </c:set>
                             <form:input path="subtitle"
                                         class="form-control ${not empty subtitleInvalid ? 'is-invalid' : ''}"
-                                        id="inputSubtitle" type="text"/>
+                                        id="inputSubtitle"
+                                        type="text"/>
                                 ${subtitleInvalid}
                         </div>
 
-                        <! ---------------- Ingredients ---------------- -->
+                        <!-- -------------- Ingredients ---------------- -->
                         <div class="mb-3">
                             <label for="inputIngredients" class="form-label">Ingredients</label>
-                            <c:set var="ingredientsInvalid"><form:errors path="ingredients"
-                                                                      cssClass="invalid-feedback"/></c:set>
+                            <c:set var="ingredientsInvalid">
+                                <form:errors path="ingredients" cssClass="invalid-feedback"/>
+                            </c:set>
                             <form:input path="ingredients"
                                         class="form-control ${not empty ingredientsInvalid ? 'is-invalid' : ''}"
-                                        id="inputIngredients" type="text"/>
+                                        id="inputIngredients"
+                                        type="text"/>
                                 ${ingredientsInvalid}
                         </div>
 
-                        <! ---------------- Category ------------------>
+                        <!-- -------------- Category ------------------>
                         <div class="mb-3">
                             <label for="category" class="form-label">Category</label>
-                            <c:set var="categoryInvalid"><form:errors path="category"
-                                                                      cssClass="invalid-feedback"/></c:set>
-                            <form:select id="category" path="category"
+                            <c:set var="categoryInvalid">
+                                <form:errors path="category" cssClass="invalid-feedback"/>
+                            </c:set>
+                            <form:select id="category"
+                                         path="category"
                                          class="form-control ${not empty categoryInvalid ? 'is-invalid' : ''}">
                                 <form:option value=""> </form:option>
                                 <form:options items="${category}" itemValue="id" itemLabel="name"/>
@@ -73,43 +76,53 @@
                                 ${categoryInvalid}
                         </div>
 
-                        <! ---------------- Prep Time ---------------- -->
+                        <!-- -------------- Prep Time ---------------- -->
+                        <!-- TODO: beschriftung minutes -->
                         <div class="mb-3">
                             <label for="inputprepTime" class="form-label">prepTime</label>
-                            <c:set var="lastNameInvalid"><form:errors path="prepTime"
-                                                                      cssClass="invalid-feedback"/></c:set>
-                            <form:input path="prepTime" required="true"
+                            <c:set var="prepTimeInvalid">
+                                <form:errors path="prepTime" cssClass="invalid-feedback"/>
+                            </c:set>
+                            <form:input path="prepTime"
                                         class="form-control ${not empty prepTimeInvalid ? 'is-invalid' : ''}"
-                                        id="inputprepTime" type="text"/>
+                                        id="inputprepTime"
+                                        type="text"/>
                                 ${prepTimeInvalid}
                         </div>
 
-                        <! ---------------- Portions ---------------- -->
+                        <!-- -------------- Portions ---------------- -->
                         <div class="mb-3">
                             <label for="inputportions" class="form-label">portions</label>
-                            <c:set var="lastNameInvalid"><form:errors path="portions"
-                                                                      cssClass="invalid-feedback"/></c:set>
-                            <form:input path="portions" required="true"
+                            <c:set var="portionsInvalid">
+                                <form:errors path="portions" cssClass="invalid-feedback"/>
+                            </c:set>
+                            <form:input path="portions"
                                         class="form-control ${not empty portionsInvalid ? 'is-invalid' : ''}"
-                                        id="inputportions" type="text"/>
+                                        id="inputportions"
+                                        type="text"/>
                                 ${portionsInvalid}
                         </div>
 
-                        <! ---------------- Steps ---------------- -->
+                        <!-- -------------- Steps ---------------- -->
                         <div class="mb-3">
                             <label for="inputsteps" class="form-label">steps</label>
-                            <c:set var="stepsInvalid"><form:errors path="steps" cssClass="invalid-feedback"/></c:set>
-                            <form:input path="steps" class="form-control ${not empty stepsInvalid ? 'is-invalid' : ''}"
-                                        id="inputsteps" type="text"/>
+                            <c:set var="stepsInvalid">
+                                <form:errors path="steps" cssClass="invalid-feedback"/>
+                            </c:set>
+                            <form:input path="steps"
+                                        class="form-control ${not empty stepsInvalid ? 'is-invalid' : ''}"
+                                        id="inputsteps"
+                                        type="text"/>
                                 ${stepsInvalid}
                         </div>
 
-                        <! ---------------- Buttons ---------------- -->
+                        <!-- -------------- Buttons ---------------- -->
                         <div class="mb-3">
                             <!-- submit -->
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <!-- cancel -->
                             <a href="/" class="btn btn-default">Cancel</a>
+
 
                             <!-- delete button: only if id-param exists, button is enabled -->
                             <c:choose>
@@ -131,31 +144,30 @@
 
 
                             <!-- Modal (warning) -->
-                            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
-                                 aria-hidden="true">
+                            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="deleteModalLabel">Delete Recipe?</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                                 Close
                                             </button>
-                                            <a href="deleteRecipe?id=${recipe.id}"
-                                               class="btn btn-xs btn-danger">Delete</a>
+                                            <a href="deleteRecipe?id=${recipe.id}" class="btn btn-xs btn-danger">Delete</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
                     </fieldset>
                 </form:form>
             </div>
-
         </div>
-    </div>
 
+
+    </div>
 </layout:page-container>
