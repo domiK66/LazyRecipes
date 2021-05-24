@@ -123,10 +123,25 @@
                             <!-- cancel -->
                             <a href="/" class="btn btn-default">Cancel</a>
 
-                            <!-- delete (triggers modal) -->
-                            <button type="button" class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                Delete
-                            </button>
+
+                            <!-- delete button: only if id-param exists, button is enabled -->
+                            <c:choose>
+                                <c:when test="${empty param}">
+                                    <button type="button" class="btn btn-xs btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal" disabled>
+                                        Delete
+                                    </button>
+                                </c:when>
+                                <c:otherwise>
+                                        <button type="button" class="btn btn-xs btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal" enabled>
+                                            Delete
+                                        </button>
+                                        </c:otherwise>
+                            </c:choose>
+
+
+
 
                             <!-- Modal (warning) -->
                             <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
