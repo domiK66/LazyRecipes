@@ -83,7 +83,7 @@
     </div>
 </nav>
 
-<div class="container" role="main">
+<div class="container mb-4 mt-3" role="main">
 
 
     <div class="page-header">
@@ -115,7 +115,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="bg-dark text-center text-white">
+<footer class="bg-dark text-center text-white footer">
     <!-- Grid container -->
     <div class="container p-4 mt-4">
 

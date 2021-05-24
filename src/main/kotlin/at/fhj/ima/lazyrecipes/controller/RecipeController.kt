@@ -36,8 +36,7 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
     }
 
     @RequestMapping("/changeRecipe", method = [RequestMethod.POST])
-    fun changeRecipe(@ModelAttribute @Valid recipe: Recipe,
-                     bindingResult: BindingResult, model: Model): String {
+    fun changeRecipe(@ModelAttribute @Valid recipe: Recipe, bindingResult: BindingResult, model: Model): String {
         if (bindingResult.hasErrors()) {
             return populateEditRecipeView(model)
         }
@@ -52,20 +51,30 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
     }
 
     @RequestMapping("/deleteRecipe", method = [RequestMethod.GET])
-    fun deleteEmployee(model: Model, @RequestParam id: Int): String {
+    fun deleteRecipe(model: Model, @RequestParam id: Int): String {
         val recipe = recipeRepository.findById(id).get()
         recipeRepository.delete(recipe);
         return "index"
     }
 
-    // index -- domi k
+    // index.jsp
     @RequestMapping("/", method = [RequestMethod.GET])
-    fun listEmployees(model: Model): String {
+    fun listRecipes(model: Model): String {
         model["recipe"] = recipeRepository.findAll()
         model["category"] = recipeRepository.findAll()
         return "index"
     }
 
+    // recipeView.jsp
+    @RequestMapping("/recipeView", method = [RequestMethod.GET])
+    fun viewRecipe(model: Model, @RequestParam(required = false) id: Int?): String {
+        if (id != null) {
+            val recipe = recipeRepository.findById(id).get()
+            model["recipe"] = recipe
+        }
+        model["category"] = recipeRepository.findAll()
+        return "recipeView"
+    }
 }
 
 
