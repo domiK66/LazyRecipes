@@ -17,8 +17,7 @@ import java.time.LocalDate
 import javax.validation.Valid
 
 @Controller
-class RecipeController(val recipeRepository: RecipeRepository, val categoryRepository: CategoryRepository,
-                        val ratingRepository: RatingRepository) {
+class RecipeController(val recipeRepository: RecipeRepository, val categoryRepository: CategoryRepository, val ratingRepository: RatingRepository) {
 
     @RequestMapping("/editRecipe", method = [RequestMethod.GET])
     fun editRecipee(model: Model, @RequestParam(required = false) id: Int?): String {
@@ -57,7 +56,16 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
     fun deleteRecipe(model: Model, @RequestParam id: Int): String {
         val recipe = recipeRepository.findById(id).get()
         recipeRepository.delete(recipe);
-        return "index"
+        model["message"] = "Recipe with title ${recipe.title} and id ${recipe.id} deleted"
+        return listRecipes(model)
+    }
+
+    @RequestMapping("/deleteAdminRecipe", method = [RequestMethod.GET])
+    fun deleteAdminRecipe(model: Model, @RequestParam id: Int): String {
+        val recipe = recipeRepository.findById(id).get()
+        recipeRepository.delete(recipe);
+        model["message"] = "Recipe with title ${recipe.title} and id ${recipe.id} deleted"
+        return listAdminRecipes(model)
     }
 
     // index.jsp
@@ -68,14 +76,22 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         return "index"
     }
 
+    // admin.jsp
+    @RequestMapping("/admin", method = [RequestMethod.GET])
+    fun listAdminRecipes(model: Model): String {
+        model["recipe"] = recipeRepository.findAll()
+        model["category"] = recipeRepository.findAll()
+        return "admin"
+    }
+
     // recipeView.jsp
     @RequestMapping("/recipeView", method = [RequestMethod.GET])
     fun viewRecipe(model: Model, @RequestParam(required = false) id: Int?): String {
         if (id != null) {
             val recipe = recipeRepository.findById(id).get()
             model["recipe"] = recipe
+            model["category"] = recipeRepository.findAll()
         }
-        model["category"] = recipeRepository.findAll()
         return "recipeView"
     }
 
