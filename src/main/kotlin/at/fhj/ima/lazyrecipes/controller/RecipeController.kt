@@ -79,12 +79,13 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         return "recipeView"
     }
 
+    /* tbd
     @RequestMapping("/saveRating", method = [RequestMethod.POST])
     fun saveRating(model: Model, rating: Rating, recipe: Recipe): String {
         ratingRepository.save(rating)
         return "index"
     }
-
+    */
 }
 
 

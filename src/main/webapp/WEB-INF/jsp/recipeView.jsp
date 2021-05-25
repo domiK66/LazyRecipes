@@ -11,35 +11,6 @@
 
 <layout:page-container title="LazyRecipes" activePage="recipeView">
     <div class="container">
-
-        <!-- add rating -->
-
-            <%--@elvariable id="recipe" type="at.fhj.ima.lazyrecipes"--%>
-        <form:form modelAttribute="recipe" method="post" action="saveRating">
-            <input type="hidden" name="id" value="<c:out value="${recipe.id}"/>">
-
-            <fieldset>
-
-                <div class="mb-3">
-                    <label for="inputRating" class="form-label">Rating</label>
-                    <form:input path="rating"
-                                class="form-control"
-                                id="inputRating"
-                                type="text"/>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-
-
-            </fieldset>
-
-
-
-
-        </form:form>
-
-
-
-
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
