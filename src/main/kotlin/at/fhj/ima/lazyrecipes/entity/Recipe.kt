@@ -48,10 +48,12 @@ class Recipe (
 
     //var user: String? = null,
 
-
-    //var rating: Float? = null
+    /*
+    @OneToMany
+    @field:NotNull
+    var rating: List<Rating>? = null
     //var image: String? = null
-
+    */
 
 ): Comparable<Recipe>, Serializable{
     override fun compareTo(other: Recipe): Int {

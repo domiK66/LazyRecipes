@@ -7,9 +7,10 @@
 <%@taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap" %>
 <%@taglib prefix="layout" tagdir="/WEB-INF/tags/layout" %>
 
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <layout:page-container title="LazyRecipes" activePage="recipeView">
     <div class="container">
-
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
