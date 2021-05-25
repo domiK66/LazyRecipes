@@ -1,7 +1,9 @@
 package at.fhj.ima.lazyrecipes.controller
 
+import at.fhj.ima.lazyrecipes.entity.Rating
 import at.fhj.ima.lazyrecipes.entity.Recipe
 import at.fhj.ima.lazyrecipes.repository.CategoryRepository
+import at.fhj.ima.lazyrecipes.repository.RatingRepository
 import at.fhj.ima.lazyrecipes.repository.RecipeRepository
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -15,7 +17,8 @@ import java.time.LocalDate
 import javax.validation.Valid
 
 @Controller
-class RecipeController(val recipeRepository: RecipeRepository, val categoryRepository: CategoryRepository) {
+class RecipeController(val recipeRepository: RecipeRepository, val categoryRepository: CategoryRepository,
+                        val ratingRepository: RatingRepository) {
 
     @RequestMapping("/editRecipe", method = [RequestMethod.GET])
     fun editRecipee(model: Model, @RequestParam(required = false) id: Int?): String {
@@ -75,6 +78,13 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         model["category"] = recipeRepository.findAll()
         return "recipeView"
     }
+
+    @RequestMapping("/saveRating", method = [RequestMethod.POST])
+    fun saveRating(model: Model, rating: Rating, recipe: Recipe): String {
+        ratingRepository.save(rating)
+        return "index"
+    }
+
 }
 
 
