@@ -5,6 +5,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap" %>
 <%@taglib prefix="layout" tagdir="/WEB-INF/tags/layout" %>
+<%@taglib prefix="owlcarousel" tagdir="/WEB-INF/tags/owlcarousel"%>
 
 <!DOCTYPE html>
 <html>
@@ -13,6 +14,7 @@
     <bootstrap:bootstrap-metadata/>
     <title>${title}</title>
     <bootstrap:bootstrap-css/>
+    <owlcarousel:owlcarousel-css/>
     <link href="/css/custom.css" rel="stylesheet" />
 </head>
 <body>
@@ -200,6 +202,9 @@
 
 
 <bootstrap:bootstrap-js/>
+<owlcarousel:owlcarousel-js/>
+
 <script src="/js/custom.js"></script>
+<script src="/js/owlcarousel.js"></script>
 </body>
 </html>

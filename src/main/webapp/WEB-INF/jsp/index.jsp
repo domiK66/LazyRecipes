@@ -9,6 +9,20 @@
 
 <layout:page-container title="LazyRecipes" activePage="index">
     <div class="container">
+        <div class="owl-carousel owl-theme">
+            <div class="item"><img src="/img/pasta-pene-carousel.jpg" class="mt-2 mb-2"><h4>Pasta/Pene</h4></div>
+            <div class="item"><img src="/img/vegetarian-carousel.jpg" class="mt-2 mb-2"><h4>Vegetarian</h4></div>
+            <div class="item"><img src="/img/vegan-carousel.jpg" class="mt-2 mb-2"><h4>Vegan</h4></div>
+            <div class="item"><img src="/img/sandwiches-carousel.jpg" class="mt-2 mb-2"><h4>Sandwiches</h4></div>
+            <div class="item"><img src="/img/bowls-carousel.jpg" class="mt-2 mb-2"><h4>Bowls</h4></div>
+            <div class="item"><img src="/img/asian-carousel.jpg" class="mt-2 mb-2"><h4>Asian</h4></div>
+            <div class="item"><img src="/img/dessert-carousel.jpg" class="mt-2 mb-2"><h4>Dessert</h4></div>
+            <div class="item"><img src="/img/salad-carousel.jpg" class="mt-2 mb-2"><h4>Salad</h4></div>
+            <div class="item"><img src="/img/wraps-carousel.jpg" class="mt-2 mb-2"><h4>Wraps</h4></div>
+            <div class="item"><img src="/img/traditional-carousel.jpg" class="mt-2 mb-2"><h4>Traditional</h4></div>
+            <div class="item"><img src="/img/antipasti-carousel.jpg" class="mt-2 mb-2"><h4>Antipasti</h4></div>
+            <div class="item"><img src="/img/fastfood-carousel.jpg" class="mt-2 mb-2"><h4>FastFood</h4></div>
+        </div>
 
         <!-- CARD RECIPE VIEW -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
