@@ -56,7 +56,7 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
     fun deleteRecipe(model: Model, @RequestParam id: Int): String {
         val recipe = recipeRepository.findById(id).get()
         recipeRepository.delete(recipe);
-        model["message"] = "Recipe with title ${recipe.title} and id ${recipe.id} deleted"
+        model["message"] = "Recipe ${recipe.title} deleted."
         return listRecipes(model)
     }
 
@@ -64,7 +64,7 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
     fun deleteAdminRecipe(model: Model, @RequestParam id: Int): String {
         val recipe = recipeRepository.findById(id).get()
         recipeRepository.delete(recipe);
-        model["message"] = "Recipe with title ${recipe.title} and id ${recipe.id} deleted"
+        model["message"] = "Recipe with title ${recipe.title} and id ${recipe.id} deleted."
         return listAdminRecipes(model)
     }
 
@@ -93,6 +93,16 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
             model["category"] = recipeRepository.findAll()
         }
         return "recipeView"
+    }
+
+    @RequestMapping("/signUp", method = [RequestMethod.GET])
+    fun showSignUp(model: Model): String {
+        return "signUp"
+    }
+
+    @RequestMapping("/login", method = [RequestMethod.GET])
+    fun showLogin(model: Model): String {
+        return "login"
     }
 
     /* tbd
