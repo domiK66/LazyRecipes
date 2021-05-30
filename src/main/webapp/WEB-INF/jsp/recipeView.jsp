@@ -16,7 +16,7 @@
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item"><a>Explore Categories</a></li>
                 <!-- TODO: link für kategorien -->
-                <li class="breadcrumb-item" aria-current="page">${recipe.category.name}</li>
+                <li class="breadcrumb-item"><a href="/category/${recipe.category.name}">${recipe.category.name}</a></li>
                 <li class="breadcrumb-item active"><a>${recipe.title}</a></li>
             </ol>
         </nav>
