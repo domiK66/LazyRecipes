@@ -5,14 +5,17 @@ import at.fhj.ima.lazyrecipes.entity.Recipe
 import at.fhj.ima.lazyrecipes.repository.CategoryRepository
 import at.fhj.ima.lazyrecipes.repository.RatingRepository
 import at.fhj.ima.lazyrecipes.repository.RecipeRepository
+import javassist.NotFoundException
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException
+import org.springframework.data.crossstore.ChangeSetPersister
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
 import org.springframework.validation.BindingResult
-import org.springframework.web.bind.annotation.ModelAttribute
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.server.ResponseStatusException
+
 import java.time.LocalDate
 import javax.validation.Valid
 
@@ -112,6 +115,15 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         return "index"
     }
     */
+
+    //Category View JSP
+    @RequestMapping("/category/{name}", method = [RequestMethod.GET])
+    fun getCategoryView(@PathVariable("name") name: String?, model: Model): String {
+        val category  = categoryRepository.findByName(name) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
+        model["category"] = category
+        model["recipe"] = recipeRepository.findAll()
+        return "categoryView"
+    }
 }
 
 

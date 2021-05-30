@@ -43,26 +43,26 @@
                         <div class="row g-3">
                             <div class="col-sm-4 col-lg-3">
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Pasta/Penne</a></li>
-                                    <li><a href="#">Vegetarian</a></li>
-                                    <li><a href="#">Vegan</a></li>
-                                    <li><a href="#">Sandwiches</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/category/Pasta & Penne">Pasta/Penne</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/category/Vegetarian">Vegetarian</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/category/Vegan">Vegan</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/category/Sandwiches">Sandwiches</a></li>
                                 </ul>
                             </div>
                             <div class="col-sm-4 col-lg-3">
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Bowls</a></li>
-                                    <li><a href="#">Asian</a></li>
-                                    <li><a href="#">Dessert</a></li>
-                                    <li><a href="#">Salad</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/category/Bowls">Bowls</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/category/Asian">Asian</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/category/Dessert">Dessert</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/category/Salad">Salad</a></li>
                                 </ul>
                             </div>
                             <div class="col-sm-4 col-lg-3">
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Wraps</a></li>
-                                    <li><a href="#">Traditional</a></li>
-                                    <li><a href="#">Antipasti</a></li>
-                                    <li><a href="#">Fast Food</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/category/Wraps">Wraps</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/category/Traditional">Traditional</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/category/Antipasti">Antipasti</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/category/FastFood">Fast Food</a></li>
                                 </ul>
                             </div>
                         </div>
