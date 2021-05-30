@@ -6,6 +6,8 @@
 <%@taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap" %>
 <%@taglib prefix="layout" tagdir="/WEB-INF/tags/layout" %>
 <%@taglib prefix="owlcarousel" tagdir="/WEB-INF/tags/owlcarousel"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html>
@@ -35,6 +37,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/editRecipe">create new Recipe</a>
                 </li>
+                <sec:authorize access="hasAuthority('ROLE_ADMIN')">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Admin Dashboard</a>
+                </li>
+                </sec:authorize>
 
                 <!-- DROPDOWN MENU CATGORIES -->
                 <li class="nav-item dropdown dropdown-large">
@@ -70,6 +77,8 @@
                 </li>
 
 
+
+
             </ul>
             <form id="searchId" action="/searchRecipe" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                 <input name="search" id="inputSearch" type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search" value="${param.search}">
@@ -78,11 +87,17 @@
             <div class="text-end">
                 <a href="/login" class="btn btn-outline-light me-2">Login</a>
                 <a href="/signUp" class="btn btn-warning">Sign Up</a>
+                <sec:authorize access="hasAuthority('ROLE_USER')">
+                <form:form method="post" action="/logout">
+                    <button class="btn btn-link" type="submit">Log Out</button>
+                </form:form>
+                </sec:authorize>
             </div>
 
         </div>
 
     </div>
+
 </nav>
 
 <div class="container mb-4 mt-3" role="main">

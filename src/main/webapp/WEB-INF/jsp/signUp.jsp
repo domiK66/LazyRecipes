@@ -6,7 +6,7 @@
 <%@taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap" %>
 <%@taglib prefix="layout" tagdir="/WEB-INF/tags/layout" %>
 
-<layout:page-container title="LazyRecipes" activePage="signUp">
+<layout:page-container title="LazyRecipes" activePage="login">
 
     <form class="row g-3">
         <div class="col-md-4">

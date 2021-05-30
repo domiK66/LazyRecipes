@@ -35,6 +35,12 @@ dependencies {
 	//import compiler and jstl
 	compileOnly("org.apache.tomcat.embed:tomcat-embed-jasper")
 	implementation("javax.servlet:jstl")
+
+	//spring security for AA
+	implementation("org.springframework.boot:spring-boot-starter-security")
+
+	// spring-security-taglibs (frontend)
+	implementation("org.springframework.security:spring-security-taglibs")
 }
 
 tasks.withType<KotlinCompile> {
