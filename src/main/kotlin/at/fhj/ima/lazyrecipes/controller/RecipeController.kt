@@ -9,6 +9,7 @@ import javassist.NotFoundException
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException
 import org.springframework.data.crossstore.ChangeSetPersister
 import org.springframework.http.HttpStatus
+import org.springframework.security.access.annotation.Secured
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
@@ -23,7 +24,7 @@ import javax.validation.Valid
 class RecipeController(val recipeRepository: RecipeRepository, val categoryRepository: CategoryRepository, val ratingRepository: RatingRepository) {
 
     @RequestMapping("/editRecipe", method = [RequestMethod.GET])
-    fun editRecipee(model: Model, @RequestParam(required = false) id: Int?): String {
+    fun editRecipe(model: Model, @RequestParam(required = false) id: Int?): String {
         if (id != null) {
             val recipe = recipeRepository.findById(id).get()
             model["recipe"] = recipe
@@ -80,6 +81,7 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
     }
 
     // admin.jsp
+    @Secured("ROLE_ADMIN")
     @RequestMapping("/admin", method = [RequestMethod.GET])
     fun listAdminRecipes(model: Model): String {
         model["recipe"] = recipeRepository.findAll()
@@ -103,10 +105,13 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         return "signUp"
     }
 
+    /*
     @RequestMapping("/login", method = [RequestMethod.GET])
     fun showLogin(model: Model): String {
         return "login"
     }
+    */
+
 
     /* tbd
     @RequestMapping("/saveRating", method = [RequestMethod.POST])
@@ -124,6 +129,18 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         model["recipe"] = recipeRepository.findAll()
         return "categoryView"
     }
+
+    /*
+    @Controller
+    class HomePageController {
+        @RequestMapping("", method = [RequestMethod.GET])
+        fun homePage(): String {
+            return "redirect:index"
+        }
+
+    }
+    */
+
 }
 
 

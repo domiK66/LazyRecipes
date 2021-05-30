@@ -10,18 +10,18 @@
 <layout:page-container title="LazyRecipes" activePage="index">
     <div class="container">
         <div class="owl-carousel owl-theme">
-            <div class="item"><img src="/img/pasta-pene-carousel.jpg" class="mt-2 mb-2"><h4>Pasta/Pene</h4></div>
-            <div class="item"><img src="/img/vegetarian-carousel.jpg" class="mt-2 mb-2"><h4>Vegetarian</h4></div>
-            <div class="item"><img src="/img/vegan-carousel.jpg" class="mt-2 mb-2"><h4>Vegan</h4></div>
-            <div class="item"><img src="/img/sandwiches-carousel.jpg" class="mt-2 mb-2"><h4>Sandwiches</h4></div>
-            <div class="item"><img src="/img/bowls-carousel.jpg" class="mt-2 mb-2"><h4>Bowls</h4></div>
-            <div class="item"><img src="/img/asian-carousel.jpg" class="mt-2 mb-2"><h4>Asian</h4></div>
-            <div class="item"><img src="/img/dessert-carousel.jpg" class="mt-2 mb-2"><h4>Dessert</h4></div>
-            <div class="item"><img src="/img/salad-carousel.jpg" class="mt-2 mb-2"><h4>Salad</h4></div>
-            <div class="item"><img src="/img/wraps-carousel.jpg" class="mt-2 mb-2"><h4>Wraps</h4></div>
-            <div class="item"><img src="/img/traditional-carousel.jpg" class="mt-2 mb-2"><h4>Traditional</h4></div>
-            <div class="item"><img src="/img/antipasti-carousel.jpg" class="mt-2 mb-2"><h4>Antipasti</h4></div>
-            <div class="item"><img src="/img/fastfood-carousel.jpg" class="mt-2 mb-2"><h4>FastFood</h4></div>
+            <div class="item"><a href="${pageContext.request.contextPath}/category/Pasta & Penne"><img src="/img/pasta-pene-carousel.jpg" class="mt-2 mb-2"></a><h4>Pasta & Penne</h4></div>
+            <div class="item"><a href="${pageContext.request.contextPath}/category/Vegetarian"><img src="/img/vegetarian-carousel.jpg" class="mt-2 mb-2"></a><h4>Vegetarian</h4></div>
+            <div class="item"><a href="${pageContext.request.contextPath}/category/Vegan"><img src="/img/vegan-carousel.jpg" class="mt-2 mb-2"></a><h4>Vegan</h4></div>
+            <div class="item"><a href="${pageContext.request.contextPath}/category/Sandwiches"><img src="/img/sandwiches-carousel.jpg" class="mt-2 mb-2"></a><h4>Sandwiches</h4></div>
+            <div class="item"><a href="${pageContext.request.contextPath}/category/Bowls"><img src="/img/bowls-carousel.jpg" class="mt-2 mb-2"></a><h4>Bowls</h4></div>
+            <div class="item"><a href="${pageContext.request.contextPath}/category/Asian"><img src="/img/asian-carousel.jpg" class="mt-2 mb-2"></a><h4>Asian</h4></div>
+            <div class="item"><a href="${pageContext.request.contextPath}/category/Dessert"><img src="/img/dessert-carousel.jpg" class="mt-2 mb-2"></a><h4>Dessert</h4></div>
+            <div class="item"><a href="${pageContext.request.contextPath}/category/Salad"><img src="/img/salad-carousel.jpg" class="mt-2 mb-2"></a><h4>Salad</h4></div>
+            <div class="item"><a href="${pageContext.request.contextPath}/category/Wraps"><img src="/img/wraps-carousel.jpg" class="mt-2 mb-2"></a><h4>Wraps</h4></div>
+            <div class="item"><a href="${pageContext.request.contextPath}/category/Traditional"><img src="/img/traditional-carousel.jpg" class="mt-2 mb-2"></a><h4>Traditional</h4></div>
+            <div class="item"><a href="${pageContext.request.contextPath}/category/Antipasti"><img src="/img/antipasti-carousel.jpg" class="mt-2 mb-2"></a><h4>Antipasti</h4></div>
+            <div class="item"><a href="${pageContext.request.contextPath}/category/FastFood"><img src="/img/fastfood-carousel.jpg" class="mt-2 mb-2"></a><h4>FastFood</h4></div>
         </div>
 
         <!-- CARD RECIPE VIEW -->
