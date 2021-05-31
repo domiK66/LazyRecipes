@@ -46,7 +46,9 @@ class Recipe (
 
     var date: LocalDate? = LocalDate.now(),
 
-    //var user: String? = null,
+    @ManyToOne
+    @field:NotNull
+    var user: User? = null
 
     /*
     @OneToMany

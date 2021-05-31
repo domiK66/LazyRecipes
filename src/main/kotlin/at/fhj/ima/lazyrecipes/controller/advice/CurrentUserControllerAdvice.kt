@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ModelAttribute
 
 //returns the current user instance and can be accessed from everywhere
-/*
+
 @ControllerAdvice
 class CurrentUserControllerAdvice(val userRepository: UserRepository) {
 
@@ -21,4 +21,4 @@ class CurrentUserControllerAdvice(val userRepository: UserRepository) {
         model.addAttribute("currentUser", currentUser)
     }
 }
-*/
+

@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-sm-4">
                 <h1>${recipe.title}</h1>
-                <h2>by User A</h2>
+                <h2>by ${recipe.user.username}</h2>
                 <h2>${recipe.subtitle}</h2>
             </div>
             <div class="col-sm-8">

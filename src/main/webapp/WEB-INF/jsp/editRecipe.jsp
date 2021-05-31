@@ -6,6 +6,7 @@
 
 <%@taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap" %>
 <%@taglib prefix="layout" tagdir="/WEB-INF/tags/layout" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
@@ -21,6 +22,7 @@
                     <fieldset>
                         <!-- TODO: create/change -->
                         <legend>Change Recipe: ${recipe.title}</legend>
+
 
                         <!-- ------------- Recipe Title ---------------- -->
                         <div class="mb-3">
@@ -114,6 +116,16 @@
                                         id="inputsteps"
                                         type="text"/>
                                 ${stepsInvalid}
+                        </div>
+
+                        <!-- ------------- User-ID (invisible, default value: id of current user) ---------------- -->
+                        <div class="mb-3">
+                            <label for="user" class="form-label"></label>
+                            <form:input path="user"
+                                        class="form-control ${not empty userInvalid ? 'is-invalid' : ''}"
+                                        id="inputUser"
+                                        type="hidden" readonly="true" value="${currentUser.id}" />
+                                ${userInvalid}
                         </div>
 
                         <!-- -------------- Buttons ---------------- -->

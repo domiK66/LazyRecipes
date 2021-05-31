@@ -85,11 +85,13 @@
             </form>
 
             <div class="text-end">
-                <a href="/login" class="btn btn-outline-light me-2">Login</a>
-                <a href="/signUp" class="btn btn-warning">Sign Up</a>
-                <sec:authorize access="hasAuthority('ROLE_USER')">
+                <sec:authorize access="!isAuthenticated()">
+                    <a href="/login" class="btn btn-outline-light me-2">Login</a>
+                    <a href="/signUp" class="btn btn-warning">Sign Up</a>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
                 <form:form method="post" action="/logout">
-                    <button class="btn btn-link" type="submit">Log Out</button>
+                    <button class="btn btn-secondary" type="submit">Logout</button>
                 </form:form>
                 </sec:authorize>
             </div>
