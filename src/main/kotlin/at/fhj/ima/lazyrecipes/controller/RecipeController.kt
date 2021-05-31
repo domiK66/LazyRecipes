@@ -5,6 +5,7 @@ import at.fhj.ima.lazyrecipes.entity.Recipe
 import at.fhj.ima.lazyrecipes.repository.CategoryRepository
 import at.fhj.ima.lazyrecipes.repository.RatingRepository
 import at.fhj.ima.lazyrecipes.repository.RecipeRepository
+import at.fhj.ima.lazyrecipes.repository.UserRepository
 import javassist.NotFoundException
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException
 import org.springframework.data.crossstore.ChangeSetPersister
@@ -21,7 +22,7 @@ import java.time.LocalDate
 import javax.validation.Valid
 
 @Controller
-class RecipeController(val recipeRepository: RecipeRepository, val categoryRepository: CategoryRepository, val ratingRepository: RatingRepository) {
+class RecipeController(val recipeRepository: RecipeRepository, val categoryRepository: CategoryRepository, val userRepository: UserRepository) {
 
     @RequestMapping("/editRecipe", method = [RequestMethod.GET])
     fun editRecipe(model: Model, @RequestParam(required = false) id: Int?): String {
@@ -38,6 +39,7 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
 
     fun populateEditRecipeView(model: Model): String {
         model["category"] = categoryRepository.findAll()
+        model["user"] = userRepository.findAll()
         return "editRecipe"
     }
 
@@ -96,6 +98,7 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
             val recipe = recipeRepository.findById(id).get()
             model["recipe"] = recipe
             model["category"] = recipeRepository.findAll()
+            model["user"] = userRepository.findAll()
         }
         return "recipeView"
     }
@@ -126,6 +129,7 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
     fun getCategoryView(@PathVariable("name") name: String?, model: Model): String {
         val category  = categoryRepository.findByName(name) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
         model["category"] = category
+
         model["recipe"] = recipeRepository.findAll()
         return "categoryView"
     }
