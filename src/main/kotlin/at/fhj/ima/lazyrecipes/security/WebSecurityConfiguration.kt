@@ -24,6 +24,7 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
             //.antMatchers("/anonymous2").permitAll()
             //.antMatchers("/anonymous3").permitAll()
             .antMatchers("/editRecipe").authenticated()
+            .antMatchers("/myRecipes").authenticated()
             .anyRequest().permitAll()
             .and()
             .formLogin()
