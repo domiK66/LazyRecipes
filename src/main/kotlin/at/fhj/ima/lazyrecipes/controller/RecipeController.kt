@@ -11,6 +11,7 @@ import org.springframework.boot.context.config.ConfigDataResourceNotFoundExcepti
 import org.springframework.data.crossstore.ChangeSetPersister
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.annotation.Secured
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
@@ -144,6 +145,15 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
 
     }
     */
+
+    // myRecipes.jsp
+    @RequestMapping("/myRecipes", method = [RequestMethod.GET])
+    fun viewMyRecipes(model: Model): String {
+        val username = SecurityContextHolder.getContext().authentication.name
+        val userId = userRepository.findByUsername(username)?.id
+        model["recipe"] = recipeRepository.findByUserId(userId)
+        return "myRecipes"
+    }
 
 }
 
