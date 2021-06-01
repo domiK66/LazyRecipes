@@ -1,17 +1,15 @@
 package at.fhj.ima.lazyrecipes.controller
 
-import at.fhj.ima.lazyrecipes.entity.Rating
+import at.fhj.ima.lazyrecipes.controller.advice.CurrentUserControllerAdvice
 import at.fhj.ima.lazyrecipes.entity.Recipe
 import at.fhj.ima.lazyrecipes.entity.User
 import at.fhj.ima.lazyrecipes.repository.CategoryRepository
-import at.fhj.ima.lazyrecipes.repository.RatingRepository
 import at.fhj.ima.lazyrecipes.repository.RecipeRepository
 import at.fhj.ima.lazyrecipes.repository.UserRepository
-import javassist.NotFoundException
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException
-import org.springframework.data.crossstore.ChangeSetPersister
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.annotation.Secured
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -19,9 +17,9 @@ import org.springframework.ui.set
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.server.ResponseStatusException
-
 import java.time.LocalDate
 import javax.validation.Valid
+
 
 @Controller
 class RecipeController(val recipeRepository: RecipeRepository, val categoryRepository: CategoryRepository, val userRepository: UserRepository) {
@@ -86,8 +84,8 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
     }
 
     // admin.jsp
-    @Secured("ROLE_ADMIN")
     @RequestMapping("/admin", method = [RequestMethod.GET])
+    @Secured("ROLE_ADMIN")
     fun listAdminRecipes(model: Model): String {
         model["recipe"] = recipeRepository.findAll()
         model["category"] = recipeRepository.findAll()
@@ -167,25 +165,31 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         return "accountSettings"
     }
 
-    /*
+
     @RequestMapping("/changeAccountSettings", method = [RequestMethod.POST])
     fun changeAccountSettings(@ModelAttribute @Valid user: User, bindingResult: BindingResult, model: Model): String {
         if (bindingResult.hasErrors()) {
             return "accountSettings"
         }
         userRepository.save(user)
+        model["message"] = "Successfully changed Username, please log in again"
+        // TODO: krausler fragen :)
         return "accountSettings"
     }
-    */
+
     @RequestMapping("/deleteAccount", method = [RequestMethod.GET])
     fun deleteAccount(model: Model): String {
         val currentUsername = SecurityContextHolder.getContext().authentication.name
         val user = userRepository.findByUsername(currentUsername)
+        val recipes = recipeRepository.findByUserId(user?.id)
         if (user != null) {
             userRepository.delete(user)
-            SecurityContextHolder.getContext().setAuthentication(null);
+            // delete all recipes of the user as well
+            recipes.forEach { recipeRepository.delete(it) }
+            SecurityContextHolder.clearContext()
         }
-        return "signUp"
+        model["message"] = "Successfully delete account!"
+        return listRecipes(model)
     }
 
 }

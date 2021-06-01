@@ -17,6 +17,7 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
         http
+
             .authorizeRequests()
             // you anonymous urls here
             //.antMatchers("/anonymous").permitAll()
@@ -26,9 +27,14 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
             .antMatchers("/editRecipe").authenticated()
             .antMatchers("/myRecipes").authenticated()
             .antMatchers("/accountSettings").authenticated()
+            .antMatchers("/deleteAccount").authenticated()
+            .antMatchers("/changeAccountSettings").authenticated()
             .anyRequest().permitAll()
             .and()
             .formLogin()
+            .and()
+            .logout()
+            .logoutSuccessUrl("/")
             .and()
             .rememberMe().key("uniqueAndSecret").userDetailsService(userDetailsService);
     }
