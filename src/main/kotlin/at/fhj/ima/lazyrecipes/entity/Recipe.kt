@@ -57,6 +57,8 @@ class Recipe (
     //var image: String? = null
     */
 
+
+
 ): Comparable<Recipe>, Serializable{
     override fun compareTo(other: Recipe): Int {
         return compareValues(id, other.id)
