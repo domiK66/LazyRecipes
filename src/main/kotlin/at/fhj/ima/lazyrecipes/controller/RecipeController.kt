@@ -79,12 +79,12 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
     }
 
     // index.jsp
-    @RequestMapping("/", method = [RequestMethod.GET])
+    @RequestMapping("","/", "/index" , method = [RequestMethod.GET])
     fun listRecipes(model: Model): String {
         model["recipe"] = recipeRepository.findAll()
         model["category"] = recipeRepository.findAll()
         model["user"] = userRepository.findAll()
-        return "index"
+        return "/index"
     }
 
     // admin.jsp
@@ -108,10 +108,7 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         return "recipeView"
     }
 
-    @RequestMapping("/signUp", method = [RequestMethod.GET])
-    fun showSignUp(model: Model): String {
-        return "signUp"
-    }
+
 
     /*
     @RequestMapping("/login", method = [RequestMethod.GET])
@@ -175,45 +172,6 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         return "index"
     }
     */
-
-
-    //account settings
-    @RequestMapping("/accountSettings", method = [RequestMethod.GET])
-    fun viewAccountSettings(model: Model): String {
-        val currentUsername = SecurityContextHolder.getContext().authentication.name
-        val user = userRepository.findByUsername(currentUsername)
-        if (user != null) {
-            model["user"] = user
-        }
-        return "accountSettings"
-    }
-
-
-    @RequestMapping("/changeAccountSettings", method = [RequestMethod.POST])
-    fun changeAccountSettings(@ModelAttribute @Valid user: User, bindingResult: BindingResult, model: Model): String {
-        if (bindingResult.hasErrors()) {
-            return "accountSettings"
-        }
-        userRepository.save(user)
-        model["message"] = "Successfully changed Username, please log in again"
-        // TODO: krausler fragen :)
-        return "accountSettings"
-    }
-
-    @RequestMapping("/deleteAccount", method = [RequestMethod.GET])
-    fun deleteAccount(model: Model): String {
-        val currentUsername = SecurityContextHolder.getContext().authentication.name
-        val user = userRepository.findByUsername(currentUsername)
-        val recipes = recipeRepository.findByUserId(user?.id)
-        if (user != null) {
-            userRepository.delete(user)
-            // delete all recipes of the user as well
-            recipes.forEach { recipeRepository.delete(it) }
-            SecurityContextHolder.clearContext()
-        }
-        model["message"] = "Successfully delete account!"
-        return listRecipes(model)
-    }
 
 }
 
