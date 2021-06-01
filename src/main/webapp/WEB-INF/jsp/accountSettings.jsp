@@ -33,7 +33,7 @@
                             <form:input path="username"
                                         class="form-control ${not empty usernameInvalid ? 'is-invalid' : ''}"
                                         id="inputusername"
-                                        type="text" value="${user.username}" readonly="true"/>
+                                        type="text" value="${user.username}"/>
                                 ${usernameInvalid}
                         </div>
 
@@ -63,16 +63,16 @@
                         <!-- -------------- Buttons ---------------- -->
                         <div class="mb-3">
                             <!-- submit -->
-                            <button type="submit" class="btn btn-primary" disabled>Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                             <!-- cancel -->
                             <a href="/" class="btn btn-default">Cancel</a>
 
                             <!-- delete button: only if id-param exists, button is enabled -->
-
+                            <sec:authorize access="!hasAuthority('ROLE_ADMIN')">
                             <button type="button" class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
                                         Delete
                             </button>
-
+                            </sec:authorize>
 
 
 

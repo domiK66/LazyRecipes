@@ -116,16 +116,17 @@
                             <!-- TODO: USER PICTURE --> <img src="https://github.com/mdo.png" alt="mdo" class="rounded-circle" width="32" height="32">
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/accountSettings">Signed in as <strong style="font-weight: 600;">${currentUser.username}</strong></a></li>
                             <sec:authorize access="hasAuthority('ROLE_ADMIN')">
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/admin">Admin Dashboard</a></li>
-                                <li><hr class="dropdown-divider"></li>
                             </sec:authorize>
 
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/myRecipes">My recipes</a></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/editRecipe">Create recipe</a></li>
                             <li><a class="dropdown-item" href="#">Favourite recipes</a></li>
-                            <li><a class="dropdown-item" href="/accountSettings">Account Settings</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/accountSettings">Account Settings</a></li>
+
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Sign out</a></li>
 
