@@ -80,6 +80,7 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
     fun listRecipes(model: Model): String {
         model["recipe"] = recipeRepository.findAll()
         model["category"] = recipeRepository.findAll()
+        model["user"] = userRepository.findAll()
         return "index"
     }
 

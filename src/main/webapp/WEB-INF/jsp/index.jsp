@@ -1,14 +1,14 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap" %>
-<%@taglib prefix="layout" tagdir="/WEB-INF/tags/layout" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap" %>
+<%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layout" %>
 
 <layout:page-container title="LazyRecipes" activePage="index">
     <div class="container">
+
         <div class="owl-carousel owl-theme">
             <div class="item"><a href="${pageContext.request.contextPath}/category/Pasta & Penne"><img src="/img/pasta-pene-carousel.jpg" class="mt-2 mb-2"></a><h4>Pasta & Penne</h4></div>
             <div class="item"><a href="${pageContext.request.contextPath}/category/Vegetarian"><img src="/img/vegetarian-carousel.jpg" class="mt-2 mb-2"></a><h4>Vegetarian</h4></div>
@@ -29,15 +29,19 @@
             <c:forEach items="${recipe}" var="recipe">
                 <div class="col">
                     <div class="card shadow-sm">
+
+                        <!-- TODO: IMAGE THUMBNAIL-->
                         <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                             <title>Placeholder</title>
                             <rect width="100%" height="100%" fill="#55595c"></rect>
                             <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
                         </svg>
+
                         <div class="card-body">
                             <strong class="d-inline-block mb-2 text-success">${recipe.category.name}</strong>
                             <h5 class="card-title">${recipe.title}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">${recipe.subtitle}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">${recipe.user.username}</h6>
                             <p class="card-text">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
                                     <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"></path>
