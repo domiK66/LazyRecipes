@@ -125,7 +125,7 @@
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/myRecipes">My recipes</a></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/editRecipe">Create recipe</a></li>
                             <li><a class="dropdown-item" href="#">Favourite recipes</a></li>
-                            <li><a class="dropdown-item" href="#">Account Settings</a></li>
+                            <li><a class="dropdown-item" href="/accountSettings">Account Settings</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Sign out</a></li>
 
@@ -243,7 +243,7 @@
                             <a href="${pageContext.request.contextPath}/signUp" class="text-white">Register</a>
                         </li>
                         <li>
-                            <a href="#" class="text-white">Account</a>
+                            <a href="/accountSettings" class="text-white">Account</a>
                         </li>
                         <li>
                             <a href="${pageContext.request.contextPath}/myRecipes" class="text-white">My Recipes</a>

@@ -1,5 +1,6 @@
 package at.fhj.ima.lazyrecipes.repository
 
+import at.fhj.ima.lazyrecipes.entity.Recipe
 import at.fhj.ima.lazyrecipes.entity.User
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
@@ -11,4 +12,5 @@ interface UserRepository : JpaRepository<User, Int> {
 
     @Query("FROM User where username = :username")
     fun findByUsername(@Param("username") username: String): User?
+
 }
