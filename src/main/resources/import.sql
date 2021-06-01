@@ -27,3 +27,8 @@ INSERT INTO recipe (title, subtitle, ingredients, portions, prep_time, steps, ca
 
 INSERT INTO user(username, password, role) VALUES ('admin','$2a$10$j8kKMynCBacALgRZvdtU2ezRo8cZJUash26OOUBBXsfzTTj/Xt5vG','ROLE_ADMIN');
 INSERT INTO user(username,password, role) VALUES ('user','$2a$10$wzVJFOPkNz410shGyVcHseQDnHKNKuKCphIr1iLj4Xw.Bvrgce3ai', 'ROLE_USER');
+
+INSERT into favourite(id, recipe_id, user_id) VALUES (1, 1, 1)
+INSERT into favourite(id, recipe_id, user_id) VALUES (2, 2, 1)
+INSERT into favourite(id, recipe_id, user_id) VALUES (3, 3, 2)
+INSERT into favourite(id, recipe_id, user_id) VALUES (4, 4, 2)

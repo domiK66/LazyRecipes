@@ -1,9 +1,11 @@
 package at.fhj.ima.lazyrecipes.controller
 
 import at.fhj.ima.lazyrecipes.controller.advice.CurrentUserControllerAdvice
+import at.fhj.ima.lazyrecipes.entity.Favourite
 import at.fhj.ima.lazyrecipes.entity.Recipe
 import at.fhj.ima.lazyrecipes.entity.User
 import at.fhj.ima.lazyrecipes.repository.CategoryRepository
+import at.fhj.ima.lazyrecipes.repository.FavouriteRepository
 import at.fhj.ima.lazyrecipes.repository.RecipeRepository
 import at.fhj.ima.lazyrecipes.repository.UserRepository
 import org.springframework.http.HttpStatus
@@ -22,7 +24,9 @@ import javax.validation.Valid
 
 
 @Controller
-class RecipeController(val recipeRepository: RecipeRepository, val categoryRepository: CategoryRepository, val userRepository: UserRepository) {
+class RecipeController(val recipeRepository: RecipeRepository, val categoryRepository: CategoryRepository,
+                       val userRepository: UserRepository, val favouriteRepository: FavouriteRepository
+) {
 
     @RequestMapping("/editRecipe", method = [RequestMethod.GET])
     fun editRecipe(model: Model, @RequestParam(required = false) id: Int?): String {
@@ -153,6 +157,25 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         model["recipe"] = recipeRepository.findByUserId(userId)
         return "myRecipes"
     }
+
+    // view favourites.jsp
+    @RequestMapping("/viewFavourites", method = [RequestMethod.GET])
+    fun viewFavourites(model: Model): String {
+        val username = SecurityContextHolder.getContext().authentication.name
+        val userId = userRepository.findByUsername(username)?.id
+        model["favourite"] = favouriteRepository.findFavouritesByUserId(userId)
+        return "favourites"
+    }
+
+    // save to favourites.jsp
+    /*
+    @RequestMapping("/saveToFavourites", method = [RequestMethod.POST])
+    fun saveToFavourites(@ModelAttribute @Valid favourite: Favourite, bindingResult: BindingResult,model: Model): String {
+        favouriteRepository.save(favourite)
+        return "index"
+    }
+    */
+
 
     //account settings
     @RequestMapping("/accountSettings", method = [RequestMethod.GET])
