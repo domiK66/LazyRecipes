@@ -2,6 +2,7 @@ package at.fhj.ima.lazyrecipes.controller
 
 import at.fhj.ima.lazyrecipes.entity.Rating
 import at.fhj.ima.lazyrecipes.entity.Recipe
+import at.fhj.ima.lazyrecipes.entity.User
 import at.fhj.ima.lazyrecipes.repository.CategoryRepository
 import at.fhj.ima.lazyrecipes.repository.RatingRepository
 import at.fhj.ima.lazyrecipes.repository.RecipeRepository
@@ -131,7 +132,6 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
     fun getCategoryView(@PathVariable("name") name: String?, model: Model): String {
         val category  = categoryRepository.findByName(name) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
         model["category"] = category
-
         model["recipe"] = recipeRepository.findAll()
         return "categoryView"
     }
@@ -154,6 +154,38 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         val userId = userRepository.findByUsername(username)?.id
         model["recipe"] = recipeRepository.findByUserId(userId)
         return "myRecipes"
+    }
+
+    //account settings
+    @RequestMapping("/accountSettings", method = [RequestMethod.GET])
+    fun viewAccountSettings(model: Model): String {
+        val currentUsername = SecurityContextHolder.getContext().authentication.name
+        val user = userRepository.findByUsername(currentUsername)
+        if (user != null) {
+            model["user"] = user
+        }
+        return "accountSettings"
+    }
+
+    /*
+    @RequestMapping("/changeAccountSettings", method = [RequestMethod.POST])
+    fun changeAccountSettings(@ModelAttribute @Valid user: User, bindingResult: BindingResult, model: Model): String {
+        if (bindingResult.hasErrors()) {
+            return "accountSettings"
+        }
+        userRepository.save(user)
+        return "accountSettings"
+    }
+    */
+    @RequestMapping("/deleteAccount", method = [RequestMethod.GET])
+    fun deleteAccount(model: Model): String {
+        val currentUsername = SecurityContextHolder.getContext().authentication.name
+        val user = userRepository.findByUsername(currentUsername)
+        if (user != null) {
+            userRepository.delete(user)
+            SecurityContextHolder.getContext().setAuthentication(null);
+        }
+        return "signUp"
     }
 
 }

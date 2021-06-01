@@ -1,6 +1,9 @@
 package at.fhj.ima.lazyrecipes.entity
 
 import javax.persistence.*
+import javax.validation.constraints.NotEmpty
+import javax.validation.constraints.NotNull
+import javax.validation.constraints.Size
 
 
 @Entity
@@ -10,7 +13,11 @@ class User(
     var id: Int? = null,
 
     @Column(nullable = false, unique = true)
+    @field:NotNull
+    @field:NotEmpty
+    @field:Size(min = 2, max = 15)
     var username: String,
+
     var password: String,
 
     @Enumerated(EnumType.STRING)
@@ -32,5 +39,12 @@ class User(
 
     override fun hashCode(): Int {
         return id.hashCode()
+    }
+    fun getUser(): String? {
+        return username
+    }
+
+    fun setUser(): String? {
+        return username
     }
 }
