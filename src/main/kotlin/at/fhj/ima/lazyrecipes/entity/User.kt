@@ -21,7 +21,10 @@ class User(
     var password: String,
 
     @Enumerated(EnumType.STRING)
-    var role: UserRole
+    var role: UserRole,
+
+
+
 
 
 ) : Comparable<User> {

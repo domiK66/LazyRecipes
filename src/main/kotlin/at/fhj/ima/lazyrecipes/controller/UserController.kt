@@ -1,4 +1,5 @@
 package at.fhj.ima.lazyrecipes.controller
 
-class UserController {
+
+class UserController{
 }

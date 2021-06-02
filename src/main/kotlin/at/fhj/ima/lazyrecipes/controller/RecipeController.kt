@@ -104,10 +104,10 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         return "recipeView"
     }
 
-    @RequestMapping("/signUp", method = [RequestMethod.GET])
+   /* @RequestMapping("/signUp", method = [RequestMethod.GET])
     fun showSignUp(model: Model): String {
         return "signUp"
-    }
+    }*/
 
     /*
     @RequestMapping("/login", method = [RequestMethod.GET])
