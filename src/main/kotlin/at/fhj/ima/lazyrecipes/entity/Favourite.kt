@@ -8,9 +8,10 @@ class Favourite (
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     var id: Int? = null,
     @ManyToOne
-    var user: User,
+    var user: User? = null,
     @ManyToOne
-    var recipe: Recipe
+    var recipe: Recipe? = null,
+    var checkboxBool: Boolean? = false,
     
 
 ): Comparable<Favourite> {

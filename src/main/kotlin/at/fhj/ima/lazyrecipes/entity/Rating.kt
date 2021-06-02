@@ -1,18 +1,19 @@
 package at.fhj.ima.lazyrecipes.entity
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
-class Rating (
+class Rating(
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
+    @ManyToOne
+    var user: User? = null,
+    @ManyToOne
+    var recipe: Recipe? = null,
     var value: Float? = null
 
-): Comparable<Rating> {
+    ): Comparable<Rating> {
 
     override fun compareTo(other: Rating): Int {
         return compareValues(id, other.id)
@@ -29,5 +30,6 @@ class Rating (
     override fun hashCode(): Int {
         return id.hashCode()
     }
+
 
 }

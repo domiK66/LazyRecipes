@@ -48,14 +48,21 @@ class Recipe (
 
     @ManyToOne
     @field:NotNull
-    var user: User? = null
+    var user: User? = null,
+
 
     /*
-    @OneToMany
-    @field:NotNull
-    var rating: List<Rating>? = null
-    //var image: String? = null
+    var ratingAVG: Float? = null
+            // getter
+            get() = rating.fold(0){ acc, rating -> acc + rating} / rating.size
+
+            // setter
+            set(value) {
+        field = value
+    }
     */
+    //var image: String? = null
+
 
 
 
