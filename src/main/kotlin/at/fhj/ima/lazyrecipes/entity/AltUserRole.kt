@@ -1,6 +1,6 @@
 package at.fhj.ima.lazyrecipes.entity
 
-enum class UserRole {
+/*enum class AltUserRole {
     ROLE_USER,
     ROLE_ADMIN
-}
+}*/

@@ -8,84 +8,140 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<layout:page-container title="LazyRecipes" activePage="login">
+<layout:page-container title="LazyRecipes" activePage="SigneUp">
+
+
+
 
     <!-- ------------- First Name ---------------- -->
+    <!--class="form-control is-valid"-->
     <form class="row g-3">
+        <form:form modelAttribute="user" method="post" action="changeUser">
+            <! ---------------- User Id ---------------- -->
+            <input type="hidden" name="id" value="<c:out value="${user.id}"/>">
+            <input type="hidden" name="role" value="<c:out value="${user.role}"/>">
         <div class="col-md-4">
-            <label for="validationServer01" class="form-label">First name</label>
-            <input type="text" class="form-control is-valid" id="validationServer01" name= "firstName" value="<c:out value="${account.firstName}"/>" required>
-            <!-- <div class="valid-feedback">
-                 Looks good!
-             </div>-->
-         </div>
-         <!-- ------------- Last Name ---------------- -->
-        <div class="col-md-4">
-            <label for="validationServer02" class="form-label">Last name</label>
-            <input type="text" class="form-control is-valid" id="validationServer02" name= "lastName" value="<c:out value="${account.lastName}"/>" required>
+            <label for="validationServerfName" class="form-label">First name</label>
+            <c:set var="FirstNameInvalid"><form:errors var="FirstNameInvalid" path="firstName" cssClass="invalid-feedback" class="form-control is-valid"/> </c:set>
+            <form:input path="firstName" class="form-control ${not empty FirstNameInvalid ? 'is-invalid': ''}" id ="validationServerfName" type="text"/>
+                ${FirstNameInvalid}
             <!-- <div class="valid-feedback">
                  Looks good!
              </div>-->
         </div>
+         <!-- ------------- Last Name ---------------- -->
+            <div class="col-md-4">
+            <label for="validationServerlName" class="form-label">Last name</label>
+            <c:set var="LastNameInvalid"><form:errors var="LastNameInvalid" path="lastName" cssClass="invalid-feedback" class="form-control is-valid"/> </c:set>
+            <form:input path="lastName" class="form-control ${not empty LastNameInvalid ? 'is-invalid': ''}" id ="validationServerlName" type="text"/>
+            ${LastNameInvalid}
+            <!--<div class="valid-feedback">
+                 Looks good!
+             </div> -->
+        </div>
+
         <!-- ------------- Username ---------------- -->
         <div class="col-md-4">
             <label for="validationServerUsername" class="form-label">Username</label>
             <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend3">@</span>
-                <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" name="username" value="<c:out value="${account.username}"/>" required/>
+                <c:set var="UsernameInvalid"><form:errors var="UsernameInvalid" path="username" cssClass="invalid-feedback" class="form-control is-valid"/> </c:set>
+                <form:input path="username" class="form-control ${not empty FirstNameInvalid ? 'is-invalid': ''}" id ="validationServerUsername" type="text"/>
+                    ${FirstNameInvalid}
                 <!--<div id="validationServerUsernameFeedback" class="invalid-feedback">
                     Please choose a username.
                 </div> -->
             </div>
-            <!-- ------------- City ---------------- -->
         </div>
-        <div class="col-md-6">
-            <label for="validationServer03" class="form-label">City</label>
-            <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" value="<c:out value="${account.city}"/>" required/>
-            <!-- <div id="validationServer03Feedback" class="invalid-feedback">
-                 Please provide a valid city.
-             </div> -->
-         </div>
-         <!-- ------------- State---------------- -->
-        <!-- -->  <div class="col-md-3">
-              <label for="validationServer04" class="form-label">State</label>
-               <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required/>
-                   <option selected disabled value="">Choose...</option>
-                    <c:forEach var="country" items="${country}">
-                       <option value="${country.id}" <c:if test="${account.country.id == country.id}">selected</c:if>>${country.country}</option>
-                   </c:forEach>
-              </select>
+
+            <! ---------------- birthDate ---------------- -->
+            <div class="col-mb-3">
+                <label for="inputDate" class="form-label">Birthdate</label>
+                <c:set var="BirthdateInvalid"><form:errors path="birthdate" cssClass="invalid-feedback" class="form-control is-valid" /></c:set>
+                <form:input path="birthdate" class="form-control ${not empty BirthdateInvalid ? 'is-invalid' : ''}" id="inputDate" placeholder="Birthdate" type="date"/>
+                    ${BirthdateInvalid}
+            </div>
+
+            <!-- ------------- State ---------------- -->
+        <div class="col-md-3">
+            <label for="validationServerState" class="form-label">State</label>
+            <c:set var="CountryInvalid"><form:errors path="country" cssClass="invalid-feedback" class="form-control is-valid" /></c:set>
+            <form:select id="validationServerState" path="country" cssClass="form-control ${not empty CountryInvalid ? 'is-invalid' : ''}">
+                <form:option value="">&nbsp;</form:option>
+                <form:options items="${country}" itemValue="id" itemLabel="country" />
+            </form:select>
+                ${CountryInvalid}
 
             <!-- <div id="validationServer04Feedback" class="invalid-feedback">
                  Please select a valid state.
              </div> -->
+        </div>
+
+            <!-- ------------- City ---------------- -->
+        <div class="col-md-6">
+            <label for="validationServerCity" class="form-label">City</label>
+            <c:set var="CityInvalid"><form:errors var="CityInvalid" path="city" cssClass="invalid-feedback" class="form-control is-valid"/> </c:set>
+            <form:input path="city" class="form-control ${not empty CityInvalid ? 'is-invalid': ''}" id ="validationServerCity" type="text"/>
+                ${CityInvalid}
+            <!-- <div id="validationServer03Feedback" class="invalid-feedback">
+                 Please provide a valid city.
+             </div> -->
          </div>
+
+
 
        <!-- ------------- ZipCode ---------------- -->
         <div class="col-md-3">
-            <label for="validationServer05" class="form-label">Zip</label>
-            <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" value="<c:out value="${account.firstName}"/>" required/>
+            <label for="validationServerZip" class="form-label">Zip</label>
+            <c:set var="ZipCodeInvalid"><form:errors var="ZipCodeInvalid" path="zip" cssClass="invalid-feedback" class="form-control is-valid"/> </c:set>
+            <form:input path="zip" class="form-control ${not empty ZipCodeInvalid ? 'is-invalid': ''}" id ="validationServerZip" type="text"/>
+                ${ZipCodeInvalid}
             <!-- <div id="validationServer05Feedback" class="invalid-feedback">
                  Please provide a valid zip.
              </div> -->
          </div>
-         <!-- ------------- Terms and Conditions ---------------- -->
-            <!-- <div class="col-12">
-                 <div class="form-check">
-                     <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
-                     <label class="form-check-label" for="invalidCheck3">
-                         Agree to terms and conditions
-                     </label>
-                     <div id="invalidCheck3Feedback" class="invalid-feedback">
-                         You must agree before submitting.
-                     </div>
-                 </div>
+
+
+        <!-- ------------- Password---------------- -->
+        <div class="col-md-4">
+            <label for="validationServerPassword" class="form-label">Password</label>
+            <c:set var="PasswordInvalid"><form:errors var="PasswordInvalid" path="password" cssClass="invalid-feedback" class="form-control is-valid"/> </c:set>
+            <form:input path="password" class="form-control ${not empty PasswordInvalid ? 'is-invalid': ''}" id ="validationServerPassword" type="text"/>
+                ${PasswordInvalid}
+            <!--<div class="valid-feedback">
+                 Looks good!
              </div> -->
+        </div>
+
+        <!-- ------------- Confirm Password  ---------------- -->
+        <div class="col-md-4">
+            <label for="validationServerConfirmP" class="form-label">Confirm Password</label>
+            <input type="text" class="form-control" id="validationServerConfirmP" name= "Confirm Password"  required/>
+            <!-- <div class="valid-feedback">
+                 Looks good!
+             </div> -->
+        </div>
+
+            <!-- ------------- Terms and Conditions ---------------- -->
+        <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input is-valid" type="checkbox" path="terms" value="" id="invalidCheck" aria-describedby="invalidCheckFeedback" required>
+
+                <label class="form-check-label" for="invalidCheck">
+                    Agree to terms and conditions
+                </label>
+                <div id="invalidCheckFeedback" class="valid-feedback">
+                    You must agree before submitting.
+                </div>
+
+            </div>
+        </div>
              <!-- ------------- Buttons---------------- -->
         <div class="col-12">
             <button class="btn btn-primary" type="submit">Submit form</button>
             <a href="/login" class="btn btn-secondary">Login instead</a>
         </div>
+        </form:form>
     </form>
 
 

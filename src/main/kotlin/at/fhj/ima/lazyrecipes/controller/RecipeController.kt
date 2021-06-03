@@ -1,6 +1,6 @@
 package at.fhj.ima.lazyrecipes.controller
 
-import at.fhj.ima.lazyrecipes.controller.advice.CurrentUserControllerAdvice
+import at.fhj.ima.lazyrecipes.controller.UserController
 import at.fhj.ima.lazyrecipes.entity.Recipe
 import at.fhj.ima.lazyrecipes.entity.User
 import at.fhj.ima.lazyrecipes.repository.CategoryRepository

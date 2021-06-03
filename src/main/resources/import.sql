@@ -38,5 +38,5 @@ INSERT INTO country (country) VALUE ('United Kingdom')
 
 
 
-INSERT INTO user(username, password, role) VALUES ('admin','$2a$10$j8kKMynCBacALgRZvdtU2ezRo8cZJUash26OOUBBXsfzTTj/Xt5vG','ROLE_ADMIN');
-INSERT INTO user(username,password, role) VALUES ('user','$2a$10$wzVJFOPkNz410shGyVcHseQDnHKNKuKCphIr1iLj4Xw.Bvrgce3ai', 'ROLE_USER');
+INSERT INTO user(username, password, role, city, country_id, zip, first_name, last_name,birthdate) VALUES ('admin','$2a$10$j8kKMynCBacALgRZvdtU2ezRo8cZJUash26OOUBBXsfzTTj/Xt5vG','ROLE_ADMIN','Graz' ,1 ,'8010' ,'Test', 'Test', '2000-01-01' );
+INSERT INTO user(username,password, role,city,country_id,zip,first_name,last_name,birthdate) VALUES ('user','$2a$10$wzVJFOPkNz410shGyVcHseQDnHKNKuKCphIr1iLj4Xw.Bvrgce3ai', 'ROLE_USER','Graz' ,1 ,'8010' ,'Test', 'Test',  '2000-01-01');
