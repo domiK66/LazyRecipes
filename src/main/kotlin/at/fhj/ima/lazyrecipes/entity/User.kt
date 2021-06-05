@@ -1,13 +1,19 @@
 package at.fhj.ima.lazyrecipes.entity
 
+import java.time.LocalDate
 import javax.persistence.*
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.NotNull
+import javax.validation.constraints.Past
 import javax.validation.constraints.Size
 
-
+enum class UserRole {
+    ROLE_USER,
+    ROLE_ADMIN
+}
 @Entity
 class User(
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
@@ -16,12 +22,30 @@ class User(
     @field:NotNull
     @field:NotEmpty
     @field:Size(min = 2, max = 15)
-    var username: String,
+    var username: String? = null,
 
-    var password: String,
+    //TODO:Password and Validation
+    var password: String? = null,
 
     @Enumerated(EnumType.STRING)
-    var role: UserRole
+    var role: UserRole=UserRole.ROLE_USER,
+    @field:Size(min = 2, max = 240)
+    var firstName:String? = null,
+    @field:Size(min = 2, max = 240)
+    var lastName:String? = null,
+    @field:Size(min = 2, max = 240)
+    var city:String? = null,
+    @ManyToOne
+    @field:NotNull
+    var country: Country?=null,
+    @field:Size(min = 2, max = 6)
+    var zip:String? = null,
+    //@field:NotNull
+    //var terms: Boolean? =null,
+    @field:Past
+    var birthdate: LocalDate? = null
+
+
 
 
 ) : Comparable<User> {

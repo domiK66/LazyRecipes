@@ -25,5 +25,19 @@ INSERT INTO recipe (title, subtitle, ingredients, portions, prep_time, steps, ca
 INSERT INTO recipe (title, subtitle, ingredients, portions, prep_time, steps, category_id, user_id) VALUES ('Spinach', 'Lecker', '30g Zucker', 1, 5, 'Fleisch braten und in Fladenbrot legen etc.', 10, 2);
 
 
-INSERT INTO user(username, password, role) VALUES ('admin','$2a$10$j8kKMynCBacALgRZvdtU2ezRo8cZJUash26OOUBBXsfzTTj/Xt5vG','ROLE_ADMIN');
-INSERT INTO user(username,password, role) VALUES ('user','$2a$10$wzVJFOPkNz410shGyVcHseQDnHKNKuKCphIr1iLj4Xw.Bvrgce3ai', 'ROLE_USER');
+INSERT INTO country (country) VALUE ('Austria')
+INSERT INTO country (country) VALUE ('France')
+INSERT INTO country (country) VALUE ('Germany')
+INSERT INTO country (country) VALUE ('Croatia')
+INSERT INTO country (country) VALUE ('Greece')
+INSERT INTO country (country) VALUE ('Italy')
+INSERT INTO country (country) VALUE ('Spain')
+INSERT INTO country (country) VALUE ('Switzerland')
+INSERT INTO country (country) VALUE ('United Kingdom')
+INSERT INTO country (country) VALUE ('Netherlands')
+
+
+
+
+INSERT INTO user(username, password, role, city, country_id, zip, first_name, last_name,birthdate) VALUES ('admin','$2a$10$j8kKMynCBacALgRZvdtU2ezRo8cZJUash26OOUBBXsfzTTj/Xt5vG','ROLE_ADMIN','Graz' ,1 ,'8010' ,'Test', 'Test', '2000-01-01' );
+INSERT INTO user(username,password, role,city,country_id,zip,first_name,last_name,birthdate) VALUES ('user','$2a$10$wzVJFOPkNz410shGyVcHseQDnHKNKuKCphIr1iLj4Xw.Bvrgce3ai', 'ROLE_USER','Graz' ,1 ,'8010' ,'Test', 'Test',  '2000-01-01');

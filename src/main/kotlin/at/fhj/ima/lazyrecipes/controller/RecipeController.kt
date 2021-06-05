@@ -1,5 +1,6 @@
 package at.fhj.ima.lazyrecipes.controller
 
+import at.fhj.ima.lazyrecipes.controller.UserController
 import at.fhj.ima.lazyrecipes.controller.advice.CurrentUserControllerAdvice
 import at.fhj.ima.lazyrecipes.entity.Favourite
 import at.fhj.ima.lazyrecipes.entity.Rating
@@ -184,10 +185,10 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
 
 
 
-    @RequestMapping("/signUp", method = [RequestMethod.GET])
+   /* @RequestMapping("/signUp", method = [RequestMethod.GET])
     fun showSignUp(model: Model): String {
         return "signUp"
-    }
+    }*/
 
     /*
     @RequestMapping("/login", method = [RequestMethod.GET])
