@@ -34,6 +34,7 @@ INSERT INTO country (country) VALUE ('Italy')
 INSERT INTO country (country) VALUE ('Spain')
 INSERT INTO country (country) VALUE ('Switzerland')
 INSERT INTO country (country) VALUE ('United Kingdom')
+INSERT INTO country (country) VALUE ('Netherlands')
 
 
 

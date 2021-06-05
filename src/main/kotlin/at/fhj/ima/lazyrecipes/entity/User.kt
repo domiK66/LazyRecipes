@@ -28,9 +28,8 @@ class User(
     var password: String? = null,
 
     @Enumerated(EnumType.STRING)
-    var role: UserRole,
+    var role: UserRole=UserRole.ROLE_USER,
     @field:Size(min = 2, max = 240)
-
     var firstName:String? = null,
     @field:Size(min = 2, max = 240)
     var lastName:String? = null,
@@ -39,7 +38,7 @@ class User(
     @ManyToOne
     @field:NotNull
     var country: Country?=null,
-    @field:Size(min = 2, max = 240)
+    @field:Size(min = 2, max = 6)
     var zip:String? = null,
     //@field:NotNull
     //var terms: Boolean? =null,
@@ -65,11 +64,11 @@ class User(
     override fun hashCode(): Int {
         return id.hashCode()
     }
-   /* fun getUser(): String {
+    fun getUser(): String? {
         return username
     }
 
-    fun setUser(): String {
+    fun setUser(): String? {
         return username
-    }*/
+    }
 }

@@ -17,42 +17,44 @@ import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
+import java.time.LocalDate
 import javax.validation.Valid
 
 @Controller
 class UserController(val userRepository: UserRepository, val countryRepository: CountryRepository) {
 
     @RequestMapping("/signUp", method = [RequestMethod.GET])
-    fun editUser(model: Model, @RequestParam(required = false) userId: Int?): String {
-        if (userId != null) {
-
-            val user = userRepository.findById(userId).get()
+    fun editUser(model: Model, @RequestParam(required = false) id: Int?): String {
+        if (id != null) {
+           val user = userRepository.findById(id).get()
             model["user"] = user
         } else {
-            val newUser = User(role = UserRole.ROLE_USER)
-
+            val newUser = User()
+            newUser.birthdate = LocalDate.now()
             model["user"] = newUser
         }
-        model["country"] = countryRepository.findAll()
-        return "signUp"
+        return populateUserView(model)
     }
+
+    /*@RequestMapping("/singUp",method = [RequestMethod.POST])
+    fun changeUser(@ModelAttribute user: User): String{
+        userRepository.save(user);
+        return "redirect:/signUp?id="+user.id
+    }*/
 
 
     @RequestMapping("/changeUser", method = [RequestMethod.POST])
-    @Secured("ROLE_USER") //TODO: only own user profile
-    fun changeUser(@ModelAttribute("user") @Valid user: User,
-                       bindingResult: BindingResult, model: Model): String {
+   // @Secured("ROLE_USER") //TODO: only own user profile
+    fun changeUser(@ModelAttribute("user") @Valid user: User, bindingResult: BindingResult, model: Model): String {
         if (bindingResult.hasErrors()) {
-            model["country"] = countryRepository.findAll()
-            return "signUp"
+           return populateUserView(model)
         }
         try {
             userRepository.save(user)
         } catch (dive: DataIntegrityViolationException) {
             if (dive.message.orEmpty().contains("constraint [username_OK]")) {
                 bindingResult.rejectValue("id", "id.alreadyInUse", "id already in use.");
-                model["country"] = countryRepository.findAll()
-                return "signUp"
+                return populateUserView(model)
             } else {
                 throw dive;
             }
@@ -63,18 +65,9 @@ class UserController(val userRepository: UserRepository, val countryRepository: 
 
 
 
-   /*private fun countryView(model: Model): String {
-        model["location"] = countryRepository.findAll()
+   private fun populateUserView(model: Model): String {
+        model["country"] = countryRepository.findAll()
         return "signUp"
-    }*/
-    @ModelAttribute
-    fun addCurrentUser(model: Model) {
-
-        val auth = SecurityContextHolder.getContext().authentication
-        val username = auth.name
-
-        val currentUser = userRepository.findByUsername(username)
-        model.addAttribute("currentUser", currentUser)
-
     }
+
 }
