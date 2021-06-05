@@ -122,9 +122,9 @@
                             </sec:authorize>
 
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/myRecipes">My recipes</a></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/editRecipe">Create recipe</a></li>
-                            <li><a class="dropdown-item" href="#">Favourite recipes</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/myRecipes">My recipes</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/viewFavourites">Favourite recipes</a></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/accountSettings">Account Settings</a></li>
 
                             <li><hr class="dropdown-divider"></li>
@@ -253,7 +253,7 @@
                             <a href="${pageContext.request.contextPath}/editRecipe" class="text-white">Create recipe</a>
                         </li>
                         <li>
-                            <a href="#" class="text-white">Favourite recipes</a>
+                            <a href="${pageContext.request.contextPath}/viewFavourites" class="text-white">Favourite recipes</a>
                         </li>
                     </ul>
                 </div>
