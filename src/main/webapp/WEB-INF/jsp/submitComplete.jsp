@@ -9,11 +9,12 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <layout:page-container title="LazyRecipes" activePage="submitComplete">
-    <div>
-        <h1> ‎</h1>
+    <div class="text-center">
+        <i class="icon-box"><span class="glyphicon glyphicon-ok"></span></i>
+        <h1> ‎</h1> <! ---------------- empty Line ---------------- -->
         <h1>User has been saved successfully!</h1>
         <a href="/login" class="btn btn-primary btn-lg btn-block">Login</a>
-        <a href="/index" class="btn btn-secondary">Return</a>
+        <a href="/index" class="btn btn-secondary btn-lg btn-block">Return</a>
     </div>
 
 </layout:page-container>

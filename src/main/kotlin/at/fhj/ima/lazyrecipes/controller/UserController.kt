@@ -27,7 +27,7 @@ class UserController(val userRepository: UserRepository, val countryRepository: 
     fun editUser(model: Model, @RequestParam(required = false) id: Int?): String {
         if (id != null) {
             val user = userRepository.findById(id).get()
-           //user.password=null
+            //user.password=null
             model["user"] = user
         } else {
             val newUser = User()
@@ -38,7 +38,7 @@ class UserController(val userRepository: UserRepository, val countryRepository: 
         return populateUserView(model)
     }
 
-      @RequestMapping("/changeUser", method = [RequestMethod.POST])
+    @RequestMapping("/changeUser", method = [RequestMethod.POST])
     fun changeUser(@ModelAttribute("user") @Valid user: User, bindingResult: BindingResult, model: Model): String {
         if (bindingResult.hasErrors()) {
             return populateUserView(model)
@@ -49,7 +49,7 @@ class UserController(val userRepository: UserRepository, val countryRepository: 
         } catch (dive: DataIntegrityViolationException) {
             if (dive.message.orEmpty().contains("constraint [username_UK]")) {
                 bindingResult.rejectValue("username", "username.alreadyInUse", "username already in use.");
-               // user.password=null
+                user.password = null
                 return populateUserView(model)
             } else {
                 throw dive;
@@ -60,9 +60,10 @@ class UserController(val userRepository: UserRepository, val countryRepository: 
 
 
     private fun populateUserView(model: Model): String {
-       // model["country"] = countryRepository.findAll()
+        // model["country"] = countryRepository.findAll()
         return "signUp"
     }
+
     @RequestMapping("submitComplete", method = [RequestMethod.GET])
     fun submitComplete(): String {
         return "submitComplete"
