@@ -1,11 +1,12 @@
 package at.fhj.ima.lazyrecipes.controller
 
 import at.fhj.ima.lazyrecipes.controller.UserController
+import at.fhj.ima.lazyrecipes.controller.advice.CurrentUserControllerAdvice
+import at.fhj.ima.lazyrecipes.entity.Favourite
+import at.fhj.ima.lazyrecipes.entity.Rating
 import at.fhj.ima.lazyrecipes.entity.Recipe
 import at.fhj.ima.lazyrecipes.entity.User
-import at.fhj.ima.lazyrecipes.repository.CategoryRepository
-import at.fhj.ima.lazyrecipes.repository.RecipeRepository
-import at.fhj.ima.lazyrecipes.repository.UserRepository
+import at.fhj.ima.lazyrecipes.repository.*
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.annotation.Secured
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -22,7 +23,9 @@ import javax.validation.Valid
 
 
 @Controller
-class RecipeController(val recipeRepository: RecipeRepository, val categoryRepository: CategoryRepository, val userRepository: UserRepository) {
+class RecipeController(val recipeRepository: RecipeRepository, val categoryRepository: CategoryRepository,
+                       val userRepository: UserRepository, val favouriteRepository: FavouriteRepository, val ratingRepository: RatingRepository
+) {
 
     @RequestMapping("/editRecipe", method = [RequestMethod.GET])
     fun editRecipe(model: Model, @RequestParam(required = false) id: Int?): String {
@@ -51,6 +54,94 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         recipeRepository.save(recipe)
         return "redirect:/editRecipe?id=" + recipe.id
     }
+
+    // recipeView.jsp
+    @RequestMapping("/recipeView", method = [RequestMethod.GET])
+    fun viewRecipe(model: Model, @RequestParam(required = false) id: Int?): String {
+        if (id != null) {
+            val recipe = recipeRepository.findById(id).get()
+            model["recipe"] = recipe
+            model["category"] = recipeRepository.findAll()
+            model["user"] = userRepository.findAll()
+        }
+        val username = SecurityContextHolder.getContext().authentication.name
+        val userId = userRepository.findByUsername(username)?.id
+        val savedRating = ratingRepository.findByUserIdAndRecipeId(userId,id)
+        val isFavourite = favouriteRepository.findByUserIdAndRecipeId(userId,id)
+        if (savedRating != null) {
+            model["rating"] = savedRating
+        } else {
+            val newRating = Rating()
+            model["rating"] = newRating
+        }
+        if (isFavourite != null) {
+           model["favourite"] = isFavourite
+        } else {
+            val newFavourite = Favourite()
+            model["favourite"] = newFavourite
+        }
+
+        return "recipeView"
+    }
+
+    // RATING
+    @RequestMapping("/rateRecipe", method = [RequestMethod.POST])
+    fun rateRecipe(@ModelAttribute @Valid rating: Rating, @RequestParam(required = false) id: Int?, model: Model): String {
+        ratingRepository.save(rating)
+        return viewRecipe(model, id)
+    }
+
+    // view favourites.jsp
+    @RequestMapping("/viewFavourites", method = [RequestMethod.GET])
+    fun viewFavourites(model: Model): String {
+        val username = SecurityContextHolder.getContext().authentication.name
+        val userId = userRepository.findByUsername(username)?.id
+        model["favourite"] = favouriteRepository.findFavouritesByUserId(userId)
+        return "favourites"
+    }
+
+    // save to favourites.jsp
+
+    @RequestMapping("/saveToFavourites", method = [RequestMethod.POST])
+    @Secured("ROLE_USER")
+    fun saveToFavourites(@ModelAttribute @Valid favourite: Favourite, @RequestParam(required = false) id: Int, model: Model): String {
+        favourite.checkboxBool = true
+        favouriteRepository.save(favourite)
+        //val recipe = recipeRepository.findById(id).get()
+        // model["message"] = "Recipe ${recipe.title} added to favourites."
+        return viewRecipe(model, id)
+    }
+
+    @RequestMapping("/deleteFromFavourites", method = [RequestMethod.POST])
+    @Secured("ROLE_USER")
+    fun deleteFromFavourites(@ModelAttribute @Valid favourite: Favourite, @RequestParam(required = false) id: Int, model: Model): String {
+        favourite.checkboxBool = false
+        favouriteRepository.save(favourite)
+       // val recipe = recipeRepository.findById(id).get()
+       // model["errorMessage"] = "Recipe ${recipe.title} removed from favourites."
+        return viewRecipe(model, id)
+    }
+
+
+    /*
+    @RequestMapping("/rating", method = [RequestMethod.GET])
+    fun rating(model: Model): String {
+        val username = SecurityContextHolder.getContext().authentication.name
+        val userId = userRepository.findByUsername(username)?.id
+        val savedRating = ratingRepository.findByUserIdAndRecipeId(userId,1)
+        if (savedRating != null) {
+            model["rating"] = savedRating
+        } else {
+            val newRating = Rating()
+            model["rating"] = newRating
+        }
+
+        return "rating"
+    }
+    */
+
+    // RATING
+
 
     @RequestMapping("/searchRecipe", method = [RequestMethod.GET])
     fun searchRecipes(model: Model, @RequestParam(required = false) search: String? = null): String {
@@ -92,17 +183,7 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         return "admin"
     }
 
-    // recipeView.jsp
-    @RequestMapping("/recipeView", method = [RequestMethod.GET])
-    fun viewRecipe(model: Model, @RequestParam(required = false) id: Int?): String {
-        if (id != null) {
-            val recipe = recipeRepository.findById(id).get()
-            model["recipe"] = recipe
-            model["category"] = recipeRepository.findAll()
-            model["user"] = userRepository.findAll()
-        }
-        return "recipeView"
-    }
+
 
    /* @RequestMapping("/signUp", method = [RequestMethod.GET])
     fun showSignUp(model: Model): String {
@@ -153,6 +234,9 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
         model["recipe"] = recipeRepository.findByUserId(userId)
         return "myRecipes"
     }
+
+
+
 
     //account settings
     @RequestMapping("/accountSettings", method = [RequestMethod.GET])
