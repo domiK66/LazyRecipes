@@ -27,6 +27,7 @@ class UserController(val userRepository: UserRepository, val countryRepository: 
     fun editUser(model: Model, @RequestParam(required = false) id: Int?): String {
         if (id != null) {
             val user = userRepository.findById(id).get()
+           //user.password=null
             model["user"] = user
         } else {
             val newUser = User()
@@ -38,7 +39,6 @@ class UserController(val userRepository: UserRepository, val countryRepository: 
     }
 
       @RequestMapping("/changeUser", method = [RequestMethod.POST])
-    // @Secured("ROLE_USER") //TODO: only own user profile
     fun changeUser(@ModelAttribute("user") @Valid user: User, bindingResult: BindingResult, model: Model): String {
         if (bindingResult.hasErrors()) {
             return populateUserView(model)
@@ -49,6 +49,7 @@ class UserController(val userRepository: UserRepository, val countryRepository: 
         } catch (dive: DataIntegrityViolationException) {
             if (dive.message.orEmpty().contains("constraint [username_UK]")) {
                 bindingResult.rejectValue("username", "username.alreadyInUse", "username already in use.");
+               // user.password=null
                 return populateUserView(model)
             } else {
                 throw dive;
