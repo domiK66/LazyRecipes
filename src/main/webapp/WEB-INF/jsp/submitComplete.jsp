@@ -12,8 +12,8 @@
     <div>
         <h1> ‎</h1>
         <h1>User has been saved successfully!</h1>
-        <a href="/index" class="btn btn-primary btn-lg btn-block">Return</a>
-        <a href="/login" class="btn btn-secondary">Login instead</a>
+        <a href="/login" class="btn btn-primary btn-lg btn-block">Login</a>
+        <a href="/index" class="btn btn-secondary">Return</a>
     </div>
 
 </layout:page-container>
