@@ -1,7 +1,6 @@
 package at.fhj.ima.lazyrecipes.controller
 
 
-
 import at.fhj.ima.lazyrecipes.entity.User
 import at.fhj.ima.lazyrecipes.entity.UserRole
 import at.fhj.ima.lazyrecipes.repository.CountryRepository
@@ -9,6 +8,7 @@ import at.fhj.ima.lazyrecipes.repository.UserRepository
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.security.access.annotation.Secured
 import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
@@ -26,48 +26,45 @@ class UserController(val userRepository: UserRepository, val countryRepository: 
     @RequestMapping("/signUp", method = [RequestMethod.GET])
     fun editUser(model: Model, @RequestParam(required = false) id: Int?): String {
         if (id != null) {
-           val user = userRepository.findById(id).get()
+            val user = userRepository.findById(id).get()
             model["user"] = user
         } else {
             val newUser = User()
-            newUser.birthdate = LocalDate.now()
+            //newUser.birthdate = LocalDate.now()
+
             model["user"] = newUser
         }
         return populateUserView(model)
     }
 
-    /*@RequestMapping("/singUp",method = [RequestMethod.POST])
-    fun changeUser(@ModelAttribute user: User): String{
-        userRepository.save(user);
-        return "redirect:/signUp?id="+user.id
-    }*/
-
-
-    @RequestMapping("/changeUser", method = [RequestMethod.POST])
-   // @Secured("ROLE_USER") //TODO: only own user profile
+      @RequestMapping("/changeUser", method = [RequestMethod.POST])
+    // @Secured("ROLE_USER") //TODO: only own user profile
     fun changeUser(@ModelAttribute("user") @Valid user: User, bindingResult: BindingResult, model: Model): String {
         if (bindingResult.hasErrors()) {
-           return populateUserView(model)
+            return populateUserView(model)
         }
         try {
+            user.password = (BCryptPasswordEncoder().encode(user.password));
             userRepository.save(user)
         } catch (dive: DataIntegrityViolationException) {
-            if (dive.message.orEmpty().contains("constraint [username_OK]")) {
-                bindingResult.rejectValue("id", "id.alreadyInUse", "id already in use.");
+            if (dive.message.orEmpty().contains("constraint [username_UK]")) {
+                bindingResult.rejectValue("username", "username.alreadyInUse", "username already in use.");
                 return populateUserView(model)
             } else {
                 throw dive;
             }
         }
-        userRepository.save(user)
-        return "redirect:/signUp?id="+user.id
+        return submitComplete()
     }
 
 
-
-   private fun populateUserView(model: Model): String {
-        model["country"] = countryRepository.findAll()
+    private fun populateUserView(model: Model): String {
+       // model["country"] = countryRepository.findAll()
         return "signUp"
+    }
+    @RequestMapping("submitComplete", method = [RequestMethod.GET])
+    fun submitComplete(): String {
+        return "submitComplete"
     }
 
 }

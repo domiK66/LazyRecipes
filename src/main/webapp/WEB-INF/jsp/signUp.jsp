@@ -15,7 +15,7 @@
 
         <div class="row">
             <div class="col-md-offset-8">
-                <form:form modelAttribute="user" method="post" action="changeUser">
+                <form:form modelAttribute="user" id="editForm" method="post" action="changeUser">
                     <! ---------------- UserId & UserRole ---------------- -->
                     <form:hidden path="id"/>
                     <form:hidden path="role"/>
@@ -73,10 +73,24 @@
                             </div>
                         </div>
 
-                        <! ---------------- birthDate ---------------- -->
-                        <div class="col-mb-4">
+                        <div class="col-md-4 ">
+                            <label for="validationServerEmail" class="form-label">E-mail</label>
+
+                                <c:set var="EmailInvalid"><form:errors var="EmailInvalid" path="email"
+                                                                          cssClass="invalid-feedback"
+                                                                          class="form-control is-valid"/>
+                                </c:set>
+                                    <form:input path="email"
+                                                class="form-control ${not empty EmailInvalid ? 'is-invalid': ''}"
+                                                id="validationServerEmail" type="text"/>
+                                    ${UsernameInvalid}
+
+
+                        </div>
+                        <!-- -------------- birthDate ---------------- -->
+                        <%--div class="col-mb-4">
                             <label for="inputDate" class="form-label">Birthdate</label>
-                            <c:set var="BirthdateInvalid"><form:errors path="birthdate" cssClass="invalid-feedback"
+                            %-- <c:set var="BirthdateInvalid"><form:errors path="birthdate" cssClass="invalid-feedback"
                                                                        class="form-control is-valid"/></c:set>
                             <form:input path="birthdate"
                                         class="form-control ${not empty BirthdateInvalid ? 'is-invalid' : ''}"
@@ -128,11 +142,11 @@
                             <!-- <div id="validationServer05Feedback" class="invalid-feedback">
                                  Please provide a valid zip.
                              </div> -->
-                        </div>
+                        </div--%>
 
 
                         <!-- ------------- Password---------------- -->
-                        <!-- TODO: hash -->
+
                         <div class="col-md-4">
                             <label for="validationServerPassword" class="form-label">Password</label>
                             <c:set var="PasswordInvalid"><form:errors var="PasswordInvalid" path="password"
@@ -152,15 +166,16 @@
                             <label for="validationServerConfirmP" class="form-label">Confirm Password</label>
                             <input type="text" class="form-control" id="validationServerConfirmP"
                                    name="Confirm Password" required/>
+                           
                             <!-- <div class="valid-feedback">
                             Looks good!
                             </div>-->
                         </div>
 
-                        <!-- ------------- Terms and Conditions ----------------
+                        <!-- ------------- Terms and Conditions ---------------- -->
                         <div class="col-12">
                         <div class="form-check">
-                        <input class="form-check-input is-valid" type="checkbox" path="terms" value="" id="invalidCheck" aria-describedby="invalidCheckFeedback" required>
+                        <input class="form-check-input is-invalid" type="checkbox" path="terms" value="" id="invalidCheck" aria-describedby="invalidCheckFeedback" required>
 
                         <label class="form-check-label" for="invalidCheck">
                         Agree to terms and conditions
@@ -170,7 +185,7 @@
                         </div>
 
                         </div>
-                        </div> -->
+                        </div>
                         <!-- ------------- Buttons---------------- -->
                         <div class="col-md-8">
                             <button class="btn btn-primary" type="submit">Submit form</button>
