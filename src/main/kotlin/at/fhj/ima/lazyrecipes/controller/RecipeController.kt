@@ -166,7 +166,7 @@ class RecipeController(val recipeRepository: RecipeRepository, val categoryRepos
     }
 
     // index.jsp
-    @RequestMapping("/", method = [RequestMethod.GET])
+    @RequestMapping("","/", "/index" , method = [RequestMethod.GET])
     fun listRecipes(model: Model): String {
         model["recipe"] = recipeRepository.findAll()
         model["category"] = recipeRepository.findAll()

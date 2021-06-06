@@ -12,15 +12,17 @@ enum class UserRole {
     ROLE_ADMIN
 }
 @Entity
+@Table(uniqueConstraints = [UniqueConstraint(name = "username_UK", columnNames = ["username"])])
 class User(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
 
-    @Column(nullable = false, unique = true)
+
+   // @field:NotEmpty
+    @Column(nullable = false) //unique = true)
     @field:NotNull
-    @field:NotEmpty
     @field:Size(min = 2, max = 15)
     var username: String? = null,
 
@@ -34,6 +36,10 @@ class User(
     @field:Size(min = 2, max = 240)
     var lastName:String? = null,
     @field:Size(min = 2, max = 240)
+    //TODO:email check
+    var email: String? = null,
+
+   /* @field:Size(min = 2, max = 240)
     var city:String? = null,
     @ManyToOne
     @field:NotNull
@@ -43,7 +49,7 @@ class User(
     //@field:NotNull
     //var terms: Boolean? =null,
     @field:Past
-    var birthdate: LocalDate? = null
+    var birthdate: LocalDate? = null*/
 
 
 
