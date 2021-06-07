@@ -1,5 +1,14 @@
 body {
 }
+.col-form-label{
+    font-size: 18px;
+}.big-checkbox {}
+
+.form-checkbox {
+    color: #ff0000;
+    font-size: 16px;
+}
+
 .form-control {
     height: 40px;
     box-shadow: none;

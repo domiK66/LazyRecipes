@@ -2,10 +2,7 @@ package at.fhj.ima.lazyrecipes.entity
 
 import java.time.LocalDate
 import javax.persistence.*
-import javax.validation.constraints.NotEmpty
-import javax.validation.constraints.NotNull
-import javax.validation.constraints.Past
-import javax.validation.constraints.Size
+import javax.validation.constraints.*
 
 enum class UserRole {
     ROLE_USER,
@@ -50,6 +47,10 @@ class User(
     //var terms: Boolean? =null,
     @field:Past
     var birthdate: LocalDate? = null*/
+
+    @Transient
+    @field:AssertTrue(message = "Bitte akzeptieren Sie die AGBs!")
+    var acceptTerms: Boolean = false
 
 
 

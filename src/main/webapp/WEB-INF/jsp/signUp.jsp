@@ -187,23 +187,27 @@
             </div>
 
             <!-- ------------- Terms and Conditions ---------------- -->
+            <div class="col text-center">
+                <label for="validationServerToS" class="col-form-label">Accept ToS</label>
+            </div>
             <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input is-invalid" type="checkbox" path="terms" value=""
-                           id="invalidCheck" aria-describedby="invalidCheckFeedback" required>
-
-                    <label class="form-check-label" for="invalidCheck">
-                        Agree to terms and conditions
-                    </label>
-                    <div id="invalidCheckFeedback" class="valid-feedback">
-                        You must agree before submitting.
+                <div class="col text-center">
+                    <div class="form-checkbox">
+                        <c:set var="CheckBoxInvalid"><form:errors var="CheckBoxInvalid" path="acceptTerms"
+                                                                  class="form-check-input "
+                        /> </c:set>
+                        <form:checkbox path="acceptTerms"
+                                    id="validationServerToS"
+                        />
+                            ${CheckBoxInvalid}
                     </div>
-
                 </div>
             </div>
             <!-- ------------- Buttons---------------- -->
             <div class="form-group">
-                <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-success btn-lg-center btn-block">Register Now</button>
+                </div>
             </div>
             </form>
             <div class="text-center">Already have an account? <a href="/login">Sign in</a></div>

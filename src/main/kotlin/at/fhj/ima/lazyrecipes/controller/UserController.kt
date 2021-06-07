@@ -54,6 +54,8 @@ class UserController(val userRepository: UserRepository, val countryRepository: 
             } else {
                 throw dive;
             }
+        } catch (t: Throwable){
+            throw t
         }
         return submitComplete()
     }
