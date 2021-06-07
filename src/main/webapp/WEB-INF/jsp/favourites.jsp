@@ -9,7 +9,7 @@
 
 <layout:page-container title="LazyRecipes" activePage="favourites">
     <div class="container">
-            <%--@elvariable id="favourite" type="at.fhj.ima.lazyrecipes.entity"--%>
+
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -19,8 +19,10 @@
         <h1>My Favourites</h1>
                 <!-- CARD RECIPE VIEW -->
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <%--@elvariable id="favourite" type="at.fhj.ima.lazyrecipes.entity"--%>
                     <c:forEach items="${favourite}" var="favourite">
-                        <c:if test="${favourite.checkboxBool == true}">
+                        <%--@elvariable id="favourite" type="java.lang.Boolean"--%>
+                        <c:if test="${favourite1 == true}">
                         <div class="col">
                             <div class="card shadow-sm">
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
