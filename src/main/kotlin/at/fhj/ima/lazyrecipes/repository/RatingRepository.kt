@@ -10,4 +10,7 @@ import org.springframework.stereotype.Repository
 interface RatingRepository : JpaRepository<Rating, Int> {
     @Query("FROM Rating WHERE user.id = :userId AND recipe.id = :recipeId")
     fun findByUserIdAndRecipeId(userId: Int?, recipeId: Int?): Rating?
+
+    @Query("SELECT AVG(value) FROM Rating WHERE recipe.id = :recipeId")
+    fun getAverageRating(recipeId: Int?): Float?
 }

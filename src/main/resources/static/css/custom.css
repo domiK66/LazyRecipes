@@ -3,21 +3,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-/* Header */
-/* Dropdown Menu */
-.mega-area {
-    position:absolute ;
-    width: 100%;
-    left: 0;
-    right: 0;
-    padding: 15px;
-}
-@media all and (min-width: 992px) {
-    .dropdown-large {
-        min-width: 500px;
-    }
-}
-
 /* Footer */
 footer {
     margin-top: auto;
