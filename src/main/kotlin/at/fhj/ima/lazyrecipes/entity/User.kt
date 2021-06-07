@@ -4,10 +4,7 @@ import java.time.LocalDate
 import javax.persistence.*
 import javax.validation.constraints.*
 
-enum class UserRole {
-    ROLE_USER,
-    ROLE_ADMIN
-}
+
 @Entity
 @Table(uniqueConstraints = [UniqueConstraint(name = "username_UK", columnNames = ["username"])])
 class User(
@@ -27,14 +24,18 @@ class User(
     var password: String? = null,
 
     @Enumerated(EnumType.STRING)
-    var role: UserRole=UserRole.ROLE_USER,
+    var role: UserRole = UserRole.ROLE_USER,
+
     @field:Size(min = 2, max = 240)
     var firstName:String? = null,
+
     @field:Size(min = 2, max = 240)
     var lastName:String? = null,
+
     @field:Size(min = 2, max = 240)
     //TODO:email check
     var email: String? = null,
+
 
    /* @field:Size(min = 2, max = 240)
     var city:String? = null,

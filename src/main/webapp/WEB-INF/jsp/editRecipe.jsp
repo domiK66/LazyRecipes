@@ -10,6 +10,8 @@
 
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<%@taglib prefix="file" tagdir="/WEB-INF/tags/file" %>
+
 <layout:page-container title="LazyRecipes" activePage="editRecipe">
     <div class="container">
 
@@ -118,6 +120,12 @@
                                 ${stepsInvalid}
                         </div>
 
+                        <! ---------------- files ------------------>
+                        <div class="mb-3">
+                            <label for="files" class="form-label">Files</label>
+                            <file:file value="${recipe.files}" />
+                        </div>
+
                         <!-- ------------- User-ID (invisible, default value: id of current user) ---------------- -->
                         <div class="mb-3">
                             <label for="user" class="form-label"></label>
@@ -127,6 +135,8 @@
                                         type="hidden" readonly="true" value="${currentUser.id}" />
                                 ${userInvalid}
                         </div>
+
+
 
                         <!-- -------------- Buttons ---------------- -->
                         <div class="mb-3">

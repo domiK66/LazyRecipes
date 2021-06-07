@@ -26,6 +26,8 @@
     <owlcarousel:owlcarousel-css/> <!-- TODO: USE VANILLA JS LIBRARY - NOT JQUERY AND OWLCAROUSEL -->
 
     <link href="/css/custom.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.css" />
+
 </head>
 <!-- HTML HEAD -->
 
@@ -307,6 +309,8 @@
 
 <script src="/js/custom.js"></script>
 <script src="/js/owlcarousel.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.js"></script>
+<script src="/js/custom-dropzone.js"></script>
 
 <!-- JAVASCRIPT -->
 </body>
