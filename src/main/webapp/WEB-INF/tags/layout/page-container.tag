@@ -130,8 +130,9 @@
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/accountSettings">Account Settings</a></li>
 
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Sign out</a></li>
-
+                            <form:form method="post" action="/logout">
+                                <button class="dropdown-item" type="submit">Log Out</button>
+                            </form:form>
                         </ul>
                     </div>
                 </ul>
