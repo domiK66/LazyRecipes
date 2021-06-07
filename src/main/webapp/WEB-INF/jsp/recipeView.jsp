@@ -36,11 +36,7 @@
 
         <div class="row">
             <div class="col-md-4">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"></rect>
-                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                </svg>
+                <img src="/file/${recipe.files[0].id}" width="100%" height="225">
             </div>
             <div class="col-md-8">
                 <p>Time: ${recipe.prepTime} min</p>
@@ -62,49 +58,17 @@
         </div>
 
             <%--@elvariable id="rating" type="at.fhj.ima.lazyrecipes.entity"--%>
-        <form:form modelAttribute="rating" method="post" action="rateRecipe?id=${recipe.id}">
-            <input type="hidden" name="id" value="<c:out value="${rating.id}"/>">
+        <form:form method="post" action="rateRecipe?id=${recipe.id}">
             <fieldset>
                 <!-- -------------- Value ---------------- -->
                 <div class="mb-3">
                     <label for="inputValue" class="form-label">value</label>
-                    <c:set var="valueInvalid">
-                        <form:errors path="value" cssClass="invalid-feedback"/>
-                    </c:set>
-                    <form:input path="value"
-                                class="form-control ${not empty valueInvalid ? 'is-invalid' : ''}"
+                    <input name="value"
+                                class="form-control"
                                 id="inputValue"
-                                type="text"/>
-                        ${valueInvalid}
+                                type="text"
+                                />
                 </div>
-
-                <!-- -------------- Recipe ID ---------------- -->
-                <div class="mb-3">
-                    <label for="inputRecipe" class="form-label"></label>
-                    <c:set var="recipeInvalid">
-                        <form:errors path="recipe" cssClass="invalid-feedback"/>
-                    </c:set>
-                    <form:input path="recipe"
-                                class="form-control ${not empty recipeInvalid ? 'is-invalid' : ''}"
-                                id="inputRecipe"
-                                type="hidden"
-                                readonly="true"
-                                value="${recipe.id}" />
-                        ${recipeInvalid}
-                </div>
-
-                <!-- ------------- User-ID (invisible, default value: id of current user) ---------------- -->
-                <div class="mb-3">
-                    <label for="inputUser" class="form-label"></label>
-                    <form:input path="user"
-                                class="form-control ${not empty userInvalid ? 'is-invalid' : ''}"
-                                id="inputUser"
-                                type="hidden"
-                                readonly="true"
-                                value="${currentUser.id}" />
-                        ${userInvalid}
-                </div>
-
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </fieldset>

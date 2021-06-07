@@ -120,9 +120,9 @@
                                 ${stepsInvalid}
                         </div>
 
-                        <! ---------------- files ------------------>
+                        <!-- ---------------- Files ------------------>
                         <div class="mb-3">
-                            <label for="files" class="form-label">Files</label>
+                            <label class="form-label">Files</label>
                             <file:file value="${recipe.files}" />
                         </div>
 

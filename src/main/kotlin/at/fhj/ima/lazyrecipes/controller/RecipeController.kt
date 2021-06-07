@@ -18,6 +18,7 @@ import org.springframework.ui.set
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.server.ResponseStatusException
+import org.springframework.web.servlet.mvc.support.RedirectAttributes
 import java.time.LocalDate
 import javax.validation.Valid
 
@@ -77,14 +78,11 @@ class RecipeController(
         }
         val username = SecurityContextHolder.getContext().authentication.name
         val userId = userRepository.findByUsername(username)?.id
+
         val savedRating = ratingRepository.findByUserIdAndRecipeId(userId,id)
         val isFavourite = favouriteRepository.findByUserIdAndRecipeId(userId,id)
-        if (savedRating != null) {
-            model["rating"] = savedRating
-        } else {
-            val newRating = Rating()
-            model["rating"] = newRating
-        }
+
+        model["rating"] = savedRating != null
         model["favourite"] = isFavourite != null
         return "recipeView"
     }
@@ -92,17 +90,21 @@ class RecipeController(
     // RATING
     @RequestMapping("/rateRecipe", method = [RequestMethod.POST])
     fun rateRecipe(
-        @ModelAttribute @Valid rating: Rating,
+        @RequestParam(required = false) value: Float,
         @RequestParam(required = false) id: Int,
         model: Model
     ): String {
-        ratingRepository.save(rating)
-        // TODO: xxxx only safed for 1 user
+        val username = SecurityContextHolder.getContext().authentication.name
+        val user = userRepository.findByUsername(username)
         val recipe = recipeRepository.findById(id).get()
+        val rating = Rating(user = user, recipe = recipe, value = value)
+
+        ratingRepository.save(rating)
+
         recipe.ratingAVG = ratingRepository.getAverageRating(id)
         recipeRepository.save(recipe)
 
-        return viewRecipe(model, id)
+        return "redirect:/recipeView?id=" + id
     }
 
     // FAVOURITES
@@ -115,35 +117,33 @@ class RecipeController(
         return "favourites"
     }
     @RequestMapping("/saveToFavourites", method = [RequestMethod.POST])
-    @Secured("ROLE_USER")
     fun saveToFavourites(
         @RequestParam(required = false) id: Int,
+        redirectAttributes: RedirectAttributes,
         model: Model
     ): String {
         val username = SecurityContextHolder.getContext().authentication.name
         val user = userRepository.findByUsername(username)
         val recipe = recipeRepository.findById(id).get()
         val favourite = Favourite(user = user, recipe = recipe)
-       //favourite.checkboxBool = true
         favouriteRepository.save(favourite)
-        //val recipe = recipeRepository.findById(id).get()
-        // model["message"] = "Recipe ${recipe.title} added to favourites."
-        return viewRecipe(model, id)
+        val message = "Recipe ${recipe.title} added to favourites."
+        redirectAttributes.addFlashAttribute("message", message)
+        return "redirect:/recipeView?id=" + id
     }
     @RequestMapping("/deleteFromFavourites", method = [RequestMethod.POST])
-    @Secured("ROLE_USER")
     fun deleteFromFavourites(
         @RequestParam(required = false) id: Int,
-        model: Model): String {
-        //favourite.checkboxBool = false
+        model: Model
+    ): String {
         val username = SecurityContextHolder.getContext().authentication.name
         val userId = userRepository.findByUsername(username)?.id
         val favourite = favouriteRepository.findByUserIdAndRecipeId(userId,id)
+        val recipe = recipeRepository.findById(id).get()
         if (favourite != null) {
             favouriteRepository.delete(favourite)
         }
-       // val recipe = recipeRepository.findById(id).get()
-       // model["errorMessage"] = "Recipe ${recipe.title} removed from favourites."
+        model["errorMessage"] = "Recipe ${recipe.title} removed from favourites."
         return viewRecipe(model, id)
     }
 
