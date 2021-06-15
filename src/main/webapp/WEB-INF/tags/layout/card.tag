@@ -5,10 +5,8 @@
     <c:forEach items="${recipe}" var="recipe">
         <div class="col">
             <div class="card shadow-sm">
-
                 <!-- TODO: IMAGE THUMBNAIL-->
                 <img src="/file/${recipe.files[0].id}" width="100%" height="225" alt="">
-
                 <div class="card-body">
                     <strong class="d-inline-block mb-2 text-success">${recipe.category.name}</strong>
                     <h5 class="card-title">${recipe.title}</h5>
@@ -23,8 +21,28 @@
                     </p>
                     <p class="card-text">Portion(s): ${recipe.portions}</p>
                     <div class="d-flex justify-content-between align-items-center">
+
                         <div class="btn-group">
                             <a type="button" href="/recipeView?id=${recipe.id}" class="btn btn-sm btn-outline-secondary">View</a>
+
+                        </div>
+                        <div class=".col-4">
+                            <c:if test="${recipe.ratingAVG >= 1}">
+                                <span class="fa fa-star checked"></span>
+                            </c:if>
+                            <c:if test="${recipe.ratingAVG >= 2}">
+                                <span class="fa fa-star checked"></span>
+                            </c:if>
+                            <c:if test="${recipe.ratingAVG >= 3}">
+                                <span class="fa fa-star checked"></span>
+                            </c:if>
+                            <c:if test="${recipe.ratingAVG >= 4}">
+                                <span class="fa fa-star checked"></span>
+                            </c:if>
+                            <c:if test="${recipe.ratingAVG >= 5}">
+                                <span class="fa fa-star checked"></span>
+                            </c:if>
+                            <small class="text-muted">${recipe.ratingAVG}</small>
                         </div>
                         <small class="text-muted">${recipe.date}</small>
 

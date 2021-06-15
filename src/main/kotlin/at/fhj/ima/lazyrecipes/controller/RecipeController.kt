@@ -98,6 +98,11 @@ class RecipeController(
         val user = userRepository.findByUsername(username)
         val recipe = recipeRepository.findById(id).get()
         val rating = Rating(user = user, recipe = recipe, value = value)
+        val userId = userRepository.findByUsername(username)?.id
+        val savedRating = ratingRepository.findByUserIdAndRecipeId(userId,id)
+        if (savedRating != null) {
+            ratingRepository.delete(savedRating)
+        }
 
         ratingRepository.save(rating)
 
