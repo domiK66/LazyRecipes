@@ -18,6 +18,7 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http
             .authorizeRequests()
+
             // anonymous urls
             .antMatchers("/editRecipe").authenticated()
             .antMatchers("/myRecipes").authenticated()
@@ -27,8 +28,11 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
             .antMatchers("/rateRecipe").authenticated()
             .antMatchers("/saveToFavourites").authenticated()
             .antMatchers("/deleteFromFavourites").authenticated()
+            .antMatchers("/viewFavourites").authenticated()
+
             // permit all
             .anyRequest().permitAll()
+
             .and()
             .formLogin().loginPage("/login")
             .and()

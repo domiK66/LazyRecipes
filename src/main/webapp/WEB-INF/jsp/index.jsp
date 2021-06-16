@@ -25,16 +25,19 @@
             <div class="item"><a href="${pageContext.request.contextPath}/category/FastFood"><img src="/img/fastfood-carousel.jpg" class="mt-2 mb-2"></a><h4>FastFood</h4></div>
         </div>
 
-        <layout:card></layout:card>
+        <layout:card> </layout:card>
 
         <div class="px-4 py-5 my-5 text-center">
-            <img class="d-block mx-auto mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-            <h1 class="display-5 fw-bold">Lazy Recipes</h1>
+            <img src="/img/logo_black.png" width="400">
             <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">Lazy Recipes aims to be a web application where members can share quick recipes and lazy cooks (i.e. students) can get new ideas for easy-made dishes. This website aims to be the place for people, who lack in time and enthusiasm and still want to have nice, cooked meals. </p>
+                <h1 class="lead mb-4">Lazy Recipes</h1>
+                <h2 class="lead mb-4">This website aims to be the place for people, who lack in time and enthusiasm and still want to have nice, cooked meals.</h2>
+                <h3 class="lead mb-4">Lazy Recipes aims to be a web application where members can share quick recipes and lazy cooks (i.e. students) can get new ideas for easy-made dishes.</h3>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
+                    <a href="/editRecipe"type="button" class="btn btn-primary btn-lg px-4 gap-3"><svg class="bi d-block mx-auto mb-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"></path>
+                    </svg>Create Recipe</a>
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">About Us</button>
                 </div>
             </div>
         </div>
