@@ -164,20 +164,18 @@
                             class="form-control ${not empty PasswordInvalid ? 'is-invalid': ''}"
                             id="validationServerPassword" type="password"/>
                     ${PasswordInvalid}
-                <!--<div class="valid-feedback">
-                     Looks good!
-                 </div> -->
             </div>
 
             <!-- ------------- Confirm Password ---------------- -->
             <div class="form-group">
-                <label for="validationServerConfirmP" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="validationServerConfirmP"
-                       name="Confirm Password" required/>
-
-                <!-- <div class="valid-feedback">
-                Looks good!
-                </div>-->
+                <label for="validationServerConfirmPw" class="form-label">Confirm Password</label>
+                <c:set var="ConfirmPwInvalid"><form:errors var="PasswordInvalid" path="confirmPw"
+                                                           cssClass="invalid-feedback"
+                                                           class="form-control is-valid"/> </c:set>
+                <form:input path="confirmPw"
+                            class="form-control ${not empty ConfirmPwInvalid ? 'is-invalid': ''}"
+                            id="validationServerConfirmPw" type="password"/>
+                    ${ConfirmPwInvalid}
             </div>
 
             <!-- ------------- Terms and Conditions ---------------- -->
