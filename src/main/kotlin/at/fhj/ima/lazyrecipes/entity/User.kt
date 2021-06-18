@@ -35,8 +35,10 @@ class User(
     var confirmPw: String? = null,
     @Transient
     @field:AssertTrue(message="Please re-enter the password")
-    var isPw: Boolean = password == confirmPw
-
+    var isPw: Boolean = password == confirmPw,
+    @Transient
+    @field:AssertTrue(message = "Bitte akzeptieren Sie die AGBs!")
+    var acceptTerms: Boolean = false
    /* @field:Size(min = 2, max = 240)
     var city:String? = null,
     @ManyToOne
