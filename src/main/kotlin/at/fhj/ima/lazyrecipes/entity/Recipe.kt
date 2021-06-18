@@ -51,6 +51,8 @@ class Recipe (
 
     var ratingAVG: Float? = null,
 
+    var likes: Int? = null,
+
     @ManyToMany(fetch = FetchType.EAGER)
     var files: List<File>? = null
 
