@@ -186,7 +186,7 @@
                 <div class="col text-center">
                     <div class="form-checkbox">
                         <c:set var="CheckBoxInvalid"><form:errors var="CheckBoxInvalid" path="acceptTerms"
-                                                                  class="form-check-input "
+                                                                  class="form-check-input"
                         /> </c:set>
                         <form:checkbox path="acceptTerms"
                                     id="validationServerToS"
