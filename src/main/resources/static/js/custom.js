@@ -8,5 +8,9 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 // DOMContentLoaded  end
 
+$(document).ready(function(){
 
-
+    $("input[type='radio']").click(function(){
+        let rating = $("input[type='radio']:checked").val();
+    });
+});

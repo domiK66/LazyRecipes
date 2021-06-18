@@ -11,6 +11,7 @@ import at.fhj.ima.lazyrecipes.repository.UserRepository
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
@@ -26,7 +27,8 @@ import javax.validation.Valid
 class UserController(
     val userRepository: UserRepository,
     val countryRepository: CountryRepository,
-    val recipeRepository: RecipeRepository
+    val recipeRepository: RecipeRepository,
+    val passwordEncoder: PasswordEncoder
     ) {
 
     @RequestMapping("/signUp", method = [RequestMethod.GET])
@@ -42,23 +44,27 @@ class UserController(
     }
 
     @RequestMapping("/changeUser", method = [RequestMethod.POST])
-    fun createUser(@ModelAttribute("user") @Valid user: User, bindingResult: BindingResult, model: Model): String {
+    fun createUser(@ModelAttribute @Valid user: User, bindingResult: BindingResult, model: Model): String {
         if (bindingResult.hasErrors()) {
+         if(  bindingResult.hasFieldErrors("isPw")){
+             bindingResult.rejectValue("confirmPw", "confirmPw.doesntmatch","password doesn't match")
+             bindingResult.rejectValue("password", "confirmPw.doesntmatch","password doesn't match")
+         }
+
             return "signUp"
         }
         try {
-            user.password = (BCryptPasswordEncoder().encode(user.password));
+            user.password = passwordEncoder.encode(user.password);
             userRepository.save(user)
         } catch (dive: DataIntegrityViolationException) {
             if (dive.message.orEmpty().contains("constraint [username_UK]")) {
                 bindingResult.rejectValue("username", "username.alreadyInUse", "username already in use.");
+
                 user.password = null
                 return "signUp"
             } else {
                 throw dive;
             }
-        } catch (t: Throwable){
-            throw t
         }
         return submitComplete()
     }

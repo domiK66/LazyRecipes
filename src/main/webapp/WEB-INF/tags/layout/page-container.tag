@@ -38,7 +38,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container-xl">
         <!-- LOGO -->
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/">Lazy Recipes</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/"><img src="/img/logo_white.png" width="120"></a>
         <!-- LOGO -->
 
         <!-- RESPONSIVE BURGER MENU -->
@@ -65,7 +65,7 @@
                         <li><a class="dropdown-item" href="${pageContext.request.contextPath}/category/Vegan">Vegan</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="${pageContext.request.contextPath}/category/Antipasti">Antipasti</a></li>
-                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/category/Pasta & Penne">Pasta/Penne</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/category/Pasta">Pasta</a></li>
                         <li><a class="dropdown-item" href="${pageContext.request.contextPath}/category/Sandwiches">Sandwiches</a></li>
                         <li><a class="dropdown-item" href="${pageContext.request.contextPath}/category/Wraps">Wraps</a></li>
                         <li><a class="dropdown-item" href="${pageContext.request.contextPath}/category/FastFood">Fast Food</a></li>
@@ -200,7 +200,7 @@
             <div class="row">
                 <!--Grid column-->
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Logo</h5>
+                    <a href="${pageContext.request.contextPath}/"><img src="/img/logo_white.png" width="120"></a>
 
                     <p>
                         <cite title="Source Title">Skip FastFood, use <a href="/">LazyRecipes.at</a></cite>
@@ -213,11 +213,12 @@
 
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <a href="#!" class="text-white">Contact</a>
+                            <a href="" class="text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Contact</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Customer Service</a>
+                            <a href="#!" class="text-white">Customer Service</a>
                         </li>
+
                     </ul>
                 </div>
                 <!--Grid column-->
@@ -247,16 +248,16 @@
                             <a href="${pageContext.request.contextPath}/signUp" class="text-white">Register</a>
                         </li>
                         <li>
-                            <a href="/accountSettings" class="text-white">Account</a>
+                            <a href="${pageContext.request.contextPath}/editRecipe" class="text-white">Create recipe</a>
                         </li>
                         <li>
                             <a href="${pageContext.request.contextPath}/myRecipes" class="text-white">My Recipes</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/editRecipe" class="text-white">Create recipe</a>
+                            <a href="${pageContext.request.contextPath}/viewFavourites" class="text-white">Favourite recipes</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/viewFavourites" class="text-white">Favourite recipes</a>
+                            <a href="/accountSettings" class="text-white">Account Settings</a>
                         </li>
                     </ul>
                 </div>
@@ -307,6 +308,7 @@
 
 <bootstrap:bootstrap-js/>
 <owlcarousel:owlcarousel-js/>
+
 
 <script src="/js/custom.js"></script>
 <script src="/js/owlcarousel.js"></script>

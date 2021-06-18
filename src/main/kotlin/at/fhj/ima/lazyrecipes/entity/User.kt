@@ -1,5 +1,6 @@
 package at.fhj.ima.lazyrecipes.entity
 
+import org.springframework.util.Assert
 import java.time.LocalDate
 import javax.persistence.*
 import javax.validation.constraints.*
@@ -13,29 +14,28 @@ class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
 
-
-   // @field:NotEmpty
-    @Column(nullable = false) //unique = true)
+    @Column(nullable = false)
     @field:NotNull
     @field:Size(min = 2, max = 15)
     var username: String? = null,
 
-    //TODO:Password and Validation
+    //TODO: Validation
     var password: String? = null,
-
     @Enumerated(EnumType.STRING)
     var role: UserRole = UserRole.ROLE_USER,
-
     @field:Size(min = 2, max = 240)
     var firstName:String? = null,
-
     @field:Size(min = 2, max = 240)
     var lastName:String? = null,
-
     @field:Size(min = 2, max = 240)
     //TODO:email check
     var email: String? = null,
-
+    @Transient
+    @field:NotNull
+    var confirmPw: String? = null,
+    @Transient
+    @field:AssertTrue(message="Please re-enter the password")
+    var isPw: Boolean = password == confirmPw
 
    /* @field:Size(min = 2, max = 240)
     var city:String? = null,
@@ -48,10 +48,6 @@ class User(
     //var terms: Boolean? =null,
     @field:Past
     var birthdate: LocalDate? = null*/
-
-    @Transient
-    @field:AssertTrue(message = "Bitte akzeptieren Sie die AGBs!")
-    var acceptTerms: Boolean = false
 
 
 
@@ -79,4 +75,5 @@ class User(
     fun setUser(): String? {
         return username
     }
+
 }
