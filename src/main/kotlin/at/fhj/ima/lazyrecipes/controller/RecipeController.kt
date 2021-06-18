@@ -132,6 +132,8 @@ class RecipeController(
         val recipe = recipeRepository.findById(id).get()
         val favourite = Favourite(user = user, recipe = recipe)
         favouriteRepository.save(favourite)
+        recipe.likes = favouriteRepository.getLikes(recipe.id)
+        recipeRepository.save(recipe)
         val message = "Recipe ${recipe.title} added to favourites."
         redirectAttributes.addFlashAttribute("message", message)
         return "redirect:/recipeView?id=" + id

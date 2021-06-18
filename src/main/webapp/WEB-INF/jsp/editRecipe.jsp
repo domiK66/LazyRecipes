@@ -136,6 +136,16 @@
                                 ${userInvalid}
                         </div>
 
+                        <!-- ------------- ratingAVG (invisible, default value: recipe rating AVG) ---------------- -->
+                        <div class="mb-3">
+                            <label for="ratingAVG" class="form-label"></label>
+                            <form:input path="ratingAVG"
+                                        class="form-control ${not empty ratingAVGInvalid ? 'is-invalid' : ''}"
+                                        id="inputUser"
+                                        type="hidden" readonly="true" value="${recipe.ratingAVG}" />
+                                ${ratingAVGInvalid}
+                        </div>
+
 
 
                         <!-- -------------- Buttons ---------------- -->

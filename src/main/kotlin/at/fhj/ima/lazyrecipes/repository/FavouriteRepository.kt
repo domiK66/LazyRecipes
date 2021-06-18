@@ -16,6 +16,8 @@ interface FavouriteRepository : JpaRepository<Favourite, Int> {
     @Query("FROM Favourite WHERE user.id = :userId AND recipe.id = :recipeId")
     fun findByUserIdAndRecipeId(userId: Int?, recipeId: Int?): Favourite?
 
+    @Query(value = "SELECT count(id) FROM Favourite WHERE recipe.id = :recipeId")
+    fun getLikes(recipeId: Int?): Int
 }
 
 
