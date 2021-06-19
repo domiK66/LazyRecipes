@@ -118,10 +118,10 @@
                             <c:set var="stepsInvalid">
                                 <form:errors path="steps" cssClass="invalid-feedback"/>
                             </c:set>
-                            <form:input path="steps"
-                                        class="form-control ${not empty stepsInvalid ? 'is-invalid' : ''}"
-                                        id="inputsteps"
-                                        type="text"/>
+                            <form:textarea path="steps"
+                                           class="form-control ${not empty stepsInvalid ? 'is-invalid' : ''}"
+                                           id="inputsteps"
+                                           rows="3"/>
                                 ${stepsInvalid}
                         </div>
 
@@ -137,7 +137,7 @@
                             <form:input path="user"
                                         class="form-control ${not empty userInvalid ? 'is-invalid' : ''}"
                                         id="inputUser"
-                                        type="hidden" readonly="true" value="${currentUser.id}" />
+                                        type="hidden" readonly="true" value="${currentUser.id}"/>
                                 ${userInvalid}
                         </div>
 
@@ -147,7 +147,7 @@
                             <form:input path="ratingAVG"
                                         class="form-control ${not empty ratingAVGInvalid ? 'is-invalid' : ''}"
                                         id="inputUser"
-                                        type="hidden" readonly="true" value="${recipe.ratingAVG}" />
+                                        type="hidden" readonly="true" value="${recipe.ratingAVG}"/>
                                 ${ratingAVGInvalid}
                         </div>
 
@@ -160,7 +160,6 @@
                                         type="hidden" readonly="true" value="${recipe.likes}"/>
                                 ${likesInvalid}
                         </div>
-
 
 
                         <!-- -------------- Buttons ---------------- -->

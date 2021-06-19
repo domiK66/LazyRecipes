@@ -18,7 +18,8 @@
             <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
         </div>
         <div class="mb-3 form-check">
-            <input type='checkbox' name='remember-me'/> Remember me on this computer.
+            <input type='checkbox' id="remember-me" name='remember-me'/>
+            <label for="remember-me">Remember me on this computer.</label>
         </div>
         <div class="col text-center p-1">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
