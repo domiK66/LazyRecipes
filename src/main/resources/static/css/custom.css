@@ -54,3 +54,16 @@ footer {
 .rating>[id^="star"]:checked~label:hover~label {
     color: #FFED85
 }
+
+.link-spanner{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left: 0;
+    z-index: 1;
+
+    /* edit: fixes overlap error in IE7/8,
+       make sure you have an empty gif
+    background-image: url('empty.gif');*/
+}
