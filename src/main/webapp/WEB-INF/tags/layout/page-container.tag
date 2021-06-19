@@ -219,10 +219,10 @@
 
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <a href="#!" class="text-white">Privacy Policy</a>
+                            <a href="privacyPolicy" class="text-white">Privacy Policy</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">Terms of Use</a>
+                            <a href="termsOfUse" class="text-white">Terms of Use</a>
                         </li>
                         <li>
                             <a href="#!" class="text-white">Imprint</a>
@@ -236,7 +236,9 @@
 
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <a href="${pageContext.request.contextPath}/signUp" class="text-white">Register</a>
+                            <sec:authorize access="!isAuthenticated()">
+                                <a href="${pageContext.request.contextPath}/signUp" class="text-white">Register</a>
+                            </sec:authorize>
                         </li>
                         <li>
                             <a href="${pageContext.request.contextPath}/editRecipe" class="text-white">Create recipe</a>

@@ -182,7 +182,7 @@
             <!-- ------------- Terms and Conditions ---------------- -->
             <div class="col text-center">
                 <label for="validationServerToS" class="col-form-label">
-                    I agree to the <a href="/index">Terms of Use</a> and I have read and acknowledge the <a href="/index">Privacy Policy</a>
+                    I agree to the <a href="/termsOfUse">Terms of Use</a> and I have read and acknowledge the <a href="/privacyPolicy">Privacy Policy</a>
                 </label>
             </div>
             <div class="form-group">
