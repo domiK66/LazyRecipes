@@ -34,41 +34,48 @@
             </div>
         </div>
 
-        <form:form method="post" action="rateRecipe?id=${recipe.id}">
-            <fieldset class="rating">
-                <input type="radio" id="star5" name="value" value="5" />
-                <label class="full" for="star5" title="Awesome - 5 stars"></label>
-                <input type="radio" id="star4half" name="value" value="4.5" />
-                <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                <input type="radio" id="star4" name="value" value="4" />
-                <label class="full" for="star4" title="Pretty good - 4 stars"></label>
-                <input type="radio" id="star3half" name="value" value="3.5" />
-                <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                <input type="radio" id="star3" name="value" value="3" />
-                <label class="full" for="star3" title="Meh - 3 stars"></label>
-                <input type="radio" id="star2half" name="value" value="2.5" />
-                <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                <input type="radio" id="star2" name="value" value="2" />
-                <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
-                <input type="radio" id="star1half" name="value" value="1.5" />
-                <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                <input type="radio" id="star1" name="value" value="1" />
-                <label class="full" for="star1" title="Sucks big time - 1 star"></label>
-                <input type="radio" id="starhalf" name="value" value="0.5" />
-                <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </fieldset>
-        </form:form>
+
 
         <div class="row">
             <div class="col-md-4">
                 <img src="/file/${recipe.files[0].id}" width="100%" height="225">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <p>Time: ${recipe.prepTime} min</p>
                 <p>Portion(s): ${recipe.portions}</p>
                 <p>Category: ${recipe.category.name}</p>
+                <p>Average Rating: ${recipe.ratingAVG}</p>
             </div>
+            <div class="col-md-4">
+                <form:form method="post" id="rating_form" action="rateRecipe?id=${recipe.id}">
+                    <fieldset class="rating">
+                        <input type="radio" id="star5" name="value" value="5" />
+                        <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                        <input type="radio" id="star4half" name="value" value="4.5" />
+                        <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                        <input type="radio" id="star4" name="value" value="4" />
+                        <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                        <input type="radio" id="star3half" name="value" value="3.5" />
+                        <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                        <input type="radio" id="star3" name="value" value="3" />
+                        <label class="full" for="star3" title="Meh - 3 stars"></label>
+                        <input type="radio" id="star2half" name="value" value="2.5" />
+                        <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                        <input type="radio" id="star2" name="value" value="2" />
+                        <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                        <input type="radio" id="star1half" name="value" value="1.5" />
+                        <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                        <input type="radio" id="star1" name="value" value="1" />
+                        <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                        <input type="radio" id="starhalf" name="value" value="0.5" />
+                        <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        <button type="submit" class="btn btn-primary" hidden disabled>Submit</button>
+                    </fieldset>
+                </form:form>
+            </div>
+
+
+
         </div>
 
         <div class="row">
@@ -78,29 +85,7 @@
             <div class="col-md-8">
                 <p>Steps: ${recipe.steps}</p>
             </div>
-            <div class="col-md-8">
-                <p>Average Rating: ${recipe.ratingAVG}</p>
-            </div>
         </div>
-
-            <%--@elvariable id="rating" type="at.fhj.ima.lazyrecipes.entity"--%>
-        <form:form method="post" action="rateRecipe?id=${recipe.id}">
-            <fieldset>
-                <!-- -------------- Value ---------------- -->
-                <div class="mb-3">
-                    <label for="inputValue" class="form-label">value</label>
-                    <input name="value"
-                                class="form-control"
-                                id="inputValue"
-                                type="text"
-                                />
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </fieldset>
-        </form:form>
-
-
 
 
         <c:choose>
