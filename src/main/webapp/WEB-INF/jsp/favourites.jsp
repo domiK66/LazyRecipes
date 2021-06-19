@@ -39,18 +39,37 @@
                                     </p>
                                     <p class="card-text">Portion(s): ${favourite.recipe.portions}</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <a type="button" href="/recipeView?id=${favourite.recipe.id}" class="btn btn-sm btn-outline-secondary">View</a>
-                                        </div>
                                         <small class="text-muted">${favourite.recipe.date}</small>
-                                        <button type="button" class="btn btn-outline-secondary">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                                                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
+                                        <div class=".col-4">
+                                            <c:if test="${favourite.recipe.ratingAVG >= 1}">
+                                                <span class="fa fa-star checked"></span>
+                                            </c:if>
+                                            <c:if test="${favourite.recipe.ratingAVG >= 2}">
+                                                <span class="fa fa-star checked"></span>
+                                            </c:if>
+                                            <c:if test="${favourite.recipe.ratingAVG >= 3}">
+                                                <span class="fa fa-star checked"></span>
+                                            </c:if>
+                                            <c:if test="${favourite.recipe.ratingAVG >= 4}">
+                                                <span class="fa fa-star checked"></span>
+                                            </c:if>
+                                            <c:if test="${favourite.recipe.ratingAVG >= 5}">
+                                                <span class="fa fa-star checked"></span>
+                                            </c:if>
+                                            <small class="text-muted">${favourite.recipe.ratingAVG}</small>
+                                        </div>
+                                        <small class="text-muted" style="color: #c80000 !important">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16" style="margin-right: 3px;">
+                                                <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
                                             </svg>
-                                            <span class="visually-hidden">Button</span>
-                                        </button>
+                                                ${favourite.recipe.likes}
+                                            <c:if test="${favourite.recipe.likes == null}">0</c:if>
+                                        </small>
                                     </div>
                                 </div>
+                                <a href="/recipeView?id=${favourite.recipe.id}">
+                                    <span class="link-spanner"></span>
+                                </a>
                             </div>
                         </div>
                         </c:if>

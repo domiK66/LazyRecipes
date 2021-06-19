@@ -20,6 +20,7 @@ class User(
     var username: String? = null,
 
     //TODO: Validation
+    @field:NotNull
     var password: String? = null,
     @Enumerated(EnumType.STRING)
     var role: UserRole = UserRole.ROLE_USER,

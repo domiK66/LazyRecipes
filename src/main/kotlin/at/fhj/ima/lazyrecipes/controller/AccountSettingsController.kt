@@ -36,7 +36,6 @@ class AccountSettingsController(
         }
         userRepository.save(user)
         model["message"] = "Successfully changed Username, please log in again"
-        // TODO: xxx user must relog
         return "accountSettings"
     }
     @RequestMapping("/deleteAccount", method = [RequestMethod.GET])

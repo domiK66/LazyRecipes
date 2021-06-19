@@ -12,6 +12,16 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <layout:page-container title="LazyRecipes" activePage="recipeView">
+    <head>
+        <link href="/css/rating.css" rel="stylesheet" />
+        <!-- jQuery 1.8 or later, 33 KB -->
+
+
+        <!-- Fotorama from CDNJS, 19 KB -->
+        <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+
+    </head>
+
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -24,29 +34,86 @@
 
 
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-md-auto">
                 <h1>${recipe.title}</h1>
-                <h2>by ${recipe.user.username}</h2>
+
+            </div>
+            <div class="col-md-6">
+
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-auto">
                 <h2>${recipe.subtitle}</h2>
             </div>
-            <div class="col-sm-8">
+        </div>
 
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>
+                    by @${recipe.user.username}
+                    <img src="https://github.com/mdo.png" alt="mdo" class="rounded-circle" width="32" height="32">
+                </h3>
+            </div>
+            <div class="col-sm-6">
+            <c:choose>
+
+                <c:when test="${favourite == true}">
+                    <%--@elvariable id="favourite" type="java.lang.Boolean"--%>
+                    <form:form method="post" action="/deleteFromFavourites?id=${recipe.id}">
+                        <fieldset>
+                            <button type="submit" class="btn btn-outline-danger active">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-suit-heart-fill" viewBox="0 0 16 16" style="margin-right: 3px;">
+                                    <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                </svg>
+                                Remove Favourite
+                            </button>
+                        </fieldset>
+                    </form:form>
+                </c:when>
+                <c:otherwise>
+                    <%--@elvariable id="favourite" type="java.lang.Boolean"--%>
+                    <form:form method="post" action="/saveToFavourites?id=${recipe.id}">
+                        <fieldset>
+
+                            <button type="submit" class="btn btn-outline-danger" style="color: #c80000 !important">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-suit-heart-fill" viewBox="0 0 16 16" style="margin-right: 3px;">
+                                    <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                </svg>
+                                Add to Favourites
+                            </button>
+                        </fieldset>
+                    </form:form>
+                </c:otherwise>
+            </c:choose>
             </div>
         </div>
 
 
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-md-4">
-                <img src="/file/${recipe.files[0].id}" width="100%" height="225">
+                <c:choose>
+                    <c:when test="${recipe.files.size() != 0}">
+                        <div class="fotorama" data-nav="thumbs">
+                    <c:forEach var="i" begin="0" end="${recipe.files.size() - 1}">
+                        <img src="/file/${recipe.files[i].id}" width="100%" height="225">
+                    </c:forEach>
+                         </div>
+                    </c:when>
+                    <c:otherwise>
+                        <img src="https://th.bing.com/th/id/R2246dc72219bef9c17ed4e5678036e0d?rik=BCZbKmDoEVZpDA&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2ff%2ffc%2fNo_picture_available.png&ehk=NpGv2G6CN9oKTqXri5h4zqIfeJcxyquxs3MxRT3n9ek%3d&risl=&pid=ImgRaw" width="100%" height="225">
+                    </c:otherwise>
+                </c:choose>
+
             </div>
             <div class="col-md-4">
-                <p>Time: ${recipe.prepTime} min</p>
-                <p>Portion(s): ${recipe.portions}</p>
-                <p>Category: ${recipe.category.name}</p>
-                <p>Average Rating: ${recipe.ratingAVG}</p>
-            </div>
-            <div class="col-md-4">
+
                 <form:form method="post" id="rating_form" action="rateRecipe?id=${recipe.id}">
                     <fieldset class="rating">
                         <input type="radio" id="star5" name="value" value="5" />
@@ -72,51 +139,31 @@
                         <button type="submit" class="btn btn-primary" hidden disabled>Submit</button>
                     </fieldset>
                 </form:form>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Time: ${recipe.prepTime} min</li>
+                    <li class="list-group-item">Portion(s): ${recipe.portions}</li>
+                    <li class="list-group-item">Category: ${recipe.category.name}</li>
+                    <li class="list-group-item">Average Rating: ${recipe.ratingAVG} Star(s)</li>
+                    <li class="list-group-item">Likes: ${recipe.likes}</li>
+                </ul>
             </div>
-
-
 
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-md-4">
-                <p>Ingredients: ${recipe.ingredients}</p>
+                <h3>Ingredients: </h3>
+                <p>${recipe.ingredients}</p>
             </div>
             <div class="col-md-8">
-                <p>Steps: ${recipe.steps}</p>
+                <h3>Steps: </h3>
+                <p>${recipe.steps}</p>
             </div>
         </div>
 
 
-        <c:choose>
-
-            <c:when test="${favourite == true}">
-                <%--@elvariable id="favourite" type="java.lang.Boolean"--%>
-                <form:form method="post" action="/deleteFromFavourites?id=${recipe.id}">
-                    <fieldset>
-                            <button type="submit" class="btn btn-outline-secondary active">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
-                                </svg>
-                            </button>
-                    </fieldset>
-                </form:form>
-            </c:when>
-            <c:otherwise>
-                <%--@elvariable id="favourite" type="java.lang.Boolean"--%>
-                <form:form method="post" action="/saveToFavourites?id=${recipe.id}">
-                    <fieldset>
-
-                    <button type="submit" class="btn btn-outline-secondary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
-                        </svg>
-                    </button>
-                    </fieldset>
-                </form:form>
-            </c:otherwise>
-        </c:choose>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 
 
     </div>

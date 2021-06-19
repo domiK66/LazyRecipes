@@ -20,7 +20,6 @@
                     <input type="hidden" name="id" value="<c:out value="${user.id}"/>">
 
                     <fieldset>
-                        <!-- TODO: create/change -->
                         <legend>Change Your Account Settings:</legend>
 
 

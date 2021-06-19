@@ -22,9 +22,14 @@
                     <input type="hidden" name="id" value="<c:out value="${recipe.id}"/>">
 
                     <fieldset>
-                        <!-- TODO: create/change -->
-                        <legend>Change Recipe: ${recipe.title}</legend>
-
+                        <c:choose>
+                            <c:when test="${recipe.id != null}">
+                                <legend>Change Recipe: ${recipe.title}</legend>
+                            </c:when>
+                            <c:otherwise>
+                                <legend>Create a new Recipe</legend>
+                            </c:otherwise>
+                        </c:choose>
 
                         <!-- ------------- Recipe Title ---------------- -->
                         <div class="mb-3">
@@ -81,7 +86,6 @@
                         </div>
 
                         <!-- -------------- Prep Time ---------------- -->
-                        <!-- TODO: beschriftung minutes -->
                         <div class="mb-3">
                             <label for="inputprepTime" class="form-label">prepTime</label>
                             <c:set var="prepTimeInvalid">
@@ -92,6 +96,7 @@
                                         id="inputprepTime"
                                         type="text"/>
                                 ${prepTimeInvalid}
+                            in Min
                         </div>
 
                         <!-- -------------- Portions ---------------- -->
@@ -146,6 +151,16 @@
                                 ${ratingAVGInvalid}
                         </div>
 
+                        <!-- ------------- likes (invisible, default value: recipe likes) ---------------- -->
+                        <div class="mb-3">
+                            <label for="likes" class="form-label"></label>
+                            <form:input path="likes"
+                                        class="form-control ${not empty likesInvalid ? 'is-invalid' : ''}"
+                                        id="inputLikes"
+                                        type="hidden" readonly="true" value="${recipe.likes}"/>
+                                ${likesInvalid}
+                        </div>
+
 
 
                         <!-- -------------- Buttons ---------------- -->
@@ -165,11 +180,11 @@
                                     </button>
                                 </c:when>
                                 <c:otherwise>
-                                        <button type="button" class="btn btn-xs btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal" enabled>
-                                            Delete
-                                        </button>
-                                        </c:otherwise>
+                                    <button type="button" class="btn btn-xs btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal" enabled>
+                                        Delete
+                                    </button>
+                                </c:otherwise>
                             </c:choose>
 
 

@@ -10,27 +10,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
-
-
-
 <html>
-
 
 <!-- HTML HEAD -->
 <head>
     <bootstrap:bootstrap-metadata/>
-
     <title>${title}</title>
-
     <bootstrap:bootstrap-css/>
-    <owlcarousel:owlcarousel-css/> <!-- TODO: USE VANILLA JS LIBRARY - NOT JQUERY AND OWLCAROUSEL -->
-
+    <owlcarousel:owlcarousel-css/>
     <link href="/css/custom.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.css" />
-
 </head>
 <!-- HTML HEAD -->
-
 
 
 <body>

@@ -23,11 +23,7 @@
                     <c:forEach items="${recipe}" var="recipe">
                         <div class="col">
                             <div class="card shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <title>Placeholder</title>
-                                    <rect width="100%" height="100%" fill="#55595c"></rect>
-                                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                                </svg>
+                                <img src="/file/${recipe.files[0].id}" width="100%" height="225" alt="">
                                 <div class="card-body">
                                     <strong class="d-inline-block mb-2 text-success">${recipe.category.name}</strong>
                                     <h5 class="card-title">${recipe.title}</h5>
@@ -46,6 +42,31 @@
                                             <a type="button" href="/editRecipe?id=${recipe.id}" class="btn btn-sm btn-outline-secondary">Edit</a>
                                         </div>
                                         <small class="text-muted">${recipe.date}</small>
+                                        <div class=".col-4">
+                                            <c:if test="${recipe.ratingAVG >= 1}">
+                                                <span class="fa fa-star checked"></span>
+                                            </c:if>
+                                            <c:if test="${recipe.ratingAVG >= 2}">
+                                                <span class="fa fa-star checked"></span>
+                                            </c:if>
+                                            <c:if test="${recipe.ratingAVG >= 3}">
+                                                <span class="fa fa-star checked"></span>
+                                            </c:if>
+                                            <c:if test="${recipe.ratingAVG >= 4}">
+                                                <span class="fa fa-star checked"></span>
+                                            </c:if>
+                                            <c:if test="${recipe.ratingAVG >= 5}">
+                                                <span class="fa fa-star checked"></span>
+                                            </c:if>
+                                            <small class="text-muted">${recipe.ratingAVG}</small>
+                                        </div>
+                                        <small class="text-muted" style="color: #c80000 !important">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16" style="margin-right: 3px;">
+                                                <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                            </svg>
+                                                ${recipe.likes}
+                                            <c:if test="${recipe.likes == null}">0</c:if>
+                                        </small>
                                     </div>
                                 </div>
                             </div>

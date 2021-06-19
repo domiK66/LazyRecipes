@@ -2,10 +2,7 @@ package at.fhj.ima.lazyrecipes.controller
 
 import at.fhj.ima.lazyrecipes.controller.UserController
 import at.fhj.ima.lazyrecipes.controller.advice.CurrentUserControllerAdvice
-import at.fhj.ima.lazyrecipes.entity.Favourite
-import at.fhj.ima.lazyrecipes.entity.Rating
-import at.fhj.ima.lazyrecipes.entity.Recipe
-import at.fhj.ima.lazyrecipes.entity.User
+import at.fhj.ima.lazyrecipes.entity.*
 import at.fhj.ima.lazyrecipes.repository.*
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.annotation.Secured
@@ -49,6 +46,13 @@ class RecipeController(
     fun editRecipe(model: Model, @RequestParam(required = false) id: Int?): String {
         if (id != null) {
             val recipe = recipeRepository.findById(id).get()
+            val username = SecurityContextHolder.getContext().authentication.name
+            val user = userRepository.findByUsername(username)
+            if (recipe.user != user) {
+                if (user?.role != UserRole.ROLE_ADMIN) {
+                    throw ResponseStatusException(HttpStatus.NOT_FOUND)
+                }
+            }
             model["recipe"] = recipe
         } else {
             val newRecipe = Recipe()
@@ -141,6 +145,7 @@ class RecipeController(
     @RequestMapping("/deleteFromFavourites", method = [RequestMethod.POST])
     fun deleteFromFavourites(
         @RequestParam(required = false) id: Int,
+        redirectAttributes: RedirectAttributes,
         model: Model
     ): String {
         val username = SecurityContextHolder.getContext().authentication.name
@@ -150,8 +155,11 @@ class RecipeController(
         if (favourite != null) {
             favouriteRepository.delete(favourite)
         }
-        model["errorMessage"] = "Recipe ${recipe.title} removed from favourites."
-        return viewRecipe(model, id)
+        recipe.likes = favouriteRepository.getLikes(recipe.id)
+        recipeRepository.save(recipe)
+        val message = "Recipe ${recipe.title} removed from favourites."
+        redirectAttributes.addFlashAttribute("errorMessage", message)
+        return "redirect:/recipeView?id=" + id
     }
 
 
