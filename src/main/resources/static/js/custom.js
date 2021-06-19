@@ -12,5 +12,9 @@ $(document).ready(function(){
 
     $("input[type='radio']").click(function(){
         let rating = $("input[type='radio']:checked").val();
+        rating.onclick = document.getElementById("rating_form").submit();
+
+
+
     });
 });
