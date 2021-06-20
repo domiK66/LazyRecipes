@@ -1,7 +1,6 @@
 package at.fhj.ima.lazyrecipes.controller
 
 
-
 import at.fhj.ima.lazyrecipes.entity.User
 import at.fhj.ima.lazyrecipes.entity.UserRole
 import at.fhj.ima.lazyrecipes.repository.CountryRepository
@@ -29,7 +28,7 @@ class UserController(
     val countryRepository: CountryRepository,
     val recipeRepository: RecipeRepository,
     val passwordEncoder: PasswordEncoder
-    ) {
+) {
 
     @RequestMapping("/signUp", method = [RequestMethod.GET])
     fun registerUserForm(model: Model, @RequestParam(required = false) id: Int?): String {
@@ -46,11 +45,13 @@ class UserController(
     @RequestMapping("/changeUser", method = [RequestMethod.POST])
     fun createUser(@ModelAttribute @Valid user: User, bindingResult: BindingResult, model: Model): String {
         if (bindingResult.hasErrors()) {
-         if(  bindingResult.hasFieldErrors("isPw")){
-             bindingResult.rejectValue("confirmPw", "confirmPw.doesntmatch","password doesn't match")
-             bindingResult.rejectValue("password", "confirmPw.doesntmatch","password doesn't match")
-         }
-
+            if (bindingResult.hasFieldErrors("isPw")) {
+                bindingResult.rejectValue("confirmPw", "confirmPw.doesntmatch", "password doesn't match")
+                bindingResult.rejectValue("password", "confirmPw.doesntmatch", "password doesn't match")
+            }
+            if (bindingResult.hasFieldErrors("emailcorrect")) {
+                bindingResult.rejectValue("email", "email.doesntmatch", "Please enter a valid email")
+            }
             return "signUp"
         }
         try {

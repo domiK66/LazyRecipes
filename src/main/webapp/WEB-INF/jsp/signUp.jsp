@@ -83,15 +83,16 @@
             <!-- ------------- Email ---------------- -->
             <div class="form-group">
                 <label for="validationServerEmail" class="form-label">E-mail</label>
-
-                <c:set var="EmailInvalid"><form:errors var="EmailInvalid" path="email"
-                                                       cssClass="invalid-feedback"
-                                                       class="form-control is-valid"/>
-                </c:set>
-                <form:input path="email"
-                            class="form-control ${not empty EmailInvalid ? 'is-invalid': ''}"
-                            id="validationServerEmail" type="email"/>
-                    ${UsernameInvalid}
+                <div class="input-group has-validation">
+                    <c:set var="EmailInvalid"><form:errors var="EmailInvalid" path="email"
+                                                           cssClass="invalid-feedback"
+                                                           class="form-control is-valid"/>
+                    </c:set>
+                    <form:input path="email"
+                                class="form-control ${not empty EmailInvalid ? 'is-invalid': ''}"
+                                id="validationServerEmail" type="text"/>
+                        ${EmailInvalid}
+                </div>
 
 
             </div>
@@ -180,7 +181,9 @@
 
             <!-- ------------- Terms and Conditions ---------------- -->
             <div class="col text-center">
-                <label for="validationServerToS" class="col-form-label">Accept ToS</label>
+                <label for="validationServerToS" class="col-form-label">
+                    I agree to the <a href="/termsOfUse">Terms of Use</a> and I have read and acknowledge the <a href="/privacyPolicy">Privacy Policy</a>
+                </label>
             </div>
             <div class="form-group">
                 <div class="col text-center">
