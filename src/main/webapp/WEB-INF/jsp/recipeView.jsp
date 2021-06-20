@@ -55,7 +55,7 @@
             <div class="col-sm-6">
                 <h3>
                     by @${recipe.user.username}
-                    <img src="https://github.com/mdo.png" alt="mdo" class="rounded-circle" width="32" height="32">
+                    <img src="/file/${recipe.user.files[0].id}" alt="mdo" class="rounded-circle" width="32" height="32">
                 </h3>
             </div>
             <div class="col-sm-6">
@@ -97,7 +97,7 @@
 
 
         <div class="row mt-4">
-            <div class="col-md-4">
+            <div class="col-md-auto">
                 <c:choose>
                     <c:when test="${recipe.files.size() != 0}">
                         <div class="fotorama" data-nav="thumbs">
@@ -112,7 +112,7 @@
                 </c:choose>
 
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
 
                 <form:form method="post" id="rating_form" action="rateRecipe?id=${recipe.id}">
                     <fieldset class="rating">
@@ -151,11 +151,11 @@
         </div>
 
         <div class="row mt-4">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <h3>Ingredients: </h3>
                 <p>${recipe.ingredients}</p>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <h3>Steps: </h3>
                 <p>${recipe.steps}</p>
             </div>

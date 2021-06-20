@@ -1,7 +1,7 @@
 package at.fhj.ima.lazyrecipes.entity
 
-
 import org.springframework.util.Assert
+import java.nio.file.Files
 import java.time.LocalDate
 import java.util.regex.Pattern.compile
 import javax.persistence.*
@@ -19,32 +19,38 @@ class User(
     @Column(nullable = false)
     @field:Size(min = 2, max = 15)
     var username: String? = null,
+
     @field:NotNull
     @field:NotEmpty
     var password: String? = null,
+
     @Enumerated(EnumType.STRING)
     var role: UserRole = UserRole.ROLE_USER,
+
     @field:Size(min = 2, max = 240)
     var firstName:String? = null,
+
     @field:Size(min = 2, max = 240)
     var lastName:String? = null,
+
     @field:NotNull
     @field:NotEmpty
     var email: String? = null,
 
-    @Transient
-    @field:NotNull
-    @field:NotEmpty
     var confirmPw: String? = null,
-    @Transient
+
     @field:AssertTrue(message="Please re-enter the password")
     var isPw: Boolean = password == confirmPw,
-    @Transient
+    
     @field:AssertTrue(message="Please re-enter the email-address")
     var emailcorrect: Boolean = email?.contains("@") == true,
-    @Transient
+
     @field:AssertTrue(message = "Please make sure to accept our Terms of Use and the Privacy Policy!")
-    var acceptTerms: Boolean = false
+    var acceptTerms: Boolean = false,
+
+    @ManyToMany
+    var files: List<File>? = null
+
    /* @field:Size(min = 2, max = 240)
     var city:String? = null,
     @ManyToOne

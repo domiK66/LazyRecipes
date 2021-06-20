@@ -9,6 +9,7 @@
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="file" tagdir="/WEB-INF/tags/file" %>
 
 <layout:page-container title="LazyRecipes" activePage="accountSettings">
     <div class="container">
@@ -36,26 +37,116 @@
                                 ${usernameInvalid}
                         </div>
 
-                        <!-- ------------- password ---------------- -->
+                        <!-- ------------- firstName ---------------- -->
                         <div class="mb-3">
-                            <label for="inputPassword" class="form-label">Password</label>
-                            <c:set var="passwordInvalid">
-                                <form:errors path="password" cssClass="invalid-feedback"/>
+                            <label for="inputFirstName" class="form-label">Firstname</label>
+                            <c:set var="firstNameInvalid">
+                                <form:errors path="firstName" cssClass="invalid-feedback"/>
                             </c:set>
-                            <form:input path="password"
-                                        class="form-control ${not empty passwordInvalid ? 'is-invalid' : ''}"
-                                        id="inputpassword"
-                                        type="text" value="${user.password}" readonly="true"/>
-                                ${passwordInvalid}
+                            <form:input path="firstName"
+                                        class="form-control ${not empty firstNameInvalid ? 'is-invalid' : ''}"
+                                        id="inputFirstName"
+                                        type="text" value="${user.firstName}"/>
+                                ${firstNameInvalid}
                         </div>
+
+                        <!-- ------------- lastName ---------------- -->
+                        <div class="mb-3">
+                            <label for="inputLastName" class="form-label">Lastname</label>
+                            <c:set var="lastNameInvalid">
+                                <form:errors path="lastName" cssClass="invalid-feedback"/>
+                            </c:set>
+                            <form:input path="lastName"
+                                        class="form-control ${not empty lastNameInvalid ? 'is-invalid' : ''}"
+                                        id="inputLastName"
+                                        type="text" value="${user.lastName}"/>
+                                ${lastNameInvalid}
+                        </div>
+
+                        <!-- ------------- Email ---------------- -->
+                        <div class="mb-3">
+                            <label for="inputEmail" class="form-label">Email</label>
+                            <c:set var="emailInvalid">
+                                <form:errors path="email" cssClass="invalid-feedback"/>
+                            </c:set>
+                            <form:input path="email"
+                                        class="form-control ${not empty lastNameInvalid ? 'is-invalid' : ''}"
+                                        id="inputEmail"
+                                        type="text" value="${user.email}"/>
+                                ${emailInvalid}
+                        </div>
+
+                        <!-- TODO: only one picture ---------------- Files ------------------>
+                        <div class="mb-3">
+                            <label class="form-label">Files</label>
+                            <file:file value="${user.files}"/>
+                        </div>
+
+
+                        <!-- ------------- Password---------------- -->
+
+                        <div class="form-group">
+                            <label for="validationServerPassword" class="form-label">Password</label>
+                            <c:set var="PasswordInvalid"><form:errors var="PasswordInvalid" path="password"
+                                                                      cssClass="invalid-feedback"
+                                                                      class="form-control is-valid"/> </c:set>
+                            <form:input path="password"
+                                        class="form-control ${not empty PasswordInvalid ? 'is-invalid': ''}"
+                                        id="validationServerPassword" type="password" value="${currentUser.password}"/>
+                                ${PasswordInvalid}
+                        </div>
+
+                        <!-- ------------- Confirm Password ---------------- -->
+                        <div class="form-group">
+                            <label for="validationServerConfirmPw" class="form-label">Confirm Password</label>
+                            <c:set var="ConfirmPwInvalid">
+                                <form:errors var="ConfirmPwInvalid"
+                                             path="confirmPw"
+                                             cssClass="invalid-feedback"
+                                             class="form-control is-valid"/>
+                            </c:set>
+                            <form:input path="confirmPw"
+                                        class="form-control ${not empty ConfirmPwInvalid ? 'is-invalid': ''}"
+                                        id="validationServerConfirmPw" type="password" value="${currentUser.password}"/>
+                                ${ConfirmPwInvalid}
+                        </div>
+
+                        <!-- ------------- Confirm Email ---------------- -->
+                        <div class="form-group">
+                            <label for="inputEmailcorrect" class="form-label"></label>
+                            <c:set var="emailcorrectInvalid"><form:errors var="emailcorrectInvalid" path="emailcorrect"
+                                                                       cssClass="invalid-feedback"
+                                                                       class="form-control is-valid"/> </c:set>
+                            <form:input path="emailcorrect"
+                                        class="form-control ${not empty emailcorrectInvalid ? 'is-invalid': ''}"
+                                        id="inputEmailcorrect" type="hidden" readonly="true"/>
+                                ${emailcorrectInvalid}
+                        </div>
+
+
+
+
+                        <!-- ------------- Terms and Conditions ---------------- -->
+                        <div class="mb-3">
+                            <label for="validationServerToS" class="col-form-label"></label>
+                            <c:set var="CheckBoxInvalid"><form:errors var="CheckBoxInvalid" path="acceptTerms" class="form-check-input"/></c:set>
+                            <form:input path="acceptTerms"
+                                           id="validationServerToS"
+                                           type="hidden" readonly="true"
+                                           value="${user.acceptTerms}" />
+                                ${CheckBoxInvalid}
+                        </div>
+
 
                         <!-- ------------- User-Role (invisible, default value: id of current user) ---------------- -->
                         <div class="mb-3">
-                            <label for="role" class="form-label"></label>
+                            <label for="inputRole" class="form-label"></label>
                             <form:input path="role"
                                         class="form-control ${not empty roleInvalid ? 'is-invalid' : ''}"
                                         id="inputRole"
-                                        type="hidden" readonly="true" value="${user.role}" />
+                                        type="hidden"
+                                        readonly="true"
+                                        value="${user.role}" />
                                 ${roleInvalid}
                         </div>
 

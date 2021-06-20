@@ -106,7 +106,14 @@
                 <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                     <div class="dropdown">
                         <a class="nav-link dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="color:#fff">
-                            <!-- TODO: USER PICTURE --> <img src="https://github.com/mdo.png" alt="mdo" class="rounded-circle" width="32" height="32">
+                            <c:choose>
+                                <c:when test="${currentUser.files[0].id == null}">
+                                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F10%2F05%2F22%2F37%2Fblank-profile-picture-973460_960_720.png&f=1&nofb=1" alt="mdo" class="rounded-circle" width="32" height="32">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="/file/${currentUser.files[0].id}" alt="mdo" class="rounded-circle" width="32" height="32">
+                                </c:otherwise>
+                            </c:choose>
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/accountSettings">Signed in as <strong style="font-weight: 600;">${currentUser.username}</strong></a></li>
