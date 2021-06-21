@@ -55,7 +55,9 @@ class UserController(
             return "signUp"
         }
         try {
-            user.password = passwordEncoder.encode(user.password);
+            // TODO: Save only once 2
+            user.password = passwordEncoder.encode(user.password)
+            user.confirmPw = passwordEncoder.encode(user.password)
             userRepository.save(user)
         } catch (dive: DataIntegrityViolationException) {
             if (dive.message.orEmpty().contains("constraint [username_UK]")) {

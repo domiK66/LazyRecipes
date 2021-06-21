@@ -4,6 +4,7 @@ import at.fhj.ima.lazyrecipes.entity.User
 import at.fhj.ima.lazyrecipes.repository.RecipeRepository
 import at.fhj.ima.lazyrecipes.repository.UserRepository
 import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
@@ -16,7 +17,8 @@ import javax.validation.Valid
 @Controller
 class AccountSettingsController(
     val userRepository: UserRepository,
-    val recipeRepository: RecipeRepository
+    val recipeRepository: RecipeRepository,
+    val passwordEncoder: PasswordEncoder
 ) {
 
     //account settings
@@ -32,10 +34,20 @@ class AccountSettingsController(
     @RequestMapping("/changeAccountSettings", method = [RequestMethod.POST])
     fun changeAccountSettings(@ModelAttribute @Valid user: User, bindingResult: BindingResult, model: Model): String {
         if (bindingResult.hasErrors()) {
+            if (bindingResult.hasFieldErrors("isPw")) {
+                bindingResult.rejectValue("confirmPw", "confirmPw.doesntmatch", "password doesn't match")
+                bindingResult.rejectValue("password", "confirmPw.doesntmatch", "password doesn't match")
+            }
+            if (bindingResult.hasFieldErrors("emailcorrect")) {
+                bindingResult.rejectValue("email", "email.doesntmatch", "Please enter a valid email")
+            }
             return "accountSettings"
         }
+        user.password = passwordEncoder.encode(user.password)
+        // TODO: Save only once
+        user.confirmPw = passwordEncoder.encode(user.password)
         userRepository.save(user)
-        model["message"] = "Successfully changed Username, please log in again"
+        model["message"] = "Successfully saved changes made to profile"
         return "accountSettings"
     }
     @RequestMapping("/deleteAccount", method = [RequestMethod.GET])

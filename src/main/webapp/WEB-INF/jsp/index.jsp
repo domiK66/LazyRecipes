@@ -24,7 +24,7 @@
             <div class="item"><a href="${pageContext.request.contextPath}/category/Antipasti"><img src="/img/antipasti-carousel.jpg" class="mt-2 mb-2"></a><h4>Antipasti</h4></div>
             <div class="item"><a href="${pageContext.request.contextPath}/category/FastFood"><img src="/img/fastfood-carousel.jpg" class="mt-2 mb-2"></a><h4>FastFood</h4></div>
         </div>
-
+        <h2>New recipes:</h2>
         <layout:card> </layout:card>
 
         <div class="px-4 py-5 my-5 text-center">

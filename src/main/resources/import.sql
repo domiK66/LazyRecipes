@@ -27,8 +27,8 @@ INSERT INTO recipe (title, subtitle, ingredients, portions, prep_time, steps, ca
 /*InSERT INTO user(username, password, role, city, country_id, zip, first_name, last_name,birthdate) VALUES ('admin','$2a$10$j8kKMynCBacALgRZvdtU2ezRo8cZJUash26OOUBBXsfzTTj/Xt5vG','ROLE_ADMIN','Graz' ,1 ,'8010' ,'Test', 'Test', '2000-01-01' );*/
 /*INSERT INTO user(username,password, role,city,country_id,zip,first_name,last_name,birthdate) VALUES ('user','$2a$10$wzVJFOPkNz410shGyVcHseQDnHKNKuKCphIr1iLj4Xw.Bvrgce3ai', 'ROLE_USER','Graz' ,1 ,'8010' ,'Test', 'Test',  '2000-01-01');*/
 
-INSERT INTO user(username,password, role,first_name,last_name,email) VALUES ('admin','$2a$10$j8kKMynCBacALgRZvdtU2ezRo8cZJUash26OOUBBXsfzTTj/Xt5vG', 'ROLE_ADMIN','Test', 'Test',  'email');
-INSERT INTO user(username,password, role,first_name,last_name,email) VALUES ('user','$2a$10$wzVJFOPkNz410shGyVcHseQDnHKNKuKCphIr1iLj4Xw.Bvrgce3ai', 'ROLE_USER','Test', 'Test',  'email');
+INSERT INTO user(username,password,role,first_name,last_name,email,is_pw,accept_terms,confirm_pw,emailcorrect) VALUES ('admin','$2a$10$j8kKMynCBacALgRZvdtU2ezRo8cZJUash26OOUBBXsfzTTj/Xt5vG', 'ROLE_ADMIN','Test', 'Test',  'email', true ,true, '$2a$10$j8kKMynCBacALgRZvdtU2ezRo8cZJUash26OOUBBXsfzTTj/Xt5vG',true);
+INSERT INTO user(username,password,role,first_name,last_name,email,is_pw,accept_terms,confirm_pw,emailcorrect) VALUES ('user','$2a$10$wzVJFOPkNz410shGyVcHseQDnHKNKuKCphIr1iLj4Xw.Bvrgce3ai', 'ROLE_USER','Test', 'Test',  'email', true ,true, '$2a$10$wzVJFOPkNz410shGyVcHseQDnHKNKuKCphIr1iLj4Xw.Bvrgce3ai',true);
 
 
 

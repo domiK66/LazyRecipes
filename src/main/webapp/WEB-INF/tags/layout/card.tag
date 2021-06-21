@@ -10,7 +10,7 @@
                     <strong class="d-inline-block mb-2 text-success">${recipe.category.name}</strong>
                     <h5 class="card-title ">${recipe.title}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">${recipe.subtitle}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">${recipe.user.username}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">shared by @${recipe.user.username}</h6>
                     <p class="card-text col-md-4">Portion(s): ${recipe.portions}</p>
                     <p class="card-text col-md-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
