@@ -180,9 +180,16 @@ class RecipeController(
         return "searchRecipe"
     }
 
-    @RequestMapping("/deleteRecipe", method = [RequestMethod.GET])
+    @RequestMapping("/deleteRecipe", method = [RequestMethod.POST])
     fun deleteRecipe(model: Model, @RequestParam id: Int): String {
         val recipe = recipeRepository.findById(id).get()
+        val username = SecurityContextHolder.getContext().authentication.name
+        val user = userRepository.findByUsername(username)
+        if (recipe.user != user) {
+            if (user?.role != UserRole.ROLE_ADMIN) {
+                throw ResponseStatusException(HttpStatus.NOT_FOUND)
+            }
+        }
         recipeRepository.delete(recipe);
         model["message"] = "Recipe ${recipe.title} deleted."
         return listRecipes(model)

@@ -5,6 +5,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="bootstrap" tagdir="/WEB-INF/tags/bootstrap" %>
 <%@taglib prefix="layout" tagdir="/WEB-INF/tags/layout" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <layout:page-container title="LazyRecipes" activePage="admin">
     <div class="container">
@@ -32,9 +33,12 @@
                                 <td>${recipe.portions}</td>
                                 <td>${recipe.category.name}</td>
                                 <td>
-                                    <a href="/recipeView?id=${recipe.id}" class="btn btn-xs btn-primary">View</a>
-                                    <a href="/editRecipe?id=${recipe.id}" class="btn btn-xs btn-dark">Edit</a>
-                                    <a href="/deleteAdminRecipe?id=${recipe.id}" class="btn btn-xs btn-danger">Delete</a>
+
+                                    <form:form method="post" action="/deleteAdminRecipe?id=${recipe.id}">
+                                        <a href="/recipeView?id=${recipe.id}" class="btn btn-xs btn-primary">View</a>
+                                        <a href="/editRecipe?id=${recipe.id}" class="btn btn-xs btn-dark">Edit</a>
+                                        <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+                                    </form:form>
                                 </td>
                             </tr>
                         </c:forEach>

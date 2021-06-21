@@ -55,7 +55,7 @@
             <div class="col-sm-6">
                 <h3>
                     by @${recipe.user.username}
-                    <img src="/file/${recipe.user.files[0].id}" alt="mdo" class="rounded-circle" width="32" height="32">
+                    <img src="/file/${recipe.user.files[0].id}" alt="" class="rounded-circle" width="32" height="32">
                 </h3>
             </div>
             <div class="col-sm-6">

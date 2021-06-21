@@ -23,12 +23,12 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
             .antMatchers("/editRecipe").authenticated()
             .antMatchers("/myRecipes").authenticated()
             .antMatchers("/accountSettings").authenticated()
-            .antMatchers("/deleteAccount").authenticated()
             .antMatchers("/changeAccountSettings").authenticated()
             .antMatchers("/rateRecipe").authenticated()
             .antMatchers("/saveToFavourites").authenticated()
             .antMatchers("/deleteFromFavourites").authenticated()
             .antMatchers("/viewFavourites").authenticated()
+            .antMatchers("/deleteRecipe").authenticated()
 
             // permit all
             .anyRequest().permitAll()
