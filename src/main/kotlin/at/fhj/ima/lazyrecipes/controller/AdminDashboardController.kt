@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam
 class AdminDashboardController(
     val recipeRepository: RecipeRepository,
 ) {
-    @RequestMapping("/deleteAdminRecipe", method = [RequestMethod.GET])
+    @RequestMapping("/deleteAdminRecipe", method = [RequestMethod.POST])
     fun deleteAdminRecipe(model: Model, @RequestParam id: Int): String {
         val recipe = recipeRepository.findById(id).get()
         recipeRepository.delete(recipe);

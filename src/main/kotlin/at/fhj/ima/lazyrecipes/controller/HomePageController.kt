@@ -29,7 +29,7 @@ class HomePageController(
      val userRepository: UserRepository,
 ) {
     // index.jsp
-    @RequestMapping("","/", "/index" , method = [RequestMethod.GET])
+    @RequestMapping(*["","/", "/index"], method = [RequestMethod.GET])
     fun homePage(model: Model): String {
         model["recipe"] = recipeRepository.findAll()
         model["category"] = categoryRepository.findAll()

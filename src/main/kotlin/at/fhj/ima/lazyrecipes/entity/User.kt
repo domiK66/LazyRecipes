@@ -41,9 +41,9 @@ class User(
 
     @field:AssertTrue(message="Please re-enter the password")
     var isPw: Boolean = password == confirmPw,
-    
+
     @field:AssertTrue(message="Please re-enter the email-address")
-    var emailcorrect: Boolean = email?.contains("@") == true,
+    var emailcorrect: Boolean = email?.contains("@.") == true,
 
     @field:AssertTrue(message = "Please make sure to accept our Terms of Use and the Privacy Policy!")
     var acceptTerms: Boolean = false,

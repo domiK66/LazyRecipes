@@ -185,32 +185,29 @@
                                     </button>
                                 </c:otherwise>
                             </c:choose>
-
-
-
-
-                            <!-- Modal (warning) -->
-                            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteModalLabel">Delete Recipe ${recipe.title}?</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                Close
-                                            </button>
-                                            <a href="deleteRecipe?id=${recipe.id}" class="btn btn-xs btn-danger">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
                         </div>
                     </fieldset>
                 </form:form>
+
+                    <!-- Modal (warning) -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Delete Recipe ${recipe.title}?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <form:form method="post" action="/deleteRecipe?id=${recipe.id}">
+                                        <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+                                    </form:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
 

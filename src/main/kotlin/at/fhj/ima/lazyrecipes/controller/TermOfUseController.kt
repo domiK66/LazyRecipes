@@ -25,12 +25,12 @@ class TermOfUseController(
     val passwordEncoder: PasswordEncoder
 ) {
     @RequestMapping("/termsOfUse", method = [RequestMethod.GET])
-    fun viewTermsOfUse(model: Model, @RequestParam(required = false) id: Int?): String {
+    fun viewTermsOfUse(): String {
         return "termsOfUse"
     }
 
     @RequestMapping("/privacyPolicy", method = [RequestMethod.GET])
-    fun viewPrivacyPolicy(model: Model, @RequestParam(required = false) id: Int?): String {
+    fun viewPrivacyPolicy(): String {
         return "privacyPolicy"
     }
 }
