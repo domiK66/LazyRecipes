@@ -27,6 +27,7 @@
 
         <h2>Register</h2>
         <p class="hint-text">Create your account. It's free and only takes a minute.</p>
+
         <!-- ------------- First Name ---------------- -->
         <div class="form-group">
             <div class="row">
@@ -40,9 +41,6 @@
                                 class="form-control ${not empty FirstNameInvalid ? 'is-invalid': ''}"
                                 id="validationServerfName" type="text"/>
                         ${FirstNameInvalid}
-                    <!-- <div class="valid-feedback">
-                         Looks good!
-                     </div>-->
                 </div>
 
             <!-- ------------- Last Name ---------------- -->
@@ -55,9 +53,6 @@
                                     class="form-control ${not empty LastNameInvalid ? 'is-invalid': ''}"
                                     id="validationServerlName" type="text"/>
                             ${LastNameInvalid}
-                        <!--<div class="valid-feedback">
-                             Looks good!
-                         </div> -->
                     </div>
             </div>
 
@@ -96,65 +91,6 @@
 
 
             </div>
-            <!-- -------------- birthDate ---------------- -->
-                <%--div class="col-mb-4">
-                    <label for="inputDate" class="form-label">Birthdate</label>
-                    %-- <c:set var="BirthdateInvalid"><form:errors path="birthdate" cssClass="invalid-feedback"
-                                                               class="form-control is-valid"/></c:set>
-                    <form:input path="birthdate"
-                                class="form-control ${not empty BirthdateInvalid ? 'is-invalid' : ''}"
-                                id="inputDate" placeholder="Birthdate" type="date"/>
-                        ${BirthdateInvalid}
-                </div>
-
-                <!-- ------------- State ---------------- -->
-                <div class="col-md-3">
-                    <label for="validationServerState" class="form-label">State</label>
-                    <c:set var="CountryInvalid"><form:errors path="country" cssClass="invalid-feedback"
-                                                             class="form-control is-valid"/></c:set>
-                    <form:select id="validationServerState" path="country"
-                                 cssClass="form-control ${not empty CountryInvalid ? 'is-invalid' : ''}">
-                        <form:option value="">&nbsp;</form:option>
-                        <form:options items="${country}" itemValue="id" itemLabel="country"/>
-                    </form:select>
-                        ${CountryInvalid}
-
-                    <!-- <div id="validationServer04Feedback" class="invalid-feedback">
-                         Please select a valid state.
-                     </div> -->
-                </div>
-
-                <!-- ------------- City ---------------- -->
-                <div class="col-md-3">
-                    <label for="validationServerCity" class="form-label">City</label>
-                    <c:set var="CityInvalid"><form:errors var="CityInvalid" path="city"
-                                                          cssClass="invalid-feedback"
-                                                          class="form-control is-valid"/> </c:set>
-                    <form:input path="city" class="form-control ${not empty CityInvalid ? 'is-invalid': ''}"
-                                id="validationServerCity" type="text"/>
-                        ${CityInvalid}
-                    <!-- <div id="validationServer03Feedback" class="invalid-feedback">
-                         Please provide a valid city.
-                     </div> -->
-                </div>
-
-
-                <!-- ------------- ZipCode ---------------- -->
-                <div class="col-md-2">
-                    <label for="validationServerZip" class="form-label">Zip</label>
-                    <c:set var="ZipCodeInvalid"><form:errors var="ZipCodeInvalid" path="zip"
-                                                             cssClass="invalid-feedback"
-                                                             class="form-control is-valid"/> </c:set>
-                    <form:input path="zip" class="form-control ${not empty ZipCodeInvalid ? 'is-invalid': ''}"
-                                id="validationServerZip" type="text"/>
-                        ${ZipCodeInvalid}
-                    <!-- <div id="validationServer05Feedback" class="invalid-feedback">
-                         Please provide a valid zip.
-                     </div> -->
-                </div--%>
-
-
-            <!-- ------------- Password---------------- -->
 
             <div class="form-group">
                 <label for="validationServerPassword" class="form-label">Password</label>
