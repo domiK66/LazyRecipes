@@ -1,9 +1,5 @@
 package at.fhj.ima.lazyrecipes.entity
 
-import org.springframework.util.Assert
-import java.nio.file.Files
-import java.time.LocalDate
-import java.util.regex.Pattern.compile
 import javax.persistence.*
 import javax.validation.constraints.*
 
@@ -43,25 +39,13 @@ class User(
     var isPw: Boolean = password == confirmPw,
 
     @field:AssertTrue(message="Please re-enter the email-address")
-    var emailcorrect: Boolean = email?.contains("@.") == true,
+    var emailcorrect: Boolean = isCorrectEmail(email),
 
     @field:AssertTrue(message = "Please make sure to accept our Terms of Use and the Privacy Policy!")
     var acceptTerms: Boolean = false,
 
     @ManyToMany
     var files: List<File>? = null
-
-   /* @field:Size(min = 2, max = 240)
-    var city:String? = null,
-    @ManyToOne
-    @field:NotNull
-    var country: Country?=null,
-    @field:Size(min = 2, max = 6)
-    var zip:String? = null,
-    //@field:NotNull
-    //var terms: Boolean? =null,
-    @field:Past
-    var birthdate: LocalDate? = null*/
 
 
 
@@ -90,4 +74,12 @@ class User(
         return username
     }
 
+
+}
+
+fun isCorrectEmail(email: String?): Boolean {
+    val pattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\\.[a-zA-Z.]{2,18}".toRegex()
+    if (pattern.matches(email.toString()))
+        return true
+    return false
 }
