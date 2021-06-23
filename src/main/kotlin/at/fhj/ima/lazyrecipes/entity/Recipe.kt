@@ -26,7 +26,7 @@ class Recipe (
     @field:NotNull
     @field:NotEmpty
     @field:Size(min = 2, max = 240)
-    var ingredients: String? = null,
+    var ingredients: String? = "Ingredient 1: \nIngredient 2: \nIngredient 3: \nIngredient 4: ",
 
     @ManyToOne
     @field:NotNull
@@ -41,7 +41,7 @@ class Recipe (
     @field:NotNull
     @field:NotEmpty
     @field:Size(min = 2, max = 240)
-    var steps: String? = null,
+    var steps: String? = "Step 1: \nStep 2: \nStep 3: \nStep 4: ",
 
     var date: LocalDate? = LocalDate.now(),
 

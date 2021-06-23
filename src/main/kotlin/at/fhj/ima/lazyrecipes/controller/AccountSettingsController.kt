@@ -47,12 +47,18 @@ class AccountSettingsController(
             }
             return "accountSettings"
         }
-        user.password = passwordEncoder.encode(user.password)
-        // TODO: Save only once
-        user.confirmPw = passwordEncoder.encode(user.password)
+        val currentUsername = SecurityContextHolder.getContext().authentication.name
+        val userDB = userRepository.findByUsername(currentUsername)
+        if (user.password != userDB?.password) user.password = passwordEncoder.encode(user.password)
+        if (user.password != userDB?.password) user.confirmPw = passwordEncoder.encode(user.password)
+        val cacheUsername = userDB?.username
         userRepository.save(user)
         model["message"] = "Successfully saved changes made to profile"
-        return "accountSettings"
+        if (user.username != cacheUsername) {
+            SecurityContextHolder.clearContext()
+            return "redirect:/login"
+        }
+        else { return "accountSettings" }
     }
     @RequestMapping("/deleteAccount", method = [RequestMethod.POST])
     fun deleteAccount(model: Model): String {

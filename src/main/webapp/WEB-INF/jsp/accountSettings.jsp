@@ -64,21 +64,23 @@
                         </div>
 
                         <!-- ------------- Email ---------------- -->
-                        <div class="mb-3">
-                            <label for="inputEmail" class="form-label">Email</label>
-                            <c:set var="emailInvalid">
-                                <form:errors path="email" cssClass="invalid-feedback"/>
-                            </c:set>
-                            <form:input path="email"
-                                        class="form-control ${not empty lastNameInvalid ? 'is-invalid' : ''}"
-                                        id="inputEmail"
-                                        type="text" value="${user.email}"/>
-                                ${emailInvalid}
+                        <div class="form-group">
+                            <label for="validationServerEmail" class="form-label">E-mail</label>
+                            <div class="input-group has-validation">
+                                <c:set var="EmailInvalid"><form:errors var="EmailInvalid" path="email"
+                                                                       cssClass="invalid-feedback"
+                                                                       class="form-control is-valid"/>
+                                </c:set>
+                                <form:input path="email"
+                                            class="form-control ${not empty EmailInvalid ? 'is-invalid': ''}"
+                                            id="validationServerEmail" type="text"/>
+                                    ${EmailInvalid}
+                            </div>
                         </div>
 
                         <!-- TODO: only one picture ---------------- Files ------------------>
                         <div class="mb-3">
-                            <label class="form-label">Files</label>
+                            <label class="form-label">Profile Picture</label>
                             <file:file value="${user.files}"/>
                         </div>
 
@@ -92,7 +94,7 @@
                                                                       class="form-control is-valid"/> </c:set>
                             <form:input path="password"
                                         class="form-control ${not empty PasswordInvalid ? 'is-invalid': ''}"
-                                        id="validationServerPassword" type="password" value="${currentUser.password}"/>
+                                        id="validationServerPassword" type="password" value=""/>
                                 ${PasswordInvalid}
                         </div>
 
@@ -107,24 +109,9 @@
                             </c:set>
                             <form:input path="confirmPw"
                                         class="form-control ${not empty ConfirmPwInvalid ? 'is-invalid': ''}"
-                                        id="validationServerConfirmPw" type="password" value="${currentUser.password}"/>
+                                        id="validationServerConfirmPw" type="password" value=""/>
                                 ${ConfirmPwInvalid}
                         </div>
-
-                        <!-- ------------- Confirm Email ---------------- -->
-                        <div class="form-group">
-                            <label for="inputEmailcorrect" class="form-label"></label>
-                            <c:set var="emailcorrectInvalid"><form:errors var="emailcorrectInvalid" path="emailcorrect"
-                                                                       cssClass="invalid-feedback"
-                                                                       class="form-control is-valid"/> </c:set>
-                            <form:input path="emailcorrect"
-                                        class="form-control ${not empty emailcorrectInvalid ? 'is-invalid': ''}"
-                                        id="inputEmailcorrect" type="hidden" readonly="true"/>
-                                ${emailcorrectInvalid}
-                        </div>
-
-
-
 
                         <!-- ------------- Terms and Conditions ---------------- -->
                         <div class="mb-3">
@@ -137,6 +124,20 @@
                                 ${CheckBoxInvalid}
                         </div>
 
+                        <!-- -------------- Buttons ---------------- -->
+                        <div class="mb-3">
+                            <!-- submit -->
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <!-- cancel -->
+                            <a href="/" class="btn btn-default">Cancel</a>
+
+                            <!-- delete button: only if id-param exists, button is enabled -->
+                            <sec:authorize access="!hasAuthority('ROLE_ADMIN')">
+                                <button type="button" class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                    Delete
+                                </button>
+                            </sec:authorize>
+                        </div>
 
                         <!-- ------------- User-Role (invisible, default value: id of current user) ---------------- -->
                         <div class="mb-3">
@@ -150,26 +151,7 @@
                                 ${roleInvalid}
                         </div>
 
-                        <!-- -------------- Buttons ---------------- -->
-                        <div class="mb-3">
-                            <!-- submit -->
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <!-- cancel -->
-                            <a href="/" class="btn btn-default">Cancel</a>
 
-                            <!-- delete button: only if id-param exists, button is enabled -->
-                            <sec:authorize access="!hasAuthority('ROLE_ADMIN')">
-                            <button type="button" class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                        Delete
-                            </button>
-                            </sec:authorize>
-
-
-
-
-
-
-                        </div>
                     </fieldset>
                 </form:form>
 
@@ -182,7 +164,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <h10>You will be signed out and can't post nor favourize recipes anymore.</h10>
+                                        <p>You will be signed out and can't post nor favourize recipes anymore.</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

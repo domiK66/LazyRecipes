@@ -2,6 +2,7 @@
 
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="layout" tagdir="/WEB-INF/tags/layout" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <layout:page-container title="LazyRecipes" activePage="login">
     <head>
@@ -10,6 +11,9 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signUp.css">
     </head>
 
+    <c:if test="${not empty param}">
+    <div class="alert alert-danger" role="alert">Please enter a valid username or password</div>
+    </c:if>
     <div class="signup-form">
         <form:form class="form-signin" method="post" action="/login"
                    style="max-width: 330px;padding: 15px;margin: 0 auto;">

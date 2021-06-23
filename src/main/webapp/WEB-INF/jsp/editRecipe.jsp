@@ -57,18 +57,6 @@
                                 ${subtitleInvalid}
                         </div>
 
-                        <!-- -------------- Ingredients ---------------- -->
-                        <div class="mb-3">
-                            <label for="inputIngredients" class="form-label">Ingredients</label>
-                            <c:set var="ingredientsInvalid">
-                                <form:errors path="ingredients" cssClass="invalid-feedback"/>
-                            </c:set>
-                            <form:input path="ingredients"
-                                        class="form-control ${not empty ingredientsInvalid ? 'is-invalid' : ''}"
-                                        id="inputIngredients"
-                                        type="text"/>
-                                ${ingredientsInvalid}
-                        </div>
 
                         <!-- -------------- Category ------------------>
                         <div class="mb-3">
@@ -112,6 +100,21 @@
                                 ${portionsInvalid}
                         </div>
 
+                        <!-- -------------- Ingredients ---------------- -->
+                        <div class="mb-3">
+                            <label for="inputIngredients" class="form-label">Ingredients</label>
+                            <c:set var="ingredientsInvalid">
+                                <form:errors path="ingredients" cssClass="invalid-feedback"/>
+                            </c:set>
+                            <form:textarea path="ingredients"
+                                           class="form-control ${not empty ingredientsInvalid ? 'is-invalid' : ''}"
+                                           id="inputIngredients"
+                                           type="text"
+                                           rows="4"
+                                           value="${'ingredientsInvalid'}"/>
+                                ${ingredientsInvalid}
+                        </div>
+
                         <!-- -------------- Steps ---------------- -->
                         <div class="mb-3">
                             <label for="inputsteps" class="form-label">steps</label>
@@ -121,7 +124,8 @@
                             <form:textarea path="steps"
                                            class="form-control ${not empty stepsInvalid ? 'is-invalid' : ''}"
                                            id="inputsteps"
-                                           rows="3"/>
+                                           type="text"
+                                           rows="4"/>
                                 ${stepsInvalid}
                         </div>
 
@@ -140,27 +144,6 @@
                                         type="hidden" readonly="true" value="${currentUser.id}"/>
                                 ${userInvalid}
                         </div>
-
-                        <!-- ------------- ratingAVG (invisible, default value: recipe rating AVG) ---------------- -->
-                        <div class="mb-3">
-                            <label for="ratingAVG" class="form-label"></label>
-                            <form:input path="ratingAVG"
-                                        class="form-control ${not empty ratingAVGInvalid ? 'is-invalid' : ''}"
-                                        id="inputUser"
-                                        type="hidden" readonly="true" value="${recipe.ratingAVG}"/>
-                                ${ratingAVGInvalid}
-                        </div>
-
-                        <!-- ------------- likes (invisible, default value: recipe likes) ---------------- -->
-                        <div class="mb-3">
-                            <label for="likes" class="form-label"></label>
-                            <form:input path="likes"
-                                        class="form-control ${not empty likesInvalid ? 'is-invalid' : ''}"
-                                        id="inputLikes"
-                                        type="hidden" readonly="true" value="${recipe.likes}"/>
-                                ${likesInvalid}
-                        </div>
-
 
                         <!-- -------------- Buttons ---------------- -->
                         <div class="mb-3">
@@ -186,6 +169,29 @@
                                 </c:otherwise>
                             </c:choose>
                         </div>
+
+                        <!-- ------------- ratingAVG (invisible, default value: recipe rating AVG) ---------------- -->
+                        <div class="mb-3">
+                            <label for="ratingAVG" class="form-label"></label>
+                            <form:input path="ratingAVG"
+                                        class="form-control ${not empty ratingAVGInvalid ? 'is-invalid' : ''}"
+                                        id="inputUser"
+                                        type="hidden" readonly="true" value="${recipe.ratingAVG}"/>
+                                ${ratingAVGInvalid}
+                        </div>
+
+                        <!-- ------------- likes (invisible, default value: recipe likes) ---------------- -->
+                        <div class="mb-3">
+                            <label for="likes" class="form-label"></label>
+                            <form:input path="likes"
+                                        class="form-control ${not empty likesInvalid ? 'is-invalid' : ''}"
+                                        id="inputLikes"
+                                        type="hidden" readonly="true" value="${recipe.likes}"/>
+                                ${likesInvalid}
+                        </div>
+
+
+
                     </fieldset>
                 </form:form>
 
