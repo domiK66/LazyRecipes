@@ -18,3 +18,17 @@ $(document).ready(function(){
 
     });
 });
+
+var inputSteps = document.getElementById("inputsteps");
+inputSteps.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            inputSteps.value += '- '
+        }
+});
+
+var inputIngredients = document.getElementById("inputIngredients");
+inputIngredients.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        inputIngredients.value += '- '
+    }
+});

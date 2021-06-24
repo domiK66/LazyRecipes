@@ -26,7 +26,7 @@ class Recipe (
     @field:NotNull
     @field:NotEmpty
     @field:Size(min = 2, max = 1024)
-    var ingredients: String? = "-",
+    var ingredients: String? = "- ",
 
     @ManyToOne
     @field:NotNull
@@ -41,7 +41,7 @@ class Recipe (
     @field:NotNull
     @field:NotEmpty
     @field:Size(min = 2, max = 2048)
-    var steps: String? = "-",
+    var steps: String? = "- ",
 
     var date: LocalDate? = LocalDate.now(),
 
