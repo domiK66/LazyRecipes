@@ -1,6 +1,6 @@
 ####  ![LazyRecipes Logo](https://i.ibb.co/4fTTY7J/logo.png)
 This website aims to be the place for people, who lack in time and enthusiasm and still want to have nice, cooked meals.
-Lazy Recipes aims to be a web application where members can share quick recipes and lazy cooks (i.e. students) can get new ideas for easy-made dishes.
+LazyRecipes aims to be a web application where members can share quick recipes and lazy cooks (i.e. students) can get new ideas for easy-made dishes.
 
 ## Team Members
 * BUKVAREVIC Mensur ([@mensiq](https://github.com/mensiq))
