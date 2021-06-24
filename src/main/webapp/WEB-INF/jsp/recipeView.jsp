@@ -153,11 +153,11 @@
         <div class="row mt-4">
             <div class="col-md-6">
                 <h3>Ingredients: </h3>
-                <p>${recipe.ingredients}</p>
+                <p style="white-space: pre-line">${recipe.ingredients}</p>
             </div>
             <div class="col-md-6">
                 <h3>Steps: </h3>
-                <p>${recipe.steps}</p>
+                <p style="white-space: pre-line">${recipe.steps}</p>
             </div>
         </div>
 
