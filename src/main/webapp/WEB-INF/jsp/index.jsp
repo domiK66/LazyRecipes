@@ -32,12 +32,12 @@
             <div class="col-lg-6 mx-auto">
                 <h1 class="lead mb-4">Lazy Recipes</h1>
                 <h2 class="lead mb-4">This website aims to be the place for people, who lack in time and enthusiasm and still want to have nice, cooked meals.</h2>
-                <h3 class="lead mb-4">Lazy Recipes aims to be a web application where members can share quick recipes and lazy cooks (i.e. students) can get new ideas for easy-made dishes.</h3>
+                <h3 class="lead mb-4">Lazy Recipes is a web application where members can share quick recipes and lazy cooks (i.e. students) can get new ideas for easy-made dishes.</h3>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                     <a href="/editRecipe"type="button" class="btn btn-primary btn-lg px-4 gap-3"><svg class="bi d-block mx-auto mb-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"></path>
                     </svg>Create Recipe</a>
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">About Us</button>
+                    <a href="/aboutUs" type="button" class="btn btn-outline-secondary btn-lg px-4">About Us</a>
                 </div>
             </div>
         </div>
