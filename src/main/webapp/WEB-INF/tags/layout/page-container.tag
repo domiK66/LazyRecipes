@@ -232,7 +232,7 @@
                             <a href="termsOfUse" class="text-white">Terms of Use</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">Imprint</a>
+                            <a href="/aboutUs" class="text-white">About Us</a>
                         </li>
                     </ul>
                 </div>

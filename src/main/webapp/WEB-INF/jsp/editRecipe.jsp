@@ -89,7 +89,7 @@
 
                         <!-- -------------- Portions ---------------- -->
                         <div class="mb-3">
-                            <label for="inputportions" class="form-label">portions</label>
+                            <label for="inputportions" class="form-label">Portion(s)</label>
                             <c:set var="portionsInvalid">
                                 <form:errors path="portions" cssClass="invalid-feedback"/>
                             </c:set>
@@ -117,7 +117,7 @@
 
                         <!-- -------------- Steps ---------------- -->
                         <div class="mb-3">
-                            <label for="inputsteps" class="form-label">steps</label>
+                            <label for="inputsteps" class="form-label">Steps</label>
                             <c:set var="stepsInvalid">
                                 <form:errors path="steps" cssClass="invalid-feedback"/>
                             </c:set>
@@ -131,7 +131,7 @@
 
                         <!-- ---------------- Files ------------------>
                         <div class="mb-3">
-                            <label class="form-label">Files</label>
+                            <label class="form-label">Upload photos of your meal or cooking process:</label>
                             <file:file value="${recipe.files}" />
                         </div>
 

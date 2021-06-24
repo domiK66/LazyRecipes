@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestParam
 
 @Controller
-class TermOfUseController(
+class FooterController(
     val userRepository: UserRepository,
     val countryRepository: CountryRepository,
     val recipeRepository: RecipeRepository,
@@ -32,5 +32,10 @@ class TermOfUseController(
     @RequestMapping("/privacyPolicy", method = [RequestMethod.GET])
     fun viewPrivacyPolicy(): String {
         return "privacyPolicy"
+    }
+
+    @RequestMapping("/aboutUs", method = [RequestMethod.GET])
+    fun viewAboutUs(): String {
+        return "aboutUs"
     }
 }
