@@ -55,7 +55,14 @@
             <div class="col-sm-6">
                 <h3>
                     by @${recipe.user.username}
-                    <img src="/file/${recipe.user.files[0].id}" alt="" class="rounded-circle" width="32" height="32">
+                    <c:choose>
+                        <c:when test="${currentUser.files[0].id == null}">
+                            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F10%2F05%2F22%2F37%2Fblank-profile-picture-973460_960_720.png&f=1&nofb=1" alt="mdo" class="rounded-circle" width="32" height="32">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="/file/${currentUser.files[0].id}" alt="mdo" class="rounded-circle" width="32" height="32">
+                        </c:otherwise>
+                    </c:choose>
                 </h3>
             </div>
             <div class="col-sm-6">
@@ -97,7 +104,7 @@
 
 
         <div class="row mt-4">
-            <div class="col-md-auto">
+            <div class="col-md-6">
                 <c:choose>
                     <c:when test="${recipe.files.size() != 0}">
                         <div class="fotorama" data-nav="thumbs">

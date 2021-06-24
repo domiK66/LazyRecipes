@@ -16,9 +16,9 @@
                     <thead>
                         <tr>
                             <th data-sortable="true">Title</th>
-                            <th data-sortable="true">Subtitle</th>
-                            <th data-sortable="true">Prep Time (min)</th>
+                            <th data-sortable="true">PrepTime (min)</th>
                             <th data-sortable="true">Portion(s)</th>
+                            <th data-sortable="true">Username</th>
                             <th data-sortable="true">Category</th>
                             <th>Actions</th>
                         </tr>
@@ -28,9 +28,9 @@
                         <c:forEach items="${recipe}" var="recipe">
                             <tr>
                                 <td>${recipe.title}</td>
-                                <td>${recipe.subtitle}</td>
                                 <td>${recipe.prepTime}</td>
                                 <td>${recipe.portions}</td>
+                                <td>@${recipe.user.username}</td>
                                 <td>${recipe.category.name}</td>
                                 <td>
 

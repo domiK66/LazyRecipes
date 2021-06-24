@@ -75,7 +75,7 @@
 
                         <!-- -------------- Prep Time ---------------- -->
                         <div class="mb-3">
-                            <label for="inputprepTime" class="form-label">prepTime</label>
+                            <label for="inputprepTime" class="form-label">PrepTime (in min)</label>
                             <c:set var="prepTimeInvalid">
                                 <form:errors path="prepTime" cssClass="invalid-feedback"/>
                             </c:set>
@@ -84,7 +84,7 @@
                                         id="inputprepTime"
                                         type="text"/>
                                 ${prepTimeInvalid}
-                            in Min
+
                         </div>
 
                         <!-- -------------- Portions ---------------- -->

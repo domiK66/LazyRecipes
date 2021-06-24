@@ -214,7 +214,7 @@
                             <a href="" class="text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Contact</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">Customer Service</a>
+                            <a href="/aboutUs" class="text-white">About Us</a>
                         </li>
 
                     </ul>
@@ -231,9 +231,7 @@
                         <li>
                             <a href="termsOfUse" class="text-white">Terms of Use</a>
                         </li>
-                        <li>
-                            <a href="/aboutUs" class="text-white">About Us</a>
-                        </li>
+
                     </ul>
                 </div>
                 <!--Grid column-->

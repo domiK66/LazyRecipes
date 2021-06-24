@@ -34,8 +34,6 @@ class RecipeController(
         model["user"] = userRepository.findAll()
         return "index"
     }
-
-
     // BEGIN RECIPE FORM
     fun populateEditRecipeView(model: Model): String {
         model["category"] = categoryRepository.findAll()
@@ -67,7 +65,7 @@ class RecipeController(
             return populateEditRecipeView(model)
         }
         recipeRepository.save(recipe)
-        return "redirect:/editRecipe?id=" + recipe.id
+        return "redirect:/recipeView?id=" + recipe.id
     }
     // END RECIPE FORM
 
@@ -82,10 +80,8 @@ class RecipeController(
         }
         val username = SecurityContextHolder.getContext().authentication.name
         val userId = userRepository.findByUsername(username)?.id
-
         val savedRating = ratingRepository.findByUserIdAndRecipeId(userId,id)
         val isFavourite = favouriteRepository.findByUserIdAndRecipeId(userId,id)
-
         model["rating"] = savedRating != null
         model["favourite"] = isFavourite != null
         return "recipeView"
@@ -107,12 +103,9 @@ class RecipeController(
         if (savedRating != null) {
             ratingRepository.delete(savedRating)
         }
-
         ratingRepository.save(rating)
-
         recipe.ratingAVG = ratingRepository.getAverageRating(id)
         recipeRepository.save(recipe)
-
         return "redirect:/recipeView?id=" + id
     }
 
@@ -161,18 +154,6 @@ class RecipeController(
         redirectAttributes.addFlashAttribute("errorMessage", message)
         return "redirect:/recipeView?id=" + id
     }
-
-
-    // END recipeView.jsp
-
-
-
-
-
-
-
-
-
 
     @RequestMapping("/searchRecipe", method = [RequestMethod.GET])
     fun searchRecipes(model: Model, @RequestParam(required = false) search: String? = null): String {

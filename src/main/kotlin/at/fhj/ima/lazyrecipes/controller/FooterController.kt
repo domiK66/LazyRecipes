@@ -1,7 +1,6 @@
 package at.fhj.ima.lazyrecipes.controller
 
 import at.fhj.ima.lazyrecipes.entity.User
-import at.fhj.ima.lazyrecipes.repository.CountryRepository
 import at.fhj.ima.lazyrecipes.repository.RecipeRepository
 import at.fhj.ima.lazyrecipes.repository.UserRepository
 import org.springframework.dao.DataIntegrityViolationException
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam
 @Controller
 class FooterController(
     val userRepository: UserRepository,
-    val countryRepository: CountryRepository,
     val recipeRepository: RecipeRepository,
     val passwordEncoder: PasswordEncoder
 ) {

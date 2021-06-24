@@ -2,14 +2,10 @@ package at.fhj.ima.lazyrecipes.controller
 
 
 import at.fhj.ima.lazyrecipes.entity.User
-import at.fhj.ima.lazyrecipes.entity.UserRole
-import at.fhj.ima.lazyrecipes.repository.CountryRepository
 import at.fhj.ima.lazyrecipes.repository.RecipeRepository
 import at.fhj.ima.lazyrecipes.repository.UserRepository
 
 import org.springframework.dao.DataIntegrityViolationException
-import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -25,7 +21,6 @@ import javax.validation.Valid
 @Controller
 class UserController(
     val userRepository: UserRepository,
-    val countryRepository: CountryRepository,
     val recipeRepository: RecipeRepository,
     val passwordEncoder: PasswordEncoder
 ) {
